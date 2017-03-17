@@ -14,9 +14,11 @@ import tp3.comportement.*;
 public class Ennemies extends Combatant{
     
     private String nom;
+    private int poursuite;
     
-    public Ennemies(String nom){
+    public Ennemies(String nom, int p){
         this.nom = null;
+        this.poursuite = 0;
     }
    
     public Ennemies(Power power, Soin soin, Deplacement dep){
@@ -27,5 +29,9 @@ public class Ennemies extends Combatant{
     
     public String getNom(){
         return this.nom;
+    }
+    
+    public int getPoursuite(){
+        return this.poursuite;
     }
 }

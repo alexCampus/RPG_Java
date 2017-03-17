@@ -68,7 +68,22 @@ public class Combat {
     }
 
     private void fuir() {
-        
+        boolean b = Random.fuite(ennemie);
+        if (b) {
+            System.out.print("Vous prenez la fuite ...");
+            this.end();
+        }
+        else {
+            System.out.print("Fuite impossible ... L'ennemie vous rattrape et vous blesse.");
+            //Ajouter la perte de pv du joueur heros.setPv();
+            System.out.print("Vous perdez XX pv.");
+            if(heros.getPV() > 0) {
+                choix();
+            } else {
+                this.end;
+            }
+            
+        }
     }
 
     private void attaque(int t) {
@@ -124,10 +139,14 @@ public class Combat {
             
         }
         else if(/*ennemie mort*/) {
-            
+            this.end();
         } else {
             System.out.print("Vous vous remettez en position ...");
             choix();
         }
+    }
+
+    private void end() {
+        System.out.print("Combat terminé !");
     }
 }

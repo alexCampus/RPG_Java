@@ -36,4 +36,11 @@ public class Random {
         
         return i;
     }
+    
+    public static boolean fuite(Ennemies ennemie) {
+        boolean b;
+        int i = ThreadLocalRandom.current().nextInt(0, 4 + 1);
+        b = i - ennemie.getPoursuite() > 0;    
+        return b;
+    }
 }

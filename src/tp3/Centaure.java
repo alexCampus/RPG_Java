@@ -15,7 +15,7 @@ public class Centaure extends Ennemies{
     
     
     public Centaure(){
-       super("centaure");
+       super("centaure", 3);
     }
     
     public Centaure(Power esprit, Soin soin, Deplacement dep) {

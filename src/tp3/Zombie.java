@@ -14,7 +14,7 @@ import tp3.comportement.*;
 public class Zombie extends Ennemies{
     
     public Zombie(){
-       super("zombie");
+       super("zombie", 1);
     }
     
     public Zombie(Power esprit, Soin soin, Deplacement dep) {
