@@ -17,6 +17,11 @@ public class Nain extends Heros{
         this.PV = 100;
         this.force = 30;
         this.speed = 10;
+<<<<<<< HEAD
+=======
+        this.psoin = 10;
+
+>>>>>>> origin/develop
         
     }
     

@@ -43,6 +43,7 @@ public class Tp3 {
             
             switch(choix)
             {
+<<<<<<< HEAD
                 case "1":
                     System.out.println(
                             "Bienvenue dans une histoire dont VOUS serez le héros !\n" +
@@ -53,6 +54,14 @@ public class Tp3 {
                     tour();
 
                 case "2":
+=======
+                case 1:
+                    System.out.println("Lets go to the adventure!!!!");
+                    reponse = 'O';
+                    break;
+                    
+                case 2:
+>>>>>>> origin/develop
                     System.out.println("Au revoir");
                     exitMain = false;
                     break;
@@ -66,6 +75,7 @@ public class Tp3 {
         
         
         
+<<<<<<< HEAD
     }
 
     private static void tour(){
@@ -154,5 +164,9 @@ public class Tp3 {
         }
         System.out.println("Bravo ! Vous avez réussi à terminer cette histoire ! à bientôt pour de nouvelles aventures");
         exitMain = true;
+=======
+        
+        
+>>>>>>> origin/develop
     }
 }
