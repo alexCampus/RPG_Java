@@ -69,22 +69,23 @@ public class Tp3 {
                 "3 - Peu m'importe la force ou la rapidité, je veux pouvoir me soigner. Personne ne pourra me vaincre !\n" +
                 "4 - Je ne sais pas trop chisir, je préfererai être polyvalent et parer à toutes les situations !\n");
         String choiceRace = sc.nextLine();
+        Heros m = new Heros();
         switch (choiceRace){
             case "1" :
                 System.out.println("Vous serez donc un nain !");
-                Heros m = new Humain();
+                m = new Humain();
                 break;
             case "2" :
                 System.out.println("Vous serez donc un elfe !");
-                Heros m = new Elfe();
+                m = new Elfe();
                 break;
             case "3" :
                 System.out.println("Vous serez donc un hobbit !");
-                Heros m = new Hobbit();
+                m = new Hobbit();
                 break;
             case "4" :
                 System.out.println("Vous serez donc un humain !");
-                Heros m = new Humain();
+                m = new Humain();
                 break;
             default :
                 System.out.println("\u001B[41mL'option " + choix + " n'est pas valide.\u001B[m");

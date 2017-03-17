@@ -41,8 +41,10 @@ abstract class Combatant {
         deplacement.deplacerAvec(nbPas);
     }
     
-    public void seSoigner(){
-        soin.soigneAvec((this.PVmax-this.PV)*(this.psoin/10));
+    public int seSoigner(){
+        int soi = (int) Math.round((this.PVmax-this.PV)*(this.psoin/10));
+        this.setPlusPV(soi);
+        return soi;
     }
     
     public void combattre(String arme, int force){
