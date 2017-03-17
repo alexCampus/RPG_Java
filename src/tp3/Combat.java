@@ -40,7 +40,15 @@ public class Combat {
                 this.menuAttaque();
                 break;
             case "2" :
-                this.soin();
+                if (soin) {
+                    this.soin();
+                }
+                else {
+                    System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
+                    heros.setMoinsPV(this.ennemie.force);
+                    System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
+                    choix();
+                }
                 break;
             case "3" :
                 this.fuir();
@@ -72,8 +80,8 @@ public class Combat {
     private void soin() {
         System.out.print("Vous vous soignez ...");
         this.soin = false;
-        int s = this.heros.seSoigner();
-        System.out.print("Vous récupérez "+s+" pv.");
+        double s = this.heros.seSoigner();
+        System.out.print("Vous récupérez "+(int)s+" pv.");
         choix();
     }
 

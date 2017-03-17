@@ -20,7 +20,7 @@ abstract class Combatant {
     
     protected int psoin;
     protected int PV;
-    protected int PVmax; 
+    protected int PVmax = 100; 
     protected int force;
     protected int speed;
     
@@ -30,7 +30,6 @@ abstract class Combatant {
         this.power = power;
         this.soin = soin;
         this.deplacement = deplacement;
-        this.PVmax = 100;
        /* this.PV = PV;
         this.force = force;
         this.speed = speed;*/
@@ -41,8 +40,9 @@ abstract class Combatant {
         deplacement.deplacerAvec(nbPas);
     }
     
-    public int seSoigner(){
-        int soi = (int) Math.round((this.PVmax-this.PV)*(this.psoin/100));
+    public double seSoigner(){
+        System.out.println(this.PV+" "+this.PVmax+" "+this.psoin);
+        double soi = (double) Math.round((this.PVmax-this.PV)*(this.psoin)/100);
         this.setPlusPV(soi);
         return soi;
     }
@@ -63,8 +63,8 @@ abstract class Combatant {
         return speed;
     }
     
-     public void setPlusPV(int nbPV){
-        PV += nbPV;
+     public void setPlusPV(double nbPV){
+        PV += (int) nbPV;
     }
     
     public void setMoinsPV(int nbPV){
