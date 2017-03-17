@@ -120,15 +120,28 @@ public class Tp3 {
                 case 2:
                     //INSTANCIER OBSTACLE
                     System.out.println("Un obstacle encombre votre route.");
-                    int a = 0;
-                    if(a == 0){ //   CHECK obstacle.isBloquant()
+                    if(obstacle.isBloquant()){ //   CHECK obstacle.isBloquant()
                         System.out.println("L'obstacle semble vraiment infranchissable, vous décidez donc de faire demi-tour.");
                         //DEPLACEMENT : RECULER
                     } else {
                         System.out.println("Vous pensez pouvoir le franchir." +
                                 "1 - J'essaie de le franchir !" +
                                 "2 - Non, je préfère faire demi-tour et trouver un autre chemin");
+                        choix = sc.nextLine();
+                        switch(choix){
+                            case "1":
+                                //QUI PEUT PASSER L'OBSTACLE, DANS QUELLES CONDITIONS
+                                System.out.println("Vous réussissez à passer l'obstacle, mais vous sentez qu'un peu de repos vous fera le plus grand bien.\n" +
+                                        "Votre prochain déplacement en sera peut-être affecté.");
+                                break;
+                            case "2":
+                                System.out.println("L'obstacle vous semble vraiment infranchissable, vous décidez donc de faire demi-tour.");
+                                break;
+                        }
                     }
+                    break;
+                case 3:
+                        //INSTANCIER COMBAT
                     break;
             }
 
