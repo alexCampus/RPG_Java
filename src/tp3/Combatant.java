@@ -28,9 +28,6 @@ abstract class Combatant {
         this.power = power;
         this.soin = soin;
         this.deplacement = deplacement;
-       /* this.PV = PV;
-        this.force = force;
-        this.speed = speed;*/
     }
     
     public void seDeplacer(int nbPas){

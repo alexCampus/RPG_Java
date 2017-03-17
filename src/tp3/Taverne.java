@@ -15,7 +15,7 @@ public class Taverne {
     private Heros monHero;
     int nbPV = (int)(Math.random() * 20) +1;
     int nbPVPerteMax =(int)(Math.random() * 50)+15;
-    int nbForce = (int)(Math.random() * 20) +1;
+    int nbForce = (int)(Math.random() * 5) +1;
     
     public Taverne(Heros monHero){
         this.monHero = monHero;
@@ -36,7 +36,7 @@ public class Taverne {
                     switch(choix){
                         case 1:
                             System.out.println("Malheureusement la taverne est pleine. Le patron est d'humeur sympathique et vous offre une nouvelle épée pour vous dédommager");
-                            //prevoir ajout force pour combat
+                            monHero.setPlusForce(nbForce);
                             break;
                             
                         case 2:
@@ -45,7 +45,7 @@ public class Taverne {
                             switch(nbAleatoire){
                                 case 1:
                                     System.out.println("Bravo, vous lui avez défoncé la tête en moins de deux et vous avez ainsi récuperer ses armes sans perdre de PV");
-                                    //prevoir ajout force pour combat
+                                    monHero.setPlusForce(nbForce + 3);
                                     break;
                                     
                                 case 2:
@@ -60,14 +60,14 @@ public class Taverne {
                                 default:
                                     System.out.println("Votre voisin etait vraiment super fort, et vous regrettez votre choix car vous perdez " + nbPVPerteMax + " points de vie et " + nbForce + " de force...." );
                                     monHero.setMoinsPV(nbPVPerteMax);
-                                    //prevoir moins Points de force                                    
+                                    monHero.setMoinsForce(nbForce);                                 
                                     break;
                             }
                             break;
                             
                         case 3:
                             System.out.println("Grâce a votre rencontre avec un mage, vous venez de gagner en rapidité avec les bottes magiques qu'il vous a offert");
-                            // ajout rapidité
+                            monHero.setPlusSpeed(nbForce);
                             break;
                             
                         case 4:
@@ -77,7 +77,7 @@ public class Taverne {
                             
                         default:
                             System.out.println("Vous avez perdu vos chaussures durant la soirée bien arrosé d'hier, vous perdez donc de la rapidité.");
-                            //retirer rapidité
+                            monHero.setMoinsSpeed(nbForce);
                             break;
                     }
                

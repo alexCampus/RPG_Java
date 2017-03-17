@@ -21,9 +21,6 @@ public class Heros extends Combatant{
         this.deplacement = dep;
         this.power = power;
         this.soin = soin;
-       /* this.PV = PV;
-        this.force = force;
-        this.speed = speed;*/
     }
     
    
