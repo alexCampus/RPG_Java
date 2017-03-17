@@ -24,4 +24,8 @@ public class Ennemies extends Combatant{
         this.power = power;
         this.soin = soin;
     }
+    
+    public String getNom(){
+        return this.nom;
+    }
 }

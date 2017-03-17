@@ -30,4 +30,10 @@ public class Random {
         
         return ennemie;
     }
+    
+    public static int typeAttaque() {
+        int i = ThreadLocalRandom.current().nextInt(1, 3 + 1);
+        
+        return i;
+    }
 }
