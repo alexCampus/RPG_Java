@@ -14,7 +14,7 @@ import tp3.comportement.*;
 public class Ogre extends Ennemies{
     
      public Ogre(){
-       
+       super("ogre");
     }
     
     public Ogre(Power esprit, Soin soin, Deplacement dep) {

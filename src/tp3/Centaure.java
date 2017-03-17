@@ -13,8 +13,9 @@ import tp3.comportement.*;
  */
 public class Centaure extends Ennemies{
     
+    
     public Centaure(){
-       
+       super("centaure");
     }
     
     public Centaure(Power esprit, Soin soin, Deplacement dep) {
