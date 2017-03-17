@@ -122,8 +122,9 @@ public class Tp3 {
                     break;
                 case 2:
                     //INSTANCIER OBSTACLE
+                    Obstacle obstacle = new Obstacle(true,2);
                     System.out.println("Un obstacle encombre votre route.");
-                    if(obstacle.isBloquant()){ //   CHECK obstacle.isBloquant()
+                    if(obstacle.getIsBloquant()){ //   CHECK obstacle.isBloquant()
                         System.out.println("L'obstacle semble vraiment infranchissable, vous décidez donc de faire demi-tour.");
                         //DEPLACEMENT : RECULER
                     } else {
