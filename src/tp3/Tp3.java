@@ -125,14 +125,14 @@ public class Tp3 {
                     break;
                 case 2:
                     //INSTANCIER OBSTACLE
-                    Obstacle obstacle = new Obstacle(false,2);
+                    Obstacle obstacle = new Obstacle(Random.boolObsctacle(),2);
                     System.out.println("Un obstacle encombre votre route.");
                     if(obstacle.getIsBloquant()){ //   CHECK obstacle.isBloquant()
                         System.out.println("L'obstacle semble vraiment infranchissable, vous décidez donc de faire demi-tour.");
                         Case -= m.getSpeed();
                     } else {
                         System.out.println("Vous pensez pouvoir le franchir.\n" +
-                                "1 - J'essaie de le franchir\n !" +
+                                "1 - J'essaie de le franchir !\n" +
                                 "2 - Non, je préfère faire demi-tour et trouver un autre chemin");
                         choix = sc.nextLine();
                         switch(choix){

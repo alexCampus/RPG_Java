@@ -142,7 +142,7 @@ public class Combat {
             
         }
         else if(this.ennemie.getPV() <= 0) {
-            System.out.print("Vous avez tué le "+ennemie.getNom()+" !");
+            System.out.print("Vous avez tué le "+ennemie.getNom()+" !\n");
             this.end();
         } else {
             System.out.print("Vous vous remettez en position ...");
@@ -151,7 +151,7 @@ public class Combat {
     }
 
     private void end() {
-        System.out.print("Combat terminé !");
+        System.out.print("Combat terminé !\n");
     }
 
     private String canSoigne() {
