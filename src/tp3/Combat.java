@@ -10,5 +10,5 @@ package tp3;
  * @author Loic.FOREST
  */
 public class Combat {
-    int gn;
+    int gnnn;
 }
