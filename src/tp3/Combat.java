@@ -31,47 +31,46 @@ public class Combat {
     public void choix() {
         
         do {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Il vous reste "+heros.getPV()+" PV.\n"
-                + "Que souhaitez-vous faire ?\n"
-                + "<1> Attaquer\n"
-                + canSoigne()
-                + "<3> Fuir\n");
-        String ch = sc.nextLine();
-        switch(ch) {
-            case "1" :
-                this.menuAttaque();
-                break;
-            case "2" :
-                if (soin) {
-                    this.soin();
-                }
-                else {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Il vous reste "+heros.getPV()+" PV.\n"
+                    + "Que souhaitez-vous faire ?\n"
+                    + "<1> Attaquer\n"
+                    + canSoigne()
+                    + "<3> Fuir\n");
+            String ch = sc.nextLine();
+            switch(ch) {
+                case "1" :
+                    this.menuAttaque();
+                    break;
+                case "2" :
+                    if (soin) {
+                        this.soin();
+                    }
+                    else {
+                        System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
+                        heros.setMoinsPV(this.ennemie.force);
+                        System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
+
+                    }
+                    break;
+                case "3" :
+                    this.fuir();
+                    break;
+                default :
                     System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
                     heros.setMoinsPV(this.ennemie.force);
                     System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
-                    
-                }
-                break;
-            case "3" :
-                this.fuir();
-                break;
-            default :
-                System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
-                heros.setMoinsPV(this.ennemie.force);
-                System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
-                
-                break;
-        }
-        if(this.heros.getPV() <= 0) {
-            this.end();
-        }
-        else if(this.ennemie.getPV() <= 0) {
-            System.out.print("Vous avez tué le "+ennemie.getNom()+" !\n");
-            this.end();
-        } else {
-            System.out.print("Vous vous remettez en position ...");
-        }
+
+                    break;
+            }
+            if(this.heros.getPV() <= 0) {
+                this.end();
+            } else if(this.ennemie.getPV() <= 0) {
+                System.out.print("Vous avez tué le "+ennemie.getNom()+" !\n");
+                this.end();
+            } else if ("1".equals(ch)){
+                System.out.print("Vous vous remettez en position ...");
+            }
         }
         while(!this.end);
     }

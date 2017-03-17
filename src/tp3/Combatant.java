@@ -41,7 +41,6 @@ abstract class Combatant {
     }
     
     public double seSoigner(){
-        System.out.println(this.PV+" "+this.PVmax+" "+this.psoin);
         double soi = (double) Math.round((this.PVmax-this.PV)*(this.psoin)/100);
         this.setPlusPV(soi);
         return soi;
