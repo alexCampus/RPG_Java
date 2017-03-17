@@ -27,12 +27,15 @@ public class Taverne {
         switch(nb){
             case 1:                
                 
-                System.out.println("Vous venez de retrouver un de vos vieux amis, après avoir passé une bonne soirée en sa présence.\nCela vous a permis de regagner " + nbPV + " points de vie.");                
-                monHero.setPlusPV(nbPV); 
+                System.out.println("Vous venez de retrouver un de vos vieux amis, après avoir passé une bonne soirée en sa présence.\nCela vous a permis de regagner " + nbPV + " points de vie."); 
+                if(monHero.getPV() > 95){
+                    monHero.setPlusPV(nbPV); 
+                }
+                
                 break;
                 
             case 2:
-                int choix = (int)(Math.random() * 5);
+                int choix = (int)(Math.random() * 7);
                     switch(choix){
                         case 1:
                             System.out.println("Malheureusement la taverne est pleine. Le patron est d'humeur sympathique et vous offre une nouvelle épée pour vous dédommager");
@@ -41,7 +44,7 @@ public class Taverne {
                             
                         case 2:
                             System.out.println("Vous n'avez pas controlé votre consommation de bieres elfique\n et sous les effets de l'alcool vous vous êtes battus avec votre voisin de comptoir.....");
-                            int nbAleatoire = (int)(Math.random() * 5)+1;
+                            int nbAleatoire = (int)(Math.random() * 9);
                             switch(nbAleatoire){
                                 case 1:
                                     System.out.println("Bravo, vous lui avez défoncé la tête en moins de deux et vous avez ainsi récuperer ses armes sans perdre de PV");
@@ -59,8 +62,11 @@ public class Taverne {
                                     
                                 default:
                                     System.out.println("Votre voisin etait vraiment super fort, et vous regrettez votre choix car vous perdez " + nbPVPerteMax + " points de vie et " + nbForce + " de force...." );
-                                    monHero.setMoinsPV(nbPVPerteMax);
-                                    monHero.setMoinsForce(nbForce);                                 
+                                    if(monHero.getPV() < 5 || monHero.getForce() < 5){
+                                        monHero.setMoinsPV(nbPVPerteMax);
+                                        monHero.setMoinsForce(nbForce);
+                                    }
+                                                                     
                                     break;
                             }
                             break;
@@ -89,7 +95,10 @@ public class Taverne {
             
             case 4:
                 System.out.println("Vous vous offrez les services d'une jolie demoiselle cela vous rapporte " + nbPV + " points de vie");
-                monHero.setPlusPV(nbPV); 
+                if(monHero.getForce() > 95){
+                    monHero.setPlusPV(nbPV); 
+                }
+                
                 break;
                 
             default:
