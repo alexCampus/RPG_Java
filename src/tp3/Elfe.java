@@ -14,12 +14,15 @@ import tp3.comportement.*;
 public class Elfe extends Heros{
     
     public Elfe(){
+        this.PV = 100;
+        this.force = 0;
+        this.speed = 2;
         this.power = new PowerMagie();
         this.deplacement = new Courir();
         
     }
     
-    public Elfe(Power esprit, Soin soin, Deplacement dep, int PV, int force, int speed) {
-        super(esprit, soin, dep, PV, force, speed);
+    public Elfe(Power esprit, Soin soin, Deplacement dep) {
+        super(esprit, soin, dep);
   }
 }

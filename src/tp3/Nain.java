@@ -14,11 +14,14 @@ import tp3.comportement.*;
 public class Nain extends Heros{
     
     public Nain(){
+        this.PV = 100;
+        this.force = 2;
+        this.speed = 1;
         
     }
     
-    public Nain(Power esprit, Soin soin, Deplacement dep,int PV, int force, int speed) {
-        super(esprit, soin, dep, PV, force, speed);
+    public Nain(Power esprit, Soin soin, Deplacement dep) {
+        super(esprit, soin, dep);
   }
     
     

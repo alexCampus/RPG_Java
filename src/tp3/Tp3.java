@@ -27,9 +27,11 @@ public class Tp3 {
         
         do{
             Heros m = new Humain();
-             Taverne n = new Taverne(m);
+            Taverne n = new Taverne(m);
              n.eventTaverne();
              System.out.println(m.getPV());
+            System.out.println(m.getForce());
+            System.out.println(m.getSpeed());
             System.out.println("Bienvenue, allez vous reussir a sauver la Princesse....");
             System.out.println(" \n____________________\n\n 1 Commencer la partie,\n\n 2 Quitter \n____________________\n");
             choix = sc.nextInt();

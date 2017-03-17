@@ -24,13 +24,13 @@ abstract class Combatant {
     
     public Combatant(){}
     
-    public Combatant(Power power, Soin soin, Deplacement deplacement, int PV, int force, int speed){
+    public Combatant(Power power, Soin soin, Deplacement deplacement){
         this.power = power;
         this.soin = soin;
         this.deplacement = deplacement;
-        this.PV = PV;
+       /* this.PV = PV;
         this.force = force;
-        this.speed = speed;
+        this.speed = speed;*/
     }
     
     public void seDeplacer(int nbPas){

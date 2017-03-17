@@ -14,15 +14,16 @@ import tp3.comportement.*;
 public class Heros extends Combatant{
     
     
-   public Heros(){}
+   public Heros(){
+   }
    
-    public Heros(Power power, Soin soin, Deplacement dep, int PV, int force, int speed){
+    public Heros(Power power, Soin soin, Deplacement dep){
         this.deplacement = dep;
         this.power = power;
         this.soin = soin;
-        this.PV = PV;
+       /* this.PV = PV;
         this.force = force;
-        this.speed = speed;
+        this.speed = speed;*/
     }
     
    

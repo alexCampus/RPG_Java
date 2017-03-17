@@ -17,10 +17,11 @@ public class Humain extends Heros{
        this.PV = 100;
        this.force = 1;
        this.speed = 1;
+    
     }
     
-    public Humain(Power esprit, Soin soin, Deplacement dep, int PV, int force, int speed) {
-        super(esprit, soin, dep, PV, force, speed);
+    public Humain(Power esprit, Soin soin, Deplacement dep) {
+        super(esprit, soin, dep);
   }
     
     

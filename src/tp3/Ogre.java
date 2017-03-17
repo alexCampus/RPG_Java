@@ -17,7 +17,7 @@ public class Ogre extends Ennemies{
        
     }
     
-    public Ogre(Power esprit, Soin soin, Deplacement dep, int PV, int force, int speed) {
-        super(esprit, soin, dep, PV, force, speed);
+    public Ogre(Power esprit, Soin soin, Deplacement dep) {
+        super(esprit, soin, dep);
   }
 }
