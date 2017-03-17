@@ -63,9 +63,7 @@ public class Tp3 {
             }
             
         }while(!exitMain);
-        
-        
-       
+
     }
 
     private static void tour(){
