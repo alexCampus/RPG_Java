@@ -26,6 +26,8 @@ public class Tp3 {
          
         
         do{
+             Taverne n = new Taverne();
+             n.eventTaverne();
             System.out.println("Bienvenue, allez vous reussir a sauver la Princesse....");
             System.out.println(" \n____________________\n\n 1 Commencer la partie,\n\n 2 Quitter \n____________________\n");
             choix = sc.nextInt();

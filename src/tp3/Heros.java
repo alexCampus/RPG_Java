@@ -21,4 +21,12 @@ public class Heros extends Combatant{
         this.soin = soin;
     }
     
+    public void setPlusPV(int nbPV){
+        
+    }
+    
+    public void setMoinsPV(int nbPV){
+        
+    }
+    
 }
