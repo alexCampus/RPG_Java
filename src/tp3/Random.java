@@ -50,4 +50,11 @@ public class Random {
 
         return i;
     }
+    
+     public static boolean boolObsctacle() {
+        boolean b;
+        int i = ThreadLocalRandom.current().nextInt(0, 4);
+        b = i > 0;    
+        return b;
+    }
 }
