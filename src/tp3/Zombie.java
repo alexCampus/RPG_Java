@@ -16,6 +16,7 @@ public class Zombie extends Ennemies{
     public Zombie(){
        super("zombie", 1);
        this.PV = 30;
+       this.force = 5;
     }
     
     public Zombie(Power esprit, Soin soin, Deplacement dep) {
