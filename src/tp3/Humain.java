@@ -15,17 +15,9 @@ public class Humain extends Heros{
     
     public Humain(){
        this.PV = 100;
-<<<<<<< HEAD:src/tp3/Humain.java
-       this.force = 20;
-       this.speed = 10;
-=======
-
        this.force = 20;
        this.speed = 10;
        this.psoin = 33;
-
->>>>>>> origin/develop:src/tp3/Humain.java
-    
     }
     
     public Humain(Power esprit, Soin soin, Deplacement dep) {
