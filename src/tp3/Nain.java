@@ -19,10 +19,6 @@ public class Nain extends Heros{
         this.speed = 10;
         this.psoin = 10;
 
-
-
-
-        
     }
     
     public Nain(Power esprit, Soin soin, Deplacement dep) {

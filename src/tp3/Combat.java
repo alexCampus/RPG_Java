@@ -15,6 +15,7 @@ public class Combat {
     private Ennemies ennemie;
     private Heros heros;
     private boolean soin = true;
+    private boolean end = false;
     
     public Combat(Heros heros) {
         this.heros= heros;
@@ -28,6 +29,8 @@ public class Combat {
     }
     
     public void choix() {
+        
+        do {
         Scanner sc = new Scanner(System.in);
         System.out.print("Il vous reste "+heros.getPV()+" PV.\n"
                 + "Que souhaitez-vous faire ?\n"
@@ -47,7 +50,7 @@ public class Combat {
                     System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
                     heros.setMoinsPV(this.ennemie.force);
                     System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
-                    choix();
+                    
                 }
                 break;
             case "3" :
@@ -57,9 +60,20 @@ public class Combat {
                 System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
                 heros.setMoinsPV(this.ennemie.force);
                 System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
-                choix();
+                
                 break;
         }
+        if(this.heros.getPV() <= 0) {
+            this.end();
+        }
+        else if(this.ennemie.getPV() <= 0) {
+            System.out.print("Vous avez tué le "+ennemie.getNom()+" !\n");
+            this.end();
+        } else {
+            System.out.print("Vous vous remettez en position ...");
+        }
+        }
+        while(!this.end);
     }
 
     private void menuAttaque() {
@@ -82,7 +96,6 @@ public class Combat {
         this.soin = false;
         double s = this.heros.seSoigner();
         System.out.print("Vous récupérez "+(int)s+" pv.");
-        choix();
     }
 
     private void fuir() {
@@ -96,7 +109,6 @@ public class Combat {
             heros.setMoinsPV(this.ennemie.force);
             System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
             if(heros.getPV() > 0) {
-                choix();
             } else {
                 this.end();
             }
@@ -168,21 +180,12 @@ public class Combat {
         }
         //CONTROLE DECES !!
         
-        if(this.heros.getPV() <= 0) {
-            System.out.print("Vous avez mouru !");
-            this.end();
-        }
-        else if(this.ennemie.getPV() <= 0) {
-            System.out.print("Vous avez tué le "+ennemie.getNom()+" !\n");
-            this.end();
-        } else {
-            System.out.print("Vous vous remettez en position ...");
-            choix();
-        }
+        
     }
 
     private void end() {
         System.out.print("Combat terminé !\n");
+        end = true;
     }
 
     private String canSoigne() {
