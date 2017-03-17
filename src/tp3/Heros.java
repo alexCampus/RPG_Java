@@ -22,11 +22,11 @@ public class Heros extends Combatant{
     }
     
     public void setPlusPV(int nbPV){
-        
+        PV += nbPV;
     }
     
     public void setMoinsPV(int nbPV){
-        
+        PV  -= nbPV;
     }
     
 }

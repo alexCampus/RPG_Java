@@ -12,16 +12,20 @@ package tp3;
 public class Taverne {
     
     private int nb;
+    private Heros monHero;
     
-    public Taverne(){
+    public Taverne(Heros monHero){
+        this.monHero = monHero;
         nb = (int)(Math.random() *5);
        
     }
     
     public void eventTaverne(){
         switch(nb){
-            case 1:
-                System.out.println("Je suis le choix " + nb);
+            case 1:                
+                int nbPV = (int)(Math.random() * 20);
+                System.out.println("Vous venez de retrouver un de vos vieux amis, après avoir passé une bonne soirée en sa présence.\nCela vous a permis de regagner " + nbPV + " points de vie.");                
+                monHero.setPlusPV(nbPV); 
                 break;
                 
             case 2:
