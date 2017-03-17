@@ -49,7 +49,7 @@ public class Tp3 {
                 case "2":
 
                     System.out.println("Au revoir");
-                    exitMain = false;
+                    exitMain = true;
                     break;
                 
                 default:
@@ -92,13 +92,15 @@ public class Tp3 {
         }
 
         while (Case < 100) {
-            nbTours += 1;
+            nbTours ++;
+            deplacement = m.getSpeed();
+            Case += deplacement;
             System.out.println("Tour \u001B[32m" + nbTours + "\u001B[m");
 
             System.out.println("Vous avez avancé de " + deplacement + " cases. Validez pour continuer");
             sc.nextLine();
 
-            int event = (int)Math.round(Math.random())%4;
+            int event = Random.event();
 
             switch(event) {
                 case 0:
@@ -123,10 +125,11 @@ public class Tp3 {
                     break;
                 case 2:
                     //INSTANCIER OBSTACLE
+                    Obstacle obstacle = new Obstacle(false,2);
                     System.out.println("Un obstacle encombre votre route.");
-                    if(obstacle.isBloquant()){ //   CHECK obstacle.isBloquant()
+                    if(obstacle.getIsBloquant()){ //   CHECK obstacle.isBloquant()
                         System.out.println("L'obstacle semble vraiment infranchissable, vous décidez donc de faire demi-tour.");
-                        //DEPLACEMENT : RECULER
+                        Case -= m.getSpeed();
                     } else {
                         System.out.println("Vous pensez pouvoir le franchir." +
                                 "1 - J'essaie de le franchir !" +
@@ -146,6 +149,8 @@ public class Tp3 {
                     break;
                 case 3:
                         //INSTANCIER COMBAT
+                    Combat c = new Combat(m);
+                        c.debutDuCombat();
                     break;
             }
 

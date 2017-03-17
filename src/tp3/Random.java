@@ -40,8 +40,14 @@ public class Random {
     
     public static boolean fuite(Ennemies ennemie) {
         boolean b;
-        int i = ThreadLocalRandom.current().nextInt(0, 4 + 1);
+        int i = ThreadLocalRandom.current().nextInt(0, 4);
         b = i - ennemie.getPoursuite() > 0;    
         return b;
+    }
+
+    public static int event() {
+        int i = ThreadLocalRandom.current().nextInt(0, 3 +1);
+
+        return i;
     }
 }
