@@ -26,12 +26,6 @@ public class Tp3 {
          //Initialisation scanner
         
         do{
-            Heros m = new Humain();
-            Taverne n = new Taverne(m);
-             n.eventTaverne();
-             System.out.println(m.getPV());
-            System.out.println(m.getForce());
-            System.out.println(m.getSpeed());
             System.out.println("Bienvenue, allez vous reussir a sauver la Princesse....");
 
             System.out.println(
@@ -78,15 +72,19 @@ public class Tp3 {
         switch (choiceRace){
             case "1" :
                 System.out.println("Vous serez donc un nain !");
+                Heros m = new Humain();
                 break;
             case "2" :
                 System.out.println("Vous serez donc un elfe !");
+                Heros m = new Elfe();
                 break;
             case "3" :
                 System.out.println("Vous serez donc un hobbit !");
+                Heros m = new Hobbit();
                 break;
             case "4" :
                 System.out.println("Vous serez donc un humain !");
+                Heros m = new Humain();
                 break;
             default :
                 System.out.println("\u001B[41mL'option " + choix + " n'est pas valide.\u001B[m");
@@ -115,7 +113,8 @@ public class Tp3 {
                         case "o":
                         case "O":
                             System.out.println("Vous entrez dans la taverne...");
-                            //INSTANCIER TAVERNE
+                            Taverne n = new Taverne(m);
+                            n.eventTaverne();
                             break;
                         default:
                             System.out.println("Vous décidez de ne pas y entrer et continuez votre route sans encombres.");
