@@ -34,8 +34,8 @@ public class Tp3 {
             switch(choix)
             {
                 case 1:
-                    System.out.println("1");
-                    reponse = 'N';
+                    System.out.println("Lets go to the adventure!!!!");
+                    reponse = 'O';
                     break;
                     
                 case 2:
@@ -49,6 +49,9 @@ public class Tp3 {
             }
             
         }while(reponse != 'O');
+        
+        
+        
         
     }
     
