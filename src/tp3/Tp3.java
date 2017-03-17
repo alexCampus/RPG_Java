@@ -67,7 +67,7 @@ public class Tp3 {
                 "1 - Je veux être fort ! Je serai assez lent, mais je briserai tous ceux qui se mettront sur ma route !\n" +
                 "2 - Je veux être rapide et agile. La force ne sera pas mon point fort, mais personne ne me rattrapera !\n" +
                 "3 - Peu m'importe la force ou la rapidité, je veux pouvoir me soigner. Personne ne pourra me vaincre !\n" +
-                "4 - Je ne sais pas trop chisir, je préfererai être polyvalent et parer à toutes les situations !\n");
+                "4 - Je ne sais pas trop choisir, je préfererai être polyvalent et parer à toutes les situations !\n");
         String choiceRace = sc.nextLine();
         Heros m = new Heros();
         switch (choiceRace){
