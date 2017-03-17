@@ -18,7 +18,9 @@ abstract class Combatant {
     protected Soin soin = new PremierSoin();
     protected Deplacement deplacement = new Marcher();
     
-    protected int PV; 
+    protected int psoin;
+    protected int PV;
+    protected int PVmax; 
     protected int force;
     protected int speed;
     
@@ -28,6 +30,7 @@ abstract class Combatant {
         this.power = power;
         this.soin = soin;
         this.deplacement = deplacement;
+        this.PVmax = 100;
        /* this.PV = PV;
         this.force = force;
         this.speed = speed;*/
@@ -37,8 +40,8 @@ abstract class Combatant {
         deplacement.deplacerAvec(nbPas);
     }
     
-    public void seSoigner(int force){
-        soin.soigneAvec(force);
+    public void seSoigner(){
+        soin.soigneAvec((this.PVmax-this.PV)*(this.psoin/10));
     }
     
     public void combattre(String arme, int force){

@@ -17,6 +17,7 @@ public class Humain extends Heros{
        this.PV = 100;
        this.force = 1;
        this.speed = 1;
+       this.psoin = 33;
     
     }
     
