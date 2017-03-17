@@ -120,11 +120,15 @@ public class Combat {
         switch (attEnnemie) {
             case 1 :
                 switch (t) {
-                    case 1 : System.out.print("L'ennemi et vous portez un coup puissant. Vos coups s'annulent ...\n");
+                    case 1 : System.out.print("L'ennemi et vous portez un coup puissant. Vous vous blessez tous les deux.\n");
+                    ennemie.setMoinsPV(this.heros.force);
+                    heros.setMoinsPV(this.ennemie.force);
+                    System.out.print("Il perd "+this.heros.force+" pv.");
+                    System.out.print("Vous perdez "+this.ennemie.force+" pv.");
                     break;
                     case 2 : System.out.print("L'ennemi porte un coup puissant mais vous contre-attaquez magistralement ! Vous le touchez !\n");
-                    ennemie.setMoinsPV(this.heros.force);
-                    System.out.print("Il perd "+this.heros.force+" pv.");
+                    ennemie.setMoinsPV(this.ennemie.force);
+                    System.out.print("Il perd "+this.ennemie.force+" pv.");
                     break;
                     case 3 : System.out.print("L'ennemi porte un coup puissant, votre feinte est inutile ! Il vous touche !\n");
                     heros.setMoinsPV(this.ennemie.force);
@@ -140,13 +144,13 @@ public class Combat {
             case 2 :
                 switch (t) {
                     case 1 : System.out.print("Vous tentez un coup puissant mais l'ennemi arrive à vous contrez ! Il vous touche !\n");
-                    heros.setMoinsPV(this.ennemie.force);
-                    System.out.print("Vous perdez "+this.ennemie.force+" pv.");
+                    heros.setMoinsPV(this.heros.force);
+                    System.out.print("Vous perdez "+this.heros.force+" pv.");
                     break;
                     case 2 : System.out.print("Votre ennemi et vous-même attendez patiemment le coup de l'autre ...\n");
                     break;
                     case 3 : System.out.print("Vous simulez une attaque, l'ennemi manque sa parade et vous lui portez un coup ! Vous le touchez !\n");
-                    ennemie.setMoinsPV(this.heros.force);
+                    ennemie.setMoinsPV((this.ennemie.getPV()/this.heros.getPV()*15));
                     System.out.print("Il perd "+this.heros.force+" pv.");
                     break;
                     default :
@@ -163,8 +167,8 @@ public class Combat {
                     System.out.print("Il perd "+this.heros.force+" pv.");
                     break;
                     case 2 : System.out.print("L'ennemi semble vouloir porter un coup violent, vous tentez une parade mais il vous porte un coup bas au dernier moment ! Il vous touche !\n");
-                    heros.setMoinsPV(this.ennemie.force);
-                    System.out.print("Vous perdez "+this.ennemie.force+" pv.");
+                    heros.setMoinsPV((this.heros.getPV()/this.ennemie.getPV()*15));
+                    System.out.print("Vous perdez "+this.heros.force+" pv.");
                     break;
                     case 3 : System.out.print("Vous tentez une feinte, l'ennemi semble vouloir attaquer, mais vous manquez tous les deux votre coup...\n");
                     break;
