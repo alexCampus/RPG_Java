@@ -45,6 +45,12 @@ public class Combat {
             case "3" :
                 this.fuir();
                 break;
+            default :
+                System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
+                heros.setMoinsPV(this.ennemie.force);
+                System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
+                choix();
+                break;
         }
     }
 
@@ -68,6 +74,7 @@ public class Combat {
         this.soin = false;
         int s = this.heros.seSoigner();
         System.out.print("Vous récupérez "+s+" pv.");
+        choix();
     }
 
     private void fuir() {
@@ -104,6 +111,11 @@ public class Combat {
                     heros.setMoinsPV(this.ennemie.force);
                     System.out.print("Vous perdez "+this.ennemie.force+" pv.");
                     break;
+                    default :
+                    System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
+                    heros.setMoinsPV(this.ennemie.force);
+                    System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
+                    break;
                 }
             break;
             case 2 :
@@ -117,6 +129,11 @@ public class Combat {
                     case 3 : System.out.print("Vous simulez une attaque, l'ennemie manque sa parade et vous lui portez un coup ! Vous le touchez !\n");
                     ennemie.setMoinsPV(this.heros.force);
                     System.out.print("Il perd "+this.heros.force+" pv.");
+                    break;
+                    default :
+                    System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
+                    heros.setMoinsPV(this.ennemie.force);
+                    System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
                     break;
                 }
             break;
@@ -132,6 +149,11 @@ public class Combat {
                     break;
                     case 3 : System.out.print("Vous tentez une feinte, l'ennemie semble vouloir attaquer, mais vous manquez tous les deux votre coup...\n");
                     break;
+                    default :
+                    System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
+                    heros.setMoinsPV(this.ennemie.force);
+                    System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
+                    break;
                 }
             break;
                         
@@ -139,7 +161,8 @@ public class Combat {
         //CONTROLE DECES !!
         
         if(this.heros.getPV() <= 0) {
-            
+            System.out.print("Vous avez mouru !");
+            this.end();
         }
         else if(this.ennemie.getPV() <= 0) {
             System.out.print("Vous avez tué le "+ennemie.getNom()+" !\n");
