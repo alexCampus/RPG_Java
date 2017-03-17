@@ -21,7 +21,13 @@ public class Humain extends Heros{
        this.psoin = 33;
 
 
+
+
+
+
+
     
+
     }
     
     public Humain(Power esprit, Soin soin, Deplacement dep) {

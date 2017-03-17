@@ -19,6 +19,9 @@ public class Nain extends Heros{
         this.speed = 10;
         this.psoin = 10;
 
+
+
+
         
     }
     
