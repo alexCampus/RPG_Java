@@ -66,8 +66,8 @@ public class Combat {
     private void soin() {
         System.out.print("Vous vous soignez ...");
         this.soin = false;
-        this.heros.seSoigner();
-        System.out.print("Vous récupérez XX pv.");
+        int s = this.heros.seSoigner();
+        System.out.print("Vous récupérez "+s+" pv.");
     }
 
     private void fuir() {
@@ -78,8 +78,8 @@ public class Combat {
         }
         else {
             System.out.print("Fuite impossible ... L'ennemie vous rattrape et vous blesse.");
-            //Ajouter la perte de pv du joueur heros.setPv();
-            System.out.print("Vous perdez XX pv.");
+            heros.setMoinsPV(this.ennemie.force);
+            System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
             if(heros.getPV() > 0) {
                 choix();
             } else {
