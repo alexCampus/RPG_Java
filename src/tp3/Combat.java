@@ -80,7 +80,7 @@ public class Combat {
             if(heros.getPV() > 0) {
                 choix();
             } else {
-                this.end;
+                this.end();
             }
             
         }
@@ -139,6 +139,7 @@ public class Combat {
             
         }
         else if(/*ennemie mort*/) {
+            System.out.print("Vous avez tué le "+ennemie.getNom()+" !");
             this.end();
         } else {
             System.out.print("Vous vous remettez en position ...");
