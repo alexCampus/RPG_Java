@@ -148,14 +148,19 @@ public class Tp3 {
                     }
                     break;
                 case 3:
-                        //INSTANCIER COMBAT
                     Combat c = new Combat(m);
-                        c.debutDuCombat();
+                    c.debutDuCombat();
                     break;
             }
-
+            if (m.getPV() < 0) {
+                System.out.println("Vous êtes tout mourru !\n");
+            }
         }
-        System.out.println("Bravo ! Vous avez réussi à terminer cette histoire ! à bientôt pour de nouvelles aventures");
+        if (m.getPV() < 0) {
+            System.out.println("Vos amis vous pleuront pendant au moins 5 minutes, promis.");
+        } else {
+            System.out.println("Bravo ! Vous avez réussi à terminer cette histoire ! à bientôt pour de nouvelles aventures");
+        }
         exitMain = true;
     }
 }
