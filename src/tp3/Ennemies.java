@@ -17,7 +17,7 @@ public class Ennemies extends Combatant{
     private int poursuite;
     
     public Ennemies(String nom, int p){
-        this.nom = null;
+        this.nom = nom;
         this.poursuite = 0;
     }
    
