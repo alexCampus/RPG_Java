@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package tp3;
-import java.lang.invoke.SwitchPoint;
 import java.util.Scanner;
-import tp3.comportement.*;
 /**
  *
  * @author alexandre.depembroke
@@ -28,6 +26,12 @@ public class Tp3 {
          //Initialisation scanner
         
         do{
+            Heros m = new Humain();
+            Taverne n = new Taverne(m);
+             n.eventTaverne();
+             System.out.println(m.getPV());
+            System.out.println(m.getForce());
+            System.out.println(m.getSpeed());
             System.out.println("Bienvenue, allez vous reussir a sauver la Princesse....");
 
             System.out.println(
@@ -47,8 +51,7 @@ public class Tp3 {
                                     "Au hasard, des chemins, vous rencontrerez des événements\n" +
                                     "et essaierez d'y survivre.");
                     tour();
-                    break;
-                    
+
                 case "2":
                     System.out.println("Au revoir");
                     exitMain = false;
@@ -59,6 +62,9 @@ public class Tp3 {
             }
             
         }while(!exitMain);
+        
+        
+        
         
     }
 

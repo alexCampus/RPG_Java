@@ -11,13 +11,16 @@ import tp3.comportement.*;
  *
  * @author alexandre.depembroke
  */
-public class Guerrier extends Heros{
+public class Humain extends Heros{
     
-    public Guerrier(){
-       
+    public Humain(){
+       this.PV = 100;
+       this.force = 20;
+       this.speed = 10;
+    
     }
     
-    public Guerrier(Power esprit, Soin soin, Deplacement dep) {
+    public Humain(Power esprit, Soin soin, Deplacement dep) {
         super(esprit, soin, dep);
   }
     

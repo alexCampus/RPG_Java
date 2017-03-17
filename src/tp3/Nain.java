@@ -11,14 +11,19 @@ import tp3.comportement.*;
  *
  * @author alexandre.depembroke
  */
-public class Centaure extends Ennemies{
+public class Nain extends Heros{
     
-    
-    public Centaure(){
-       super("centaure", 3);
+    public Nain(){
+        this.PV = 100;
+        this.force = 30;
+        this.speed = 10;
+        
     }
     
-    public Centaure(Power esprit, Soin soin, Deplacement dep) {
+    public Nain(Power esprit, Soin soin, Deplacement dep) {
         super(esprit, soin, dep);
   }
+    
+    
+    
 }
