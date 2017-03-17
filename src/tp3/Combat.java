@@ -24,7 +24,7 @@ public class Combat {
     
     public void debutDuCombat(){
         System.out.print("Vous vous faites attaquer par un "+ennemie.getNom()+" !");
-        
+        this.choix();
     }
     
     public void choix() {
