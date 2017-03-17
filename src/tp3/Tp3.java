@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package tp3;
+import java.lang.invoke.SwitchPoint;
 import java.util.Scanner;
 import tp3.comportement.*;
 /**
@@ -14,10 +15,11 @@ public class Tp3 {
 
         static Scanner sc = new Scanner(System.in);
 
-        static int nbTours = 0;
-        static boolean exitMain = false;
-        static String choix;
-        static int deplacement;
+        static int nbTours = 0; //Nombre de tours écoulés
+        static boolean exitMain = false; //Permet de sortir du menu principal et quitter le programme
+        static String choix;//Capture le choix pour chaque switch
+        static int deplacement;//Nombre de case franchies en début de tour
+        static int Case;//Case sur laquelle le joueur se trouve
     /**
      * @param args the command line arguments
      */
@@ -82,13 +84,54 @@ public class Tp3 {
             case "4" :
                 System.out.println("Vous serez donc un humain !");
                 break;
+            default :
+                System.out.println("\u001B[41mL'option " + choix + " n'est pas valide.\u001B[m");
         }
 
-        while (nbTours < 100) {
+        while (Case < 100) {
             nbTours += 1;
             System.out.println("Tour \u001B[32m" + nbTours + "\u001B[m");
-            System.out.println("Vous avez avancé de " + deplacement + " cases.");
+
+            System.out.println("Vous avez avancé de " + deplacement + " cases. Validez pour continuer");
             sc.nextLine();
+
+            int event = (int)Math.round(Math.random())%4;
+
+            switch(event) {
+                case 0:
+                    System.out.println("Vous continuez votre route et rien ne se passe.");
+                    break;
+                case 1:
+                    System.out.println("Sur votre route, vous remarquez un petit village avc une taverne.\n" +
+                            "Voulez vous y entrer ? Y/n");
+                    choix = sc.nextLine();
+                    switch (choix){
+                        case "y":
+                        case "Y":
+                        case "o":
+                        case "O":
+                            System.out.println("Vous entrez dans la taverne...");
+                            //INSTANCIER TAVERNE
+                            break;
+                        default:
+                            System.out.println("Vous décidez de ne pas y entrer et continuez votre route sans encombres.");
+                    }
+                    break;
+                case 2:
+                    //INSTANCIER OBSTACLE
+                    System.out.println("Un obstacle encombre votre route.");
+                    int a = 0;
+                    if(a == 0){ //   CHECK obstacle.isBloquant()
+                        System.out.println("L'obstacle semble vraiment infranchissable, vous décidez donc de faire demi-tour.");
+                        //DEPLACEMENT : RECULER
+                    } else {
+                        System.out.println("Vous pensez pouvoir le franchir." +
+                                "1 - J'essaie de le franchir !" +
+                                "2 - Non, je préfère faire demi-tour et trouver un autre chemin");
+                    }
+                    break;
+            }
+
         }
         System.out.println("Bravo ! Vous avez réussi à terminer cette histoire ! à bientôt pour de nouvelles aventures");
         exitMain = true;
