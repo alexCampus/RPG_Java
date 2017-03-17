@@ -42,7 +42,7 @@ abstract class Combatant {
     }
     
     public int seSoigner(){
-        int soi = (int) Math.round((this.PVmax-this.PV)*(this.psoin/10));
+        int soi = (int) Math.round((this.PVmax-this.PV)*(this.psoin/100));
         this.setPlusPV(soi);
         return soi;
     }
