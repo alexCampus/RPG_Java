@@ -152,8 +152,9 @@ public class Tp3 {
                     c.debutDuCombat();
                     break;
             }
-            if (m.getPV() < 0) {
+            if (m.getPV() <= 0) {
                 System.out.println("Vous êtes tout mourru !\n");
+                Case = 100;
             }
         }
         if (m.getPV() < 0) {
