@@ -13,6 +13,8 @@ public class Taverne {
     
     private int nb;
     private Heros monHero;
+    int nbPV = (int)(Math.random() * 20) +1;
+    int nbForce = (int)(Math.random() * 20) +1;
     
     public Taverne(Heros monHero){
         this.monHero = monHero;
@@ -23,21 +25,68 @@ public class Taverne {
     public void eventTaverne(){
         switch(nb){
             case 1:                
-                int nbPV = (int)(Math.random() * 20);
+                
                 System.out.println("Vous venez de retrouver un de vos vieux amis, après avoir passé une bonne soirée en sa présence.\nCela vous a permis de regagner " + nbPV + " points de vie.");                
                 monHero.setPlusPV(nbPV); 
                 break;
                 
             case 2:
-                System.out.println("Je suis le choix " + nb);
+                int choix = (int)(Math.random() * 5);
+                    switch(choix){
+                        case 1:
+                            System.out.println("Malheureusement la taverne est pleine. Le patron est d'humeur sympathique et vous offre une nouvelle épée pour vous dédommager");
+                            //prevoir ajout force pour combat
+                            break;
+                            
+                        case 2:
+                            System.out.println("Vous n'avez pas controlé votre consommation de bieres elfique et sous les effets de l'alcool vous vous êtes battus avec votre voisin de comptoir.....");
+                            int nbAleatoire = (int)(Math.random() * 4)+1;
+                            switch(nbAleatoire){
+                                case 1:
+                                    System.out.println("Bravo, vous lui avez défoncé la tête en moins de deux et vous avez ainsi récuperer ses armes sans perdre de PV");
+                                    //prevoir ajout force pour combat
+                                    break;
+                                    
+                                case 2:
+                                    System.out.println("Vous vous êtes bien battus mais votre voisin était venus avec tous ses amis.....\n Vous vous êtes donc faits viré de la taverne.\n Vous perdez donc " + nbPV + " points de vie");
+                                    monHero.setMoinsPV(nbPV);
+                                    break;
+                                    
+                                case 3:
+                                    System.out.println("Vous vous réveillez dans une chambre inconnu avec mal à la tête, et vous remarquez les calecons posé sur la chaise et ce ne sont pas les votres.....\nVous décidez de vous enfuir le plus vite possible!!!! ");
+                                    break;
+                                    
+                                default:
+                                    System.out.println("Votre voisin etait vraiment super fort, et vous regrettez votre choix car vous perdez " + nbPV + " points de vie et " + nbForce + " de force...." );
+                                    monHero.setMoinsPV(nbPV);
+                                    //prevoir moins Points de force                                    
+                                    break;
+                            }
+                            break;
+                            
+                        case 3:
+                            System.out.println("Grâce a votre rencontre avec un mage, vous venez de gagner en rapidité avec les bottes magiques qu'il vous a offert");
+                            // ajout rapidité
+                            break;
+                            
+                        case 4:
+                            System.out.println("Vous avez passé une très bonne soirée, vous vous souviendrez de l'adresse de cette taverne ou les plaisirs feminin sont rois.....");
+                            break;
+                            
+                        default:
+                            System.out.println("Vous avez perdu vos chaussures durant la soirée bien arrosé d'hier, vous perdez donc de la rapidité.");
+                            //retirer rapidité
+                            break;
+                    }
+               
                 break;
                 
             case 3:
-                System.out.println("Je suis le choix " + nb);
+                System.out.println("Vous êtes vraiment très fatigué et vous choisissez de vous faire une soirée pépère......");
                 break;
             
             case 4:
-                System.out.println("Je suis le choix " + nb);
+                System.out.println("Vous vous offrez les services d'une jolie demoiselle cela vous rapporte " + nbPV + " points de vie");
                 break;
                 
             default:
