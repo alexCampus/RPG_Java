@@ -16,7 +16,7 @@ public class Ogre extends Ennemies{
      public Ogre(){
        super("ogre", 2);
        this.PV = 200;
-       this.force = 35;
+       this.force = 30;
     }
     
     public Ogre(Power esprit, Soin soin, Deplacement dep) {
