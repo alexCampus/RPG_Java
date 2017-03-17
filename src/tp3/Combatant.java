@@ -18,14 +18,19 @@ abstract class Combatant {
     protected Soin soin = new PremierSoin();
     protected Deplacement deplacement = new Marcher();
     
-    protected int PV = 100; 
+    protected int PV; 
+    protected int force;
+    protected int speed;
     
     public Combatant(){}
     
-    public Combatant(Power power, Soin soin, Deplacement deplacement){
+    public Combatant(Power power, Soin soin, Deplacement deplacement, int PV, int force, int speed){
         this.power = power;
         this.soin = soin;
         this.deplacement = deplacement;
+        this.PV = PV;
+        this.force = force;
+        this.speed = speed;
     }
     
     public void seDeplacer(int nbPas){
@@ -44,5 +49,36 @@ abstract class Combatant {
         return PV;
     }
     
+    public int getForce(){
+        return force;
+    }
+    
+    public int getSpeed(){
+        return speed;
+    }
+    
+     public void setPlusPV(int nbPV){
+        PV += nbPV;
+    }
+    
+    public void setMoinsPV(int nbPV){
+        PV  -= nbPV;
+    }
+    
+    public void setPlusForce(int nbForce){
+        force += nbForce;
+    }
+    
+    public void setMoinsForce(int nbForce){
+        force -= nbForce;
+    }
+    
+    public void setPlusSpeed(int nbSpeed){
+        speed += nbSpeed;
+    }
+    
+    public void setMoinsSpeed(int nbSpeed){
+        speed -= nbSpeed;
+    }
     
 }

@@ -14,11 +14,13 @@ import tp3.comportement.*;
 public class Humain extends Heros{
     
     public Humain(){
-       
+       this.PV = 100;
+       this.force = 1;
+       this.speed = 1;
     }
     
-    public Humain(Power esprit, Soin soin, Deplacement dep) {
-        super(esprit, soin, dep);
+    public Humain(Power esprit, Soin soin, Deplacement dep, int PV, int force, int speed) {
+        super(esprit, soin, dep, PV, force, speed);
   }
     
     

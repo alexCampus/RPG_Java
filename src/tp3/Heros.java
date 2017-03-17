@@ -13,20 +13,18 @@ import tp3.comportement.*;
  */
 public class Heros extends Combatant{
     
+    
    public Heros(){}
    
-    public Heros(Power power, Soin soin, Deplacement dep){
+    public Heros(Power power, Soin soin, Deplacement dep, int PV, int force, int speed){
         this.deplacement = dep;
         this.power = power;
         this.soin = soin;
+        this.PV = PV;
+        this.force = force;
+        this.speed = speed;
     }
     
-    public void setPlusPV(int nbPV){
-        PV += nbPV;
-    }
-    
-    public void setMoinsPV(int nbPV){
-        PV  -= nbPV;
-    }
+   
     
 }

@@ -18,7 +18,7 @@ public class Hobbit extends Heros{
         //this.power = new PowerMagie();
     }
     
-    public Hobbit(Power esprit, Soin soin, Deplacement dep) {
-        super(esprit, soin, dep);
+    public Hobbit(Power esprit, Soin soin, Deplacement dep, int PV, int force, int speed) {
+        super(esprit, soin, dep, PV, force, speed);
   }
 }

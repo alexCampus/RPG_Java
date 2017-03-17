@@ -15,9 +15,12 @@ public class Ennemies extends Combatant{
     
     public Ennemies(){}
    
-    public Ennemies(Power power, Soin soin, Deplacement dep){
+    public Ennemies(Power power, Soin soin, Deplacement dep, int PV, int force, int speed){
         this.deplacement = dep;
         this.power = power;
         this.soin = soin;
+        this.PV = PV;
+        this.force = force;
+        this.speed = speed;
     }
 }
