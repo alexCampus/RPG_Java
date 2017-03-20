@@ -93,7 +93,7 @@ public class Tp3 {
 
         while (Case < 100) {
             nbTours ++;
-            deplacement = m.getSpeed();
+            deplacement = 1+(Random.dice(6)-1)*m.getSpeed();
             Case += deplacement;
             System.out.println("Tour \u001B[32m" + nbTours + "\u001B[m - Case " + Case);
             if(Case>100){
@@ -131,7 +131,7 @@ public class Tp3 {
                     System.out.println("Un obstacle encombre votre route.");
                     if(obstacle.getIsBloquant()){ //   CHECK obstacle.isBloquant()
                         System.out.println("L'obstacle semble vraiment infranchissable, vous décidez donc de faire demi-tour.");
-                        Case -= (int)Math.round((m.getSpeed())*0.70);
+                        Case -= (int)Math.round((deplacement)*0.70);
                     } else {
                         System.out.println("Vous pensez pouvoir le franchir.\n" +
                                 "1 - J'essaie de le franchir !\n" +
@@ -158,6 +158,7 @@ public class Tp3 {
                 System.out.println("Vous êtes tout mourru !\n");
                 Case = 100;
             }
+            sc.nextLine();
         }
         if (m.getPV() < 0) {
             System.out.println("Vos amis vous pleuront pendant au moins 5 minutes, promis.");

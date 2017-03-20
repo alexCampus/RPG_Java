@@ -16,7 +16,7 @@ public class Elfe extends Heros{
     public Elfe(){
         this.PV = 100;
         this.force = 10;
-        this.speed = 20;
+        this.speed = 3;
         this.power = new PowerMagie();
         this.deplacement = new Courir();
         this.psoin = 33;
