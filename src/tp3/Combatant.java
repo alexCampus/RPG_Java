@@ -65,6 +65,9 @@ abstract class Combatant {
          {
              PV += (int) nbPV;
          }
+         else{
+             PV = PVmax;
+         }
         
     }
     
