@@ -58,15 +58,14 @@ public class Taverne {
                                     
                                 case 3:
                                     System.out.println("Vous vous réveillez dans une chambre inconnu avec mal à la tête, et vous remarquez les calecons posé sur la chaise et ce ne sont pas les votres.....\nVous décidez de vous enfuir le plus vite possible!!!! ");
+                                    System.out.println("Vous avez malheureusement oublié votre armure, vous perdez " + nbPV + " PV.");
+                                    monHero.setMoinsPV(nbPV);
                                     break;
                                     
                                 default:
                                     System.out.println("Votre voisin etait vraiment super fort, et vous regrettez votre choix car vous perdez " + nbPVPerteMax + " points de vie et " + nbForce + " de force...." );
-                                    if(monHero.getPV() < 5 || monHero.getForce() < 5){
                                         monHero.setMoinsPV(nbPVPerteMax);
-                                        monHero.setMoinsForce(nbForce);
-                                    }
-                                                                     
+                                        monHero.setMoinsForce(nbForce);                      
                                     break;
                             }
                             break;
@@ -90,7 +89,9 @@ public class Taverne {
                 break;
                 
             case 3:
-                System.out.println("Vous êtes vraiment très fatigué et vous choisissez de vous faire une soirée pépère......");
+                System.out.println("Vous vous retrouver face a face avec un de vos enemies.");
+                Combat a = new Combat(monHero);
+                a.debutDuCombat();
                 break;
             
             case 4:
