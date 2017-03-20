@@ -73,7 +73,7 @@ public class Tp3 {
         switch (choiceRace){
             case "1" :
                 System.out.println("Vous serez donc un nain !");
-                m = new Humain();
+                m = new Nain();
                 break;
             case "2" :
                 System.out.println("Vous serez donc un elfe !");
