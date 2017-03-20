@@ -117,65 +117,107 @@ public class Combat {
 
     private void attaque(int t) {
         int attEnnemie = Random.typeAttaque();
+        int dmg;
         switch (attEnnemie) {
             case 1 :
                 switch (t) {
                     case 1 : System.out.print("L'ennemi et vous portez un coup puissant. Vous vous blessez tous les deux.\n");
-                    ennemie.setMoinsPV(this.heros.force);
-                    heros.setMoinsPV(this.ennemie.force);
-                    System.out.print("Il perd "+this.heros.force+" pv.");
-                    System.out.print("Vous perdez "+this.ennemie.force+" pv.");
+                        int hdmg = this.heros.force*(Random.dice(6))/4;
+                        dmg = this.ennemie.force*(Random.dice(6))/4;
+                        ennemie.setMoinsPV(hdmg);
+                        heros.setMoinsPV(dmg);
+                        System.out.print("Il perd "+hdmg+" pv.");
+                        System.out.print("Vous perdez "+dmg+" pv.");
                     break;
-                    case 2 : System.out.print("L'ennemi porte un coup puissant mais vous contre-attaquez magistralement ! Vous le touchez !\n");
-                    ennemie.setMoinsPV(this.ennemie.force);
-                    System.out.print("Il perd "+this.ennemie.force+" pv.");
+                    
+                    case 2 :
+                        int rand = Random.dice(2)-1;
+                        System.out.print("L'ennemi porte un coup puissant mais vous contre-attaquez magistralement ! Vous le touchez !\n");
+                        if (rand == 1){
+                            dmg = this.ennemie.force+10;
+                        } else {
+                            dmg = 10;
+                        }
+                        ennemie.setMoinsPV(dmg);
+                        System.out.print("Il perd "+dmg+" pv.");
                     break;
+                    
                     case 3 : System.out.print("L'ennemi porte un coup puissant, votre feinte est inutile ! Il vous touche !\n");
-                    heros.setMoinsPV(this.ennemie.force);
-                    System.out.print("Vous perdez "+this.ennemie.force+" pv.");
+                        dmg = this.ennemie.force*(Random.dice(6))/4;
+                        heros.setMoinsPV(dmg);
+                        System.out.print("Vous perdez "+dmg+" pv.");
                     break;
+                    
                     default :
-                    System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
-                    heros.setMoinsPV(this.ennemie.force);
-                    System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
+                        System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
+                        heros.setMoinsPV(this.ennemie.force);
+                        System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
                     break;
                 }
             break;
             case 2 :
                 switch (t) {
                     case 1 : System.out.print("Vous tentez un coup puissant mais l'ennemi arrive à vous contrez ! Il vous touche !\n");
-                    heros.setMoinsPV(this.heros.force);
-                    System.out.print("Vous perdez "+this.heros.force+" pv.");
+                        int rand = Random.dice(2)-1;
+                        if (rand == 1){
+                            dmg = this.heros.force+10;
+                        } else {
+                            dmg = 10;
+                        }
+                        heros.setMoinsPV(dmg);
+                        System.out.print("Vous perdez "+dmg+" pv.");
                     break;
+                    
                     case 2 : System.out.print("Votre ennemi et vous-même attendez patiemment le coup de l'autre ...\n");
                     break;
+                    
                     case 3 : System.out.print("Vous simulez une attaque, l'ennemi manque sa parade et vous lui portez un coup ! Vous le touchez !\n");
-                    ennemie.setMoinsPV((this.ennemie.getPV()/this.heros.getPV()*15));
-                    System.out.print("Il perd "+this.heros.force+" pv.");
+                        dmg = Random.dice(11)+9;
+                        dmg = dmg * this.ennemie.getPV()/this.heros.getPV();
+                        ennemie.setMoinsPV(dmg);
+                        System.out.print("Il perd "+this.heros.force+" pv.");
                     break;
+                    
                     default :
-                    System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
-                    heros.setMoinsPV(this.ennemie.force);
-                    System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
+                        System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
+                        heros.setMoinsPV(this.ennemie.force);
+                        System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
                     break;
                 }
             break;
             case 3 :
                 switch (t) {
                     case 1 : System.out.print("L'ennemi tente maladroitement une attaque, vous le punissez ! Vous le touchez !\n");
-                    ennemie.setMoinsPV(this.heros.force);
-                    System.out.print("Il perd "+this.heros.force+" pv.");
+                        dmg = this.heros.force*(Random.dice(6))/4;
+                        ennemie.setMoinsPV(dmg);
+                        System.out.print("Il perd "+dmg+" pv.");
                     break;
+                    
                     case 2 : System.out.print("L'ennemi semble vouloir porter un coup violent, vous tentez une parade mais il vous porte un coup bas au dernier moment ! Il vous touche !\n");
-                    heros.setMoinsPV((this.heros.getPV()/this.ennemie.getPV()*15));
-                    System.out.print("Vous perdez "+this.heros.force+" pv.");
+                        dmg = Random.dice(11)+9;
+                        dmg = dmg * this.heros.getPV()/this.ennemie.getPV();
+                        heros.setMoinsPV(dmg);
+                        System.out.print("Vous perdez "+dmg+" pv.");
                     break;
-                    case 3 : System.out.print("Vous tentez une feinte, l'ennemi semble vouloir attaquer, mais vous manquez tous les deux votre coup...\n");
+                    
+                    case 3 : System.out.print("Apres un échange de coups spectaculaire... \n");
+                        int rand = Random.dice(2)-1;
+                        dmg = Random.dice(11)+9;
+                        if (rand == 1){
+                            System.out.print("... vous réussissez à blesser l'ennemi !\n");
+                            ennemie.setMoinsPV((this.ennemie.getPV()/this.heros.getPV()*dmg));
+                            System.out.print("Il perd "+(this.ennemie.getPV()/this.heros.getPV()*dmg)+" pv.");
+                        } else {
+                            System.out.print("... vous vous faites toucher par l'ennemi !\n");
+                            heros.setMoinsPV((this.heros.getPV()/this.ennemie.getPV()*dmg));
+                            System.out.print("Vous perdez "+(this.heros.getPV()/this.ennemie.getPV()*dmg)+" pv.");
+                        }
                     break;
+                    
                     default :
-                    System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
-                    heros.setMoinsPV(this.ennemie.force);
-                    System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
+                        System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
+                        heros.setMoinsPV(this.ennemie.force);
+                        System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
                     break;
                 }
             break;
