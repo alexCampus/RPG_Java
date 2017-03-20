@@ -26,6 +26,7 @@ public class Tp3 {
          //Initialisation scanner
         
         do{
+            
             System.out.println("Bienvenue, allez vous reussir a sauver la Princesse....");
 
             System.out.println(
@@ -93,14 +94,21 @@ public class Tp3 {
 
         while (Case < 100) {
             nbTours ++;
-            deplacement = 1+(Random.dice(6)-1)*m.getSpeed();
+            deplacement = 1;
+            System.out.println("\u001B[36m       [              TOUR SUIVANT\n" +
+                    "o()xxxx[{::::::::::::::::::::::::::::::::::>\n" +
+                    "       [\n\u001B[m");
+            for(int i = 0;i<m.getSpeed();i++){
+                int rolledDice = Random.dice(6)-1;
+                deplacement += rolledDice;
+                System.out.println("Dice " + i + " : " + rolledDice);
+            }
             Case += deplacement;
+            System.out.println("\nVous avancez de " + deplacement + " cases.\n");
             System.out.println("Tour \u001B[32m" + nbTours + "\u001B[m - Case " + Case);
             if(Case>100){
                 break;
             }
-            System.out.println("Vous avez avancé de " + deplacement + " cases. Validez pour continuer");
-            sc.nextLine();
 
             int event = Random.event();
 
