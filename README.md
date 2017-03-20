@@ -2,7 +2,7 @@
 ###### By Alexandre DE PEMBROKE, Loïc FOREST  and Josselin PEREZ
 
 ## Changelog
-###V 1.0 - *17/03/2017*
+### V 1.0 - *17/03/2017*
 #### GENERAL
 - First version
 - Text only
