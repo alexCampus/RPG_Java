@@ -173,7 +173,7 @@ public class Combat {
                     
                     case 3 : System.out.print("Vous simulez une attaque, l'ennemi manque sa parade et vous lui portez un coup ! Vous le touchez !\n");
                         dmg = Random.dice(11)+9;
-                        dmg = dmg * this.ennemie.getPV()/this.heros.getPV();
+                        dmg = dmg * this.ennemie.getPV()/this.heros.getPV()+5;
                         ennemie.setMoinsPV(dmg);
                         System.out.print("Il perd "+this.heros.force+" pv.");
                     break;
@@ -205,12 +205,14 @@ public class Combat {
                         dmg = Random.dice(11)+9;
                         if (rand == 1){
                             System.out.print("... vous réussissez à blesser l'ennemi !\n");
-                            ennemie.setMoinsPV((this.ennemie.getPV()/this.heros.getPV()*dmg));
-                            System.out.print("Il perd "+(this.ennemie.getPV()/this.heros.getPV()*dmg)+" pv.");
+                            dmg = (this.ennemie.getPV()/this.heros.getPV()*dmg)+5;
+                            ennemie.setMoinsPV(dmg);
+                            System.out.print("Il perd "+dmg+" pv.");
                         } else {
                             System.out.print("... vous vous faites toucher par l'ennemi !\n");
-                            heros.setMoinsPV((this.heros.getPV()/this.ennemie.getPV()*dmg));
-                            System.out.print("Vous perdez "+(this.heros.getPV()/this.ennemie.getPV()*dmg)+" pv.");
+                            dmg = (this.heros.getPV()/this.ennemie.getPV()*dmg)+5;
+                            heros.setMoinsPV(dmg);
+                            System.out.print("Vous perdez "+dmg+" pv.");
                         }
                     break;
                     
