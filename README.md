@@ -1,13 +1,13 @@
 # RPG_Java
-######By Alexandre DE PEMBROKE, Loïc FOREST  and Josselin PEREZ
+###### By Alexandre DE PEMBROKE, Loïc FOREST  and Josselin PEREZ
 
-##Changelog
+## Changelog
 ###V 1.0 - *17/03/2017*
 #### GENERAL
 - First version
 - Text only
 
-####HEROES
+#### HEROES
 - Choose between 4 races :
     - Human
     - Dwarf
@@ -20,12 +20,11 @@
     - A ferocious centaurus at the edge of a great forest
     - An a sh*tload of other events !
     
-###V1.1 - *20/03/2017*
-####GENERAL
-####HEROES
+### V1.1 - *20/03/2017*
+#### HEROES
 - Each hero now moves more randomly at the beginning of each turn
 - Fix a bug where tavern healings would top up the maximum of 100PV
 - Add more random in combat turns
 
-####EVENTS
+#### EVENTS
 - Even more random events in the tavern !
