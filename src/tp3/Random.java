@@ -57,4 +57,10 @@ public class Random {
         b = i > 0;    
         return b;
     }
+    
+     public static int dice(int d) {
+        int i = ThreadLocalRandom.current().nextInt(d)+1;
+        return i;
+    }
+     
 }

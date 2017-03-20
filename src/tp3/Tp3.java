@@ -26,6 +26,7 @@ public class Tp3 {
          //Initialisation scanner
         
         do{
+            
             System.out.println("Bienvenue, allez vous reussir a sauver la Princesse....");
 
             System.out.println(
