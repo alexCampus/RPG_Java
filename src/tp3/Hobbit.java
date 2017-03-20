@@ -15,7 +15,7 @@ public class Hobbit extends Heros{
     
     public Hobbit(){
         this.PV = 100;
-        this.force =10;
+        this.force = 20;
         this.speed = 10;
         this.psoin = 50;
 
