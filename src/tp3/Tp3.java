@@ -5,6 +5,7 @@
  */
 package tp3;
 import java.util.Scanner;
+import javax.swing.JFrame;
 /**
  *
  * @author alexandre.depembroke
@@ -24,8 +25,11 @@ public class Tp3 {
     public static void main(String[] args) {
         
          //Initialisation scanner
+         
+        
         
         do{
+            
             
             System.out.println("Bienvenue, allez vous reussir a sauver la Princesse....");
 

@@ -17,6 +17,7 @@ public class Centaure extends Ennemies{
     public Centaure(){
        super("centaure", 3);
        this.PV = 100;
+       this.PVmax = this.PV;
        this.force = 20;
     }
     

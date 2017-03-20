@@ -16,6 +16,7 @@ public class Ogre extends Ennemies{
      public Ogre(){
        super("ogre", 2);
        this.PV = 200;
+       this.PVmax = this.PV;
        this.force = 30;
     }
     

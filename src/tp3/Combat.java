@@ -6,6 +6,9 @@
 package tp3;
 
 import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JProgressBar;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -16,21 +19,51 @@ public class Combat {
     private Heros heros;
     private boolean soin = true;
     private boolean end = false;
+    JFrame fenetre = new JFrame();
+    JPanelCombat combat = new JPanelCombat(fenetre, this);
+    
+    public Combat(Heros heros, JFrame fenetre) {
+        this.heros= heros;
+        this.ennemie = Random.ennemie();
+        this.fenetre = fenetre;
+        this.combat = new JPanelCombat(fenetre, this);
+        
+    }
     
     public Combat(Heros heros) {
         this.heros= heros;
         this.ennemie = Random.ennemie();
         
+        
     }
     
     public void debutDuCombat(){
+        this.fenetre.setSize(600, 600);
+        this.fenetre.setVisible(true);
+        fenetre.setContentPane(combat);
         System.out.print("Vous vous faites attaquer par un "+ennemie.getNom()+" !");
+        
+        
+        JProgressBar pvEnn = this.combat.getPvEnnemi();
+        pvEnn.setMaximum(this.ennemie.PVmax);
+        pvEnn.setValue(this.ennemie.PV);
+        this.combat.setPvEnnemi(pvEnn);
+        
+        JProgressBar pvHer = this.combat.getPvHeros();
+        pvHer.setMaximum(this.heros.PVmax);
+        pvHer.setValue(this.heros.PV);
+        this.combat.setPvHeros(pvHer);
+        
+        SwingUtilities.updateComponentTreeUI(this.fenetre);
+        
+        
         this.choix();
     }
     
     public void choix() {
         
         do {
+                      
             Scanner sc = new Scanner(System.in);
             System.out.print("Il vous reste "+heros.getPV()+" PV.\n"
                     + "Que souhaitez-vous faire ?\n"
@@ -60,8 +93,8 @@ public class Combat {
                     System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
                     heros.setMoinsPV(this.ennemie.force);
                     System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
-
-                    break;
+                    this.majPvDmg(this.ennemie.getForce(),1);
+                break;
             }
             if(this.heros.getPV() <= 0) {
                 this.end();
@@ -75,7 +108,7 @@ public class Combat {
         while(!this.end);
     }
 
-    private void menuAttaque() {
+    public void menuAttaque() {
         Scanner sc = new Scanner(System.in);
         
         System.out.print("Quel type d'attaque voulez-vous executer ?\n"
@@ -90,14 +123,30 @@ public class Combat {
     
     
 
-    private void soin() {
-        System.out.print("Vous vous soignez ...");
-        this.soin = false;
+    public void soin() {
+        
+        java.awt.Button test = new java.awt.Button();
+        test = this.combat.getSoinBtn();
+        test.setEnabled(false);
+        this.combat.setSoinBtn(test);
+        
         double s = this.heros.seSoigner();
+        for (int i = 0; i <= s; i++) {
+               
+                    JProgressBar pvHer = this.combat.getPvHeros();
+                    pvHer.setValue(pvHer.getValue()+1);
+                    SwingUtilities.updateComponentTreeUI(this.fenetre);
+                    try {
+                        Thread.sleep(100);
+                    } catch(InterruptedException e) {
+                       System.out.println(e.getMessage());
+                    }
+             
+            }
         System.out.print("Vous récupérez "+(int)s+" pv.");
     }
 
-    private void fuir() {
+    public void fuir() {
         boolean b = Random.fuite(ennemie);
         if (b) {
             System.out.print("Vous prenez la fuite ...");
@@ -115,7 +164,7 @@ public class Combat {
         }
     }
 
-    private void attaque(int t) {
+    public void attaque(int t) {
         int attEnnemie = Random.typeAttaque();
         int dmg;
         switch (attEnnemie) {
@@ -127,7 +176,9 @@ public class Combat {
                         ennemie.setMoinsPV(hdmg);
                         heros.setMoinsPV(dmg);
                         System.out.print("Il perd "+hdmg+" pv.");
+                        this.majPvDmg(hdmg,0);
                         System.out.print("Vous perdez "+dmg+" pv.");
+                        this.majPvDmg(dmg,1);
                     break;
                     
                     case 2 :
@@ -140,18 +191,21 @@ public class Combat {
                         }
                         ennemie.setMoinsPV(dmg);
                         System.out.print("Il perd "+dmg+" pv.");
+                        this.majPvDmg(dmg,0);
                     break;
                     
                     case 3 : System.out.print("L'ennemi porte un coup puissant, votre feinte est inutile ! Il vous touche !\n");
                         dmg = this.ennemie.force*(Random.dice(6))/4;
                         heros.setMoinsPV(dmg);
                         System.out.print("Vous perdez "+dmg+" pv.");
+                        this.majPvDmg(dmg,1);
                     break;
                     
                     default :
                         System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
                         heros.setMoinsPV(this.ennemie.force);
                         System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
+                        this.majPvDmg(this.ennemie.getForce(),1);
                     break;
                 }
             break;
@@ -166,6 +220,7 @@ public class Combat {
                         }
                         heros.setMoinsPV(dmg);
                         System.out.print("Vous perdez "+dmg+" pv.");
+                        this.majPvDmg(dmg,1);
                     break;
                     
                     case 2 : System.out.print("Votre ennemi et vous-même attendez patiemment le coup de l'autre ...\n");
@@ -173,15 +228,17 @@ public class Combat {
                     
                     case 3 : System.out.print("Vous simulez une attaque, l'ennemi manque sa parade et vous lui portez un coup ! Vous le touchez !\n");
                         dmg = Random.dice(11)+9;
-                        dmg = dmg * this.ennemie.getPV()/this.heros.getPV();
+                        dmg = dmg * this.ennemie.getPV()/this.heros.getPV()+5;
                         ennemie.setMoinsPV(dmg);
-                        System.out.print("Il perd "+this.heros.force+" pv.");
+                        System.out.print("Il perd "+dmg+" pv.");
+                        this.majPvDmg(dmg,0);
                     break;
                     
                     default :
                         System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
                         heros.setMoinsPV(this.ennemie.force);
                         System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
+                        this.majPvDmg(this.ennemie.getForce(),1);
                     break;
                 }
             break;
@@ -191,6 +248,7 @@ public class Combat {
                         dmg = this.heros.force*(Random.dice(6))/4;
                         ennemie.setMoinsPV(dmg);
                         System.out.print("Il perd "+dmg+" pv.");
+                        this.majPvDmg(dmg,0);
                     break;
                     
                     case 2 : System.out.print("L'ennemi semble vouloir porter un coup violent, vous tentez une parade mais il vous porte un coup bas au dernier moment ! Il vous touche !\n");
@@ -198,6 +256,7 @@ public class Combat {
                         dmg = dmg * this.heros.getPV()/this.ennemie.getPV();
                         heros.setMoinsPV(dmg);
                         System.out.print("Vous perdez "+dmg+" pv.");
+                        this.majPvDmg(dmg,1);
                     break;
                     
                     case 3 : System.out.print("Apres un échange de coups spectaculaire... \n");
@@ -205,12 +264,16 @@ public class Combat {
                         dmg = Random.dice(11)+9;
                         if (rand == 1){
                             System.out.print("... vous réussissez à blesser l'ennemi !\n");
-                            ennemie.setMoinsPV((this.ennemie.getPV()/this.heros.getPV()*dmg));
-                            System.out.print("Il perd "+(this.ennemie.getPV()/this.heros.getPV()*dmg)+" pv.");
+                            dmg = (this.ennemie.getPV()/this.heros.getPV()*dmg);
+                            ennemie.setMoinsPV(dmg);
+                            System.out.print("Il perd "+dmg+" pv.");
+                            this.majPvDmg(dmg,0);
                         } else {
                             System.out.print("... vous vous faites toucher par l'ennemi !\n");
-                            heros.setMoinsPV((this.heros.getPV()/this.ennemie.getPV()*dmg));
-                            System.out.print("Vous perdez "+(this.heros.getPV()/this.ennemie.getPV()*dmg)+" pv.");
+                            dmg = (this.heros.getPV()/this.ennemie.getPV()*dmg);
+                            heros.setMoinsPV(dmg);
+                            System.out.print("Vous perdez "+dmg+" pv.");
+                            this.majPvDmg(dmg,1);
                         }
                     break;
                     
@@ -218,6 +281,7 @@ public class Combat {
                         System.out.print("Action impossible. L'ennemi vous attaque et vous blesse.");
                         heros.setMoinsPV(this.ennemie.force);
                         System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
+                        this.majPvDmg(this.ennemie.getForce(),1);
                     break;
                 }
             break;
@@ -228,16 +292,49 @@ public class Combat {
         
     }
 
-    private void end() {
+    public void end() {
         System.out.print("Combat terminé !\n");
         end = true;
     }
 
-    private String canSoigne() {
+    public String canSoigne() {
         if (this.soin){
             return "<2> Se soigner\n";
         } else {
             return "<> Vous ne pouvez plus vous soigner !\n";
         }
+    }
+    
+    public void majPvDmg(int dmg, int target){
+        
+        if (target == 0) {
+           for (int i = 0; i <= dmg; i++) {
+              
+                JProgressBar pvEnn = this.combat.getPvEnnemi();
+                pvEnn.setValue(pvEnn.getValue()-1);
+                SwingUtilities.updateComponentTreeUI(this.fenetre);
+                
+                try {
+                    Thread.sleep(100);
+                } catch(InterruptedException e) {
+                   System.out.println(e.getMessage());
+                }
+            } 
+        }  else if (target == 1){
+            
+            for (int i = 0; i <= dmg; i++) {
+               
+                    JProgressBar pvHer = this.combat.getPvHeros();
+                    pvHer.setValue(pvHer.getValue()-1);
+                    SwingUtilities.updateComponentTreeUI(this.fenetre);
+                    try {
+                        Thread.sleep(100);
+                    } catch(InterruptedException e) {
+                       System.out.println(e.getMessage());
+                    }
+             
+            }
+        }
+        
     }
 }
