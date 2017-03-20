@@ -30,9 +30,6 @@ abstract class Combatant {
         this.power = power;
         this.soin = soin;
         this.deplacement = deplacement;
-       /* this.PV = PV;
-        this.force = force;
-        this.speed = speed;*/
 
     }
     
@@ -63,10 +60,16 @@ abstract class Combatant {
     }
     
      public void setPlusPV(double nbPV){
-        PV += (int) nbPV;
+         int a = (int) (PV +nbPV);
+         if(a < PVmax)
+         {
+             PV += (int) nbPV;
+         }
+        
     }
     
     public void setMoinsPV(int nbPV){
+        
         PV  -= nbPV;
     }
     

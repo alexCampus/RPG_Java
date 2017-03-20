@@ -28,9 +28,9 @@ public class Taverne {
             case 1:                
                 
                 System.out.println("Vous venez de retrouver un de vos vieux amis, après avoir passé une bonne soirée en sa présence.\nCela vous a permis de regagner " + nbPV + " points de vie."); 
-                if(monHero.getPV() > 95){
+              
                     monHero.setPlusPV(nbPV); 
-                }
+             
                 
                 break;
                 
@@ -95,9 +95,8 @@ public class Taverne {
             
             case 4:
                 System.out.println("Vous vous offrez les services d'une jolie demoiselle cela vous rapporte " + nbPV + " points de vie");
-                if(monHero.getForce() > 95){
                     monHero.setPlusPV(nbPV); 
-                }
+      
                 
                 break;
                 
