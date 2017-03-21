@@ -90,8 +90,7 @@ public class Taverne {
                 
             case 3:
                 System.out.println("Vous vous retrouver face a face avec un de vos enemies.");
-                Combat a = new Combat(monHero);
-                a.debutDuCombat();
+                JPanelCombat c = new JPanelCombat(monHero);
                 break;
             
             case 4:

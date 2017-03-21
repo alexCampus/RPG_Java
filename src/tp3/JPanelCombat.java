@@ -31,43 +31,44 @@ public class JPanelCombat extends javax.swing.JPanel {
     /**
      * Creates new form JPanelCombat
      */
-    public JPanelCombat(JFrame fen, Heros heros) throws MalformedURLException {
+    public JPanelCombat(JFrame fen, Heros heros){
         this.fenetre = fenetre;
         this.heros = heros;
         this.ennemie = Random.ennemie();
+        
         initComponents();
+        
         pvEnnemi.setMaximum(this.ennemie.PVmax);
         pvEnnemi.setValue(this.ennemie.PV);
         pvHeros.setMaximum(this.heros.PVmax);
         pvHeros.setValue(this.heros.PV);
-        
-        ImageIcon imageTemp = new ImageIcon(new URL("http://bilad.fr/model_fichiers/img_surgele.jpg"));
-	JLabel cadreIMG = new JLabel (imageTemp);
-        this.ennemiImage.add(cadreIMG);
-        
+
         SwingUtilities.updateComponentTreeUI(this.fenetre);
         
         
     }
-    public JPanelCombat(Heros heros) throws MalformedURLException{
+    
+    public JPanelCombat(Heros hero){
+        
+        System.out.println();
         this.fenetre = new JFrame();
-        this.heros = heros;
+        this.heros = hero;
         this.ennemie = Random.ennemie();
+        
+        System.out.println(this.ennemie.getNom());
         this.fenetre.setSize(600, 600);
         this.fenetre.setVisible(true);
         
         initComponents();
+        
         ennemiNom.setText(this.ennemie.getNom());
         pvEnnemi.setMaximum(this.ennemie.PVmax);
         pvEnnemi.setValue(this.ennemie.PV);
         pvHeros.setMaximum(this.heros.PVmax);
         pvHeros.setValue(this.heros.PV);
         
-	JLabel cadreIMG = new JLabel();
-        cadreIMG.setIcon(new ImageIcon(new URL("http://www.geekqc.ca/wp-content/uploads/2016/07/025Pikachu_OS_anime_10.png")));
-        this.ennemiImage.add(cadreIMG);
-        
         fenetre.setContentPane(this);
+        
         SwingUtilities.updateComponentTreeUI(this.fenetre);
         
     }
@@ -384,6 +385,13 @@ public class JPanelCombat extends javax.swing.JPanel {
                             this.majPvDmg(dmg,1);
             break;
         }
+        this.cpBtn.setVisible(false);
+        this.caBtn.setVisible(false);
+        this.feinteBtn.setVisible(false);
+        this.attBtn.setVisible(true);
+        this.soinBtn.setVisible(true);
+        this.fuirBtn.setVisible(true);
+        SwingUtilities.updateComponentTreeUI(this.fenetre);
         
     }//GEN-LAST:event_caBtnActionPerformed
 
@@ -423,6 +431,13 @@ public class JPanelCombat extends javax.swing.JPanel {
                         }
         break;
       }
+        this.cpBtn.setVisible(false);
+        this.caBtn.setVisible(false);
+        this.feinteBtn.setVisible(false);
+        this.attBtn.setVisible(true);
+        this.soinBtn.setVisible(true);
+        this.fuirBtn.setVisible(true);
+        SwingUtilities.updateComponentTreeUI(this.fenetre);
     }//GEN-LAST:event_feinteBtnActionPerformed
     
     public void majPvDmg(int dmg, int target){
