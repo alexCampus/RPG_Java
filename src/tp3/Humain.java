@@ -18,6 +18,7 @@ public class Humain extends Heros{
        this.force = 20;
        this.speed = 2;
        this.psoin = 33;
+       this.nom = "Humain";
     }
     
     public Humain(Power esprit, Soin soin, Deplacement dep) {

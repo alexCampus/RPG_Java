@@ -26,7 +26,7 @@ public class Tp3 {
         
          //Initialisation scanner
          
-        
+        JFrameMain j = new JFrameMain();
         
         do{
             
@@ -111,6 +111,9 @@ public class Tp3 {
             Case += deplacement;
             System.out.println("\nVous avancez de " + deplacement + " cases.\n");
             System.out.println("Tour \u001B[32m" + nbTours + "\u001B[m - Case " + Case);
+            
+            JFrameMain j = new JFrameMain();
+            
             if(Case>100){
                 break;
             }
