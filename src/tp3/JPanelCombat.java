@@ -7,6 +7,7 @@ package tp3;
 
 
 
+import java.awt.event.WindowEvent;
 import java.net.MalformedURLException;
 import java.net.URL;
 import javax.swing.ImageIcon;
@@ -66,6 +67,7 @@ public class JPanelCombat extends javax.swing.JPanel {
         pvEnnemi.setValue(this.ennemie.PV);
         pvHeros.setMaximum(this.heros.PVmax);
         pvHeros.setValue(this.heros.PV);
+        pvHeroLabel.setText(this.heros.getPV()+"/"+this.heros.PVmax);
         
         fenetre.setContentPane(this);
         
@@ -94,6 +96,9 @@ public class JPanelCombat extends javax.swing.JPanel {
         herosNom = new java.awt.Label();
         ennemiNom = new java.awt.Label();
         ennemiImage = new javax.swing.JPanel();
+        messagePv = new java.awt.Label();
+        continuBtn = new java.awt.Button();
+        pvHeroLabel = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(300, 300));
         setMinimumSize(new java.awt.Dimension(300, 300));
@@ -144,7 +149,6 @@ public class JPanelCombat extends javax.swing.JPanel {
             }
         });
 
-        message.setAlignment(java.awt.Label.CENTER);
         message.setText("Que voulez-vous faire ?");
 
         pvHeros.setToolTipText("");
@@ -168,6 +172,15 @@ public class JPanelCombat extends javax.swing.JPanel {
             .addGap(0, 200, Short.MAX_VALUE)
         );
 
+        continuBtn.setActionCommand("");
+        continuBtn.setLabel("Fin du combat");
+        continuBtn.setVisible(false);
+        continuBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                continuBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,6 +188,23 @@ public class JPanelCombat extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(messagePv, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(caBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(feinteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(herosNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(pvHeroLabel))
+                                .addComponent(pvHeros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 18, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -184,23 +214,12 @@ public class JPanelCombat extends javax.swing.JPanel {
                                 .addGap(30, 30, 30)
                                 .addComponent(fuirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(ennemiImage, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pvEnnemi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ennemiNom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pvHeros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(herosNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(caBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(feinteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(ennemiNom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(continuBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,23 +231,28 @@ public class JPanelCombat extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ennemiNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(ennemiImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
-                .addComponent(herosNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(herosNom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pvHeroLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pvHeros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(messagePv, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(attBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fuirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(soinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(soinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(continuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(feinteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(caBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75))
+                .addGap(110, 110, 110))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -302,17 +326,18 @@ public class JPanelCombat extends javax.swing.JPanel {
         int t = Random.typeAttaque();
         int dmg = 0;
         switch(t) {
-            case 1 : System.out.print("L'ennemi et vous portez un coup puissant. Vous vous blessez tous les deux.\n");
+            case 1 : 
+                
                             int hdmg = this.heros.force*(Random.dice(6))/4;
                             dmg = this.ennemie.force*(Random.dice(6))/4;
                             ennemie.setMoinsPV(hdmg);
                             heros.setMoinsPV(dmg);
-                            System.out.print("Il perd "+hdmg+" pv.");
+                            this.message.setText("L'ennemi et vous portez un coup puissant. Vous vous blessez tous les deux.");
+                            this.messagePv.setText("Il perd "+hdmg+" pv. Vous perdez "+dmg+" pv.");
                             this.majPvDmg(hdmg,0);
-                            System.out.print("Vous perdez "+dmg+" pv.");
                             this.majPvDmg(dmg,1);
             break;
-            case 2 : System.out.print("Vous tentez un coup puissant mais l'ennemi arrive à vous contrez ! Il vous touche !\n");
+            case 2 : 
                             int rand = Random.dice(2)-1;
                             if (rand == 1){
                                 dmg = this.heros.force+10;
@@ -320,13 +345,15 @@ public class JPanelCombat extends javax.swing.JPanel {
                                 dmg = 10;
                             }
                             heros.setMoinsPV(dmg);
-                            System.out.print("Vous perdez "+dmg+" pv.");
+                            this.message.setText("Vous tentez un coup puissant mais l'ennemi arrive à vous contrez ! Il vous touche !");
+                            this.messagePv.setText("Vous perdez "+dmg+" pv.");
                             this.majPvDmg(dmg,1);
             break;
-            case 3 : System.out.print("L'ennemi tente maladroitement une attaque, vous le punissez ! Vous le touchez !\n");
+            case 3 :
                             dmg = this.heros.force*(Random.dice(6))/4;
                             ennemie.setMoinsPV(dmg);
-                            System.out.print("Il perd "+dmg+" pv.");
+                            this.message.setText("L'ennemi tente maladroitement une attaque, vous le punissez ! Vous le touchez !");
+                            this.messagePv.setText("Il perd "+dmg+" pv.");
                             this.majPvDmg(dmg,0);
             break;
         }
@@ -337,6 +364,7 @@ public class JPanelCombat extends javax.swing.JPanel {
         this.soinBtn.setVisible(true);
         this.fuirBtn.setVisible(true);
         SwingUtilities.updateComponentTreeUI(this.fenetre);
+        this.testCombat();
     }//GEN-LAST:event_cpBtnActionPerformed
 
     private void fuirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fuirBtnActionPerformed
@@ -392,6 +420,7 @@ public class JPanelCombat extends javax.swing.JPanel {
         this.soinBtn.setVisible(true);
         this.fuirBtn.setVisible(true);
         SwingUtilities.updateComponentTreeUI(this.fenetre);
+        this.testCombat();
         
     }//GEN-LAST:event_caBtnActionPerformed
 
@@ -438,7 +467,12 @@ public class JPanelCombat extends javax.swing.JPanel {
         this.soinBtn.setVisible(true);
         this.fuirBtn.setVisible(true);
         SwingUtilities.updateComponentTreeUI(this.fenetre);
+        this.testCombat();
     }//GEN-LAST:event_feinteBtnActionPerformed
+
+    private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuBtnActionPerformed
+        this.fenetre.dispatchEvent(new WindowEvent(this.fenetre, WindowEvent.WINDOW_CLOSING));
+    }//GEN-LAST:event_continuBtnActionPerformed
     
     public void majPvDmg(int dmg, int target){
         
@@ -463,12 +497,14 @@ public class JPanelCombat extends javax.swing.JPanel {
             Thread t = new Thread(runner, "Code Executer");
             t.start();  
         }  else if (target == 1){
+            
+            int max = this.heros.PVmax;
            Runnable runner = new Runnable()
             {
                 public void run() {
-                    for (int i = 0; i <= dmg; i++) {
+                    for (int i = 1; i <= dmg; i++) {
                         pvHeros.setValue(pvHeros.getValue()-1);
-                        
+                        pvHeroLabel.setText(pvHeros.getValue()+"/"+max);
                         try {
                             Thread.sleep(100);
                         } catch(InterruptedException e) {
@@ -483,12 +519,39 @@ public class JPanelCombat extends javax.swing.JPanel {
         }
     }
     
-    
+    private void testCombat() {
+        if (this.heros.getPV() <= 0) {
+            this.messagePv.setText(this.messagePv.getText()+" Vous êtes mort !");
+            this.cpBtn.setVisible(false);
+            this.caBtn.setVisible(false);
+            this.feinteBtn.setVisible(false);
+            this.attBtn.setVisible(false);
+            this.soinBtn.setVisible(false);
+            this.fuirBtn.setVisible(false);
+            this.continuBtn.setVisible(true);
+            
+            //A FAIRE UNE FOIS LE MENU FINI
+            //this.fenetre.setContentPane(//mainmenu);
+        }
+        else if (this.ennemie.getPV() <= 0) {
+            this.messagePv.setText(this.messagePv.getText()+" Vous avez tué votre ennemi !");
+            this.cpBtn.setVisible(false);
+            this.caBtn.setVisible(false);
+            this.feinteBtn.setVisible(false);
+            this.attBtn.setVisible(false);
+            this.soinBtn.setVisible(false);
+            this.fuirBtn.setVisible(false);
+            this.continuBtn.setVisible(true);
+            //A FAIRE UNE FOIS LE MENU FINI
+            //this.fenetre.setContentPane(//mainmenu);
+        }
+    }
         
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button attBtn;
     private java.awt.Button caBtn;
+    private java.awt.Button continuBtn;
     private java.awt.Button cpBtn;
     private javax.swing.JPanel ennemiImage;
     private java.awt.Label ennemiNom;
@@ -496,8 +559,12 @@ public class JPanelCombat extends javax.swing.JPanel {
     private java.awt.Button fuirBtn;
     private java.awt.Label herosNom;
     private java.awt.Label message;
+    private java.awt.Label messagePv;
     private javax.swing.JProgressBar pvEnnemi;
+    private javax.swing.JLabel pvHeroLabel;
     private javax.swing.JProgressBar pvHeros;
     private java.awt.Button soinBtn;
     // End of variables declaration//GEN-END:variables
+
+    
 }
