@@ -79,6 +79,7 @@ public class Tp3 {
             case "1" :
                 System.out.println("Vous serez donc un nain !");
                 m = new Nain();
+                
                 break;
             case "2" :
                 System.out.println("Vous serez donc un elfe !");
@@ -162,8 +163,7 @@ public class Tp3 {
                     }
                     break;
                 case 3:
-                    Combat c = new Combat(m);
-                    c.debutDuCombat();
+                    JPanelCombat c = new JPanelCombat(m);
                     break;
             }
             if (m.getPV() <= 0) {

@@ -5,8 +5,13 @@
  */
 package tp3;
 
-import java.awt;
+
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 
@@ -16,16 +21,55 @@ import javax.swing.SwingUtilities;
  */
 public class JPanelCombat extends javax.swing.JPanel {
     
-    JFrame fen;
-    Combat combat;
+    private Ennemies ennemie;
+    private Heros heros;
+    private boolean soin = true;
+    private boolean end = false;
+    JFrame fenetre;
+    
     
     /**
      * Creates new form JPanelCombat
      */
-    public JPanelCombat(JFrame fen, Combat combat) {
-        this.fen = fen;
-        this.combat = combat;
+    public JPanelCombat(JFrame fen, Heros heros) throws MalformedURLException {
+        this.fenetre = fenetre;
+        this.heros = heros;
+        this.ennemie = Random.ennemie();
         initComponents();
+        pvEnnemi.setMaximum(this.ennemie.PVmax);
+        pvEnnemi.setValue(this.ennemie.PV);
+        pvHeros.setMaximum(this.heros.PVmax);
+        pvHeros.setValue(this.heros.PV);
+        
+        ImageIcon imageTemp = new ImageIcon(new URL("http://bilad.fr/model_fichiers/img_surgele.jpg"));
+	JLabel cadreIMG = new JLabel (imageTemp);
+        this.ennemiImage.add(cadreIMG);
+        
+        SwingUtilities.updateComponentTreeUI(this.fenetre);
+        
+        
+    }
+    public JPanelCombat(Heros heros) throws MalformedURLException{
+        this.fenetre = new JFrame();
+        this.heros = heros;
+        this.ennemie = Random.ennemie();
+        this.fenetre.setSize(600, 600);
+        this.fenetre.setVisible(true);
+        
+        initComponents();
+        ennemiNom.setText(this.ennemie.getNom());
+        pvEnnemi.setMaximum(this.ennemie.PVmax);
+        pvEnnemi.setValue(this.ennemie.PV);
+        pvHeros.setMaximum(this.heros.PVmax);
+        pvHeros.setValue(this.heros.PV);
+        
+	JLabel cadreIMG = new JLabel();
+        cadreIMG.setIcon(new ImageIcon(new URL("http://www.geekqc.ca/wp-content/uploads/2016/07/025Pikachu_OS_anime_10.png")));
+        this.ennemiImage.add(cadreIMG);
+        
+        fenetre.setContentPane(this);
+        SwingUtilities.updateComponentTreeUI(this.fenetre);
+        
     }
 
     /**
@@ -43,14 +87,16 @@ public class JPanelCombat extends javax.swing.JPanel {
         caBtn = new java.awt.Button();
         cpBtn = new java.awt.Button();
         feinteBtn = new java.awt.Button();
-        label1 = new java.awt.Label();
+        message = new java.awt.Label();
         pvHeros = new javax.swing.JProgressBar();
         pvEnnemi = new javax.swing.JProgressBar();
-        label2 = new java.awt.Label();
-        label3 = new java.awt.Label();
+        herosNom = new java.awt.Label();
+        ennemiNom = new java.awt.Label();
+        ennemiImage = new javax.swing.JPanel();
 
         setMaximumSize(new java.awt.Dimension(300, 300));
         setMinimumSize(new java.awt.Dimension(300, 300));
+        setOpaque(false);
 
         soinBtn.setLabel("Se soigner");
         soinBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -67,24 +113,59 @@ public class JPanelCombat extends javax.swing.JPanel {
         });
 
         fuirBtn.setLabel("Fuir");
+        fuirBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fuirBtnActionPerformed(evt);
+            }
+        });
 
         caBtn.setLabel("Contre Attaque");
         caBtn.setVisible(false);
+        caBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caBtnActionPerformed(evt);
+            }
+        });
 
         cpBtn.setLabel("Coup Puissant");
         cpBtn.setVisible(false);
+        cpBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpBtnActionPerformed(evt);
+            }
+        });
 
         feinteBtn.setLabel("Feinte");
         feinteBtn.setVisible(false);
+        feinteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                feinteBtnActionPerformed(evt);
+            }
+        });
 
-        label1.setAlignment(java.awt.Label.CENTER);
-        label1.setText("Que voulez-vous faire ?");
+        message.setAlignment(java.awt.Label.CENTER);
+        message.setText("Que voulez-vous faire ?");
 
         pvHeros.setToolTipText("");
 
-        label2.setText("Vos PV");
+        herosNom.setText("Vos PV");
 
-        label3.setText("Les PV de l'ennemi");
+        ennemiNom.setText("Les PV de l'ennemi");
+
+        ennemiImage.setMaximumSize(new java.awt.Dimension(200, 200));
+        ennemiImage.setMinimumSize(new java.awt.Dimension(200, 200));
+        ennemiImage.setPreferredSize(new java.awt.Dimension(200, 200));
+
+        javax.swing.GroupLayout ennemiImageLayout = new javax.swing.GroupLayout(ennemiImage);
+        ennemiImage.setLayout(ennemiImageLayout);
+        ennemiImageLayout.setHorizontalGroup(
+            ennemiImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        ennemiImageLayout.setVerticalGroup(
+            ennemiImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -94,26 +175,24 @@ public class JPanelCombat extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(pvEnnemi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(attBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
                                 .addComponent(soinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addComponent(fuirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 51, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(fuirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ennemiImage, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pvEnnemi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ennemiNom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pvHeros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(herosNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -126,15 +205,18 @@ public class JPanelCombat extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pvEnnemi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pvEnnemi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ennemiNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ennemiImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addComponent(herosNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pvHeros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(attBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,6 +230,11 @@ public class JPanelCombat extends javax.swing.JPanel {
                 .addGap(75, 75, 75))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public void setjPanel1() {
+
+        this.ennemiImage = ennemiImage;
+    }
 
     public void setSoinBtn(java.awt.Button soinBtn) {
         this.soinBtn = soinBtn;
@@ -180,23 +267,220 @@ public class JPanelCombat extends javax.swing.JPanel {
         this.attBtn.setVisible(false);
         this.soinBtn.setVisible(false);
         this.fuirBtn.setVisible(false);
-        SwingUtilities.updateComponentTreeUI(this.fen);
+        SwingUtilities.updateComponentTreeUI(this.fenetre);
     }//GEN-LAST:event_attBtnActionPerformed
 
     private void soinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_soinBtnActionPerformed
-        this.combat.soin();
+        
+        soinBtn.setEnabled(false);
+        double s = this.heros.seSoigner();
+        
+        Runnable runner = new Runnable()
+            {
+                public void run() {
+                    for (int i = 0; i <= s; i++) {
+                        pvHeros.setValue(pvHeros.getValue()+1);
+                        
+                        try {
+                            Thread.sleep(100);
+                        } catch(InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                    }
+                }
+            };
+            Thread t = new Thread(runner, "Code Executer");
+            t.start();  
+        
+        System.out.print("Vous récupérez "+(int)s+" pv.");
     }//GEN-LAST:event_soinBtnActionPerformed
 
+    private void cpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpBtnActionPerformed
+   
+        int t = Random.typeAttaque();
+        int dmg = 0;
+        switch(t) {
+            case 1 : System.out.print("L'ennemi et vous portez un coup puissant. Vous vous blessez tous les deux.\n");
+                            int hdmg = this.heros.force*(Random.dice(6))/4;
+                            dmg = this.ennemie.force*(Random.dice(6))/4;
+                            ennemie.setMoinsPV(hdmg);
+                            heros.setMoinsPV(dmg);
+                            System.out.print("Il perd "+hdmg+" pv.");
+                            this.majPvDmg(hdmg,0);
+                            System.out.print("Vous perdez "+dmg+" pv.");
+                            this.majPvDmg(dmg,1);
+            break;
+            case 2 : System.out.print("Vous tentez un coup puissant mais l'ennemi arrive à vous contrez ! Il vous touche !\n");
+                            int rand = Random.dice(2)-1;
+                            if (rand == 1){
+                                dmg = this.heros.force+10;
+                            } else {
+                                dmg = 10;
+                            }
+                            heros.setMoinsPV(dmg);
+                            System.out.print("Vous perdez "+dmg+" pv.");
+                            this.majPvDmg(dmg,1);
+            break;
+            case 3 : System.out.print("L'ennemi tente maladroitement une attaque, vous le punissez ! Vous le touchez !\n");
+                            dmg = this.heros.force*(Random.dice(6))/4;
+                            ennemie.setMoinsPV(dmg);
+                            System.out.print("Il perd "+dmg+" pv.");
+                            this.majPvDmg(dmg,0);
+            break;
+        }
+        this.cpBtn.setVisible(false);
+        this.caBtn.setVisible(false);
+        this.feinteBtn.setVisible(false);
+        this.attBtn.setVisible(true);
+        this.soinBtn.setVisible(true);
+        this.fuirBtn.setVisible(true);
+        SwingUtilities.updateComponentTreeUI(this.fenetre);
+    }//GEN-LAST:event_cpBtnActionPerformed
+
+    private void fuirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fuirBtnActionPerformed
+        boolean b = Random.fuite(ennemie);
+        if (b) {
+            System.out.print("Vous prenez la fuite ...");
+            
+        }
+        else {
+            System.out.print("Fuite impossible ... L'ennemi vous rattrape et vous blesse.");
+            heros.setMoinsPV(this.ennemie.force);
+            System.out.print("Vous perdez "+this.ennemie.getForce()+" pv.");
+            if(heros.getPV() > 0) {
+            } else {
+                
+            }
+            
+        }
+    }//GEN-LAST:event_fuirBtnActionPerformed
+
+    private void caBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caBtnActionPerformed
+        int t = Random.typeAttaque();
+        int dmg;
+        switch(t) {
+            case 1 :
+                            int rand = Random.dice(2)-1;
+                            System.out.print("L'ennemi porte un coup puissant mais vous contre-attaquez magistralement ! Vous le touchez !\n");
+                            if (rand == 1){
+                                dmg = this.ennemie.force+10;
+                            } else {
+                                dmg = 10;
+                            }
+                            ennemie.setMoinsPV(dmg);
+                            System.out.print("Il perd "+dmg+" pv.");
+                            this.majPvDmg(dmg,0);
+            break;
+
+            case 2 : System.out.print("Votre ennemi et vous-même attendez patiemment le coup de l'autre ...\n");
+            break;
+
+            case 3 : System.out.print("L'ennemi semble vouloir porter un coup violent, vous tentez une parade mais il vous porte un coup bas au dernier moment ! Il vous touche !\n");
+                            dmg = Random.dice(11)+9;
+                            dmg = dmg * this.heros.getPV()/this.ennemie.getPV();
+                            heros.setMoinsPV(dmg);
+                            System.out.print("Vous perdez "+dmg+" pv.");
+                            this.majPvDmg(dmg,1);
+            break;
+        }
+        
+    }//GEN-LAST:event_caBtnActionPerformed
+
+    private void feinteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feinteBtnActionPerformed
+        
+        int t = Random.typeAttaque();
+        int dmg = 0;
+        switch(t) {
+        case 3 : System.out.print("L'ennemi porte un coup puissant, votre feinte est inutile ! Il vous touche !\n");
+                        dmg = this.ennemie.force*(Random.dice(6))/4;
+                        heros.setMoinsPV(dmg);
+                        System.out.print("Vous perdez "+dmg+" pv.");
+                        this.majPvDmg(dmg,1);
+        break;
+        case 2 : System.out.print("Vous simulez une attaque, l'ennemi manque sa parade et vous lui portez un coup ! Vous le touchez !\n");
+                        dmg = Random.dice(11)+9;
+                        dmg = dmg * this.ennemie.getPV()/this.heros.getPV()+5;
+                        ennemie.setMoinsPV(dmg);
+                        System.out.print("Il perd "+dmg+" pv.");
+                        this.majPvDmg(dmg,0);
+        break;
+        case 1 : System.out.print("Apres un échange de coups spectaculaire... \n");
+                        int rand = Random.dice(2)-1;
+                        dmg = Random.dice(11)+9;
+                        if (rand == 1){
+                            System.out.print("... vous réussissez à blesser l'ennemi !\n");
+                            dmg = (this.ennemie.getPV()/this.heros.getPV()*dmg);
+                            ennemie.setMoinsPV(dmg);
+                            System.out.print("Il perd "+dmg+" pv.");
+                            this.majPvDmg(dmg,0);
+                        } else {
+                            System.out.print("... vous vous faites toucher par l'ennemi !\n");
+                            dmg = (this.heros.getPV()/this.ennemie.getPV()*dmg);
+                            heros.setMoinsPV(dmg);
+                            System.out.print("Vous perdez "+dmg+" pv.");
+                            this.majPvDmg(dmg,1);
+                        }
+        break;
+      }
+    }//GEN-LAST:event_feinteBtnActionPerformed
+    
+    public void majPvDmg(int dmg, int target){
+        
+        if (target == 0) {
+
+                Runnable runner = new Runnable()
+            {
+                public void run() {
+                    for (int i = 0; i <= dmg; i++) {
+                        System.out.println(pvEnnemi.getValue());
+                        pvEnnemi.setValue(pvEnnemi.getValue()-1);
+                        try {
+                            Thread.sleep(100);
+                        } catch(InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                        
+                    }
+                }
+            };
+            Thread t = new Thread(runner, "Code Executer");
+            t.start();  
+        }  else if (target == 1){
+           Runnable runner = new Runnable()
+            {
+                public void run() {
+                    for (int i = 0; i <= dmg; i++) {
+                        pvHeros.setValue(pvHeros.getValue()-1);
+                        
+                        try {
+                            Thread.sleep(100);
+                        } catch(InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                    }
+                }
+            };
+            Thread t = new Thread(runner, "Code Executer");
+            t.start();   
+        }
+    }
+    
+    
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button attBtn;
     private java.awt.Button caBtn;
     private java.awt.Button cpBtn;
+    private javax.swing.JPanel ennemiImage;
+    private java.awt.Label ennemiNom;
     private java.awt.Button feinteBtn;
     private java.awt.Button fuirBtn;
-    private java.awt.Label label1;
-    private java.awt.Label label2;
-    private java.awt.Label label3;
+    private java.awt.Label herosNom;
+    private java.awt.Label message;
     private javax.swing.JProgressBar pvEnnemi;
     private javax.swing.JProgressBar pvHeros;
     private java.awt.Button soinBtn;
