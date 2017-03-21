@@ -13,7 +13,7 @@ import tp3.comportement.*;
  * @author alexandre.depembroke
  */
 abstract class Combatant {
-    
+    protected String nom;
     protected Power power = new PowerArme();
     protected Soin soin = new PremierSoin();
     protected Deplacement deplacement = new Marcher();

@@ -13,7 +13,7 @@ import tp3.comportement.*;
  */
 public class Ennemies extends Combatant{
     
-    private String nom;
+    
     private int poursuite;
     
     public Ennemies(String nom, int p){
