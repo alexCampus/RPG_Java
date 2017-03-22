@@ -207,16 +207,18 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                     
                     fenetre.Case = fenetre.Case + deplacement;
                     caseLabel.setText("Case "+fenetre.Case);
+                    continuBtn.setVisible(true);
+                    event.setVisible(true);
+                    newEvent();
+                    
                 }
+                
+                
             };
             Thread t = new Thread(runner, "Code Executer");
             
             t.start();
-            continuBtn.setVisible(true);
             
-            
-            event.setVisible(true);
-            this.newEvent();
             
     }//GEN-LAST:event_lancerActionPerformed
 
@@ -224,6 +226,11 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
         if(this.fenetre.Case > 100) {
             this.fenetre.setContentPane(new JPanelWin(this.fenetre));
         } else {
+            if (this.ev instanceof javax.swing.JPanel) {
+                this.fenetre.setContentPane((javax.swing.JPanel) this.ev);
+            } else if (this.ev instanceof Taverne) {
+                ((Taverne)this.ev).eventTaverne();
+            }
             
         }
         

@@ -43,8 +43,6 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         pvHeros.setMaximum(this.fenetre.heros.PVmax);
         pvHeros.setValue(this.fenetre.heros.PV);
         pvHeroLabel.setText(this.fenetre.heros.getPV()+"/"+this.fenetre.heros.PVmax);
-        this.fenetre.setSize(800, 600);
-        fenetre.setContentPane(this);
         
         SwingUtilities.updateComponentTreeUI(this.fenetre);
         
@@ -486,6 +484,7 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
     }//GEN-LAST:event_feinteBtnActionPerformed
 
     private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuBtnActionPerformed
+        
         if(this.fenetre.heros.getPV() <= 0) {
             this.fenetre.setContentPane(new JPanelLose(this.fenetre));
         } else {
