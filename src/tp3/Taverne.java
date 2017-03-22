@@ -28,7 +28,7 @@ public class Taverne implements Event{
 
         new PanelTaverne(fenetre, this);
 
-        nb = 3;// Random.dice(5);
+        nb = Random.dice(5);
     }
     
     public void eventTaverne(JFrameMain fenetre) throws MalformedURLException{
