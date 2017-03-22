@@ -5,6 +5,9 @@
  */
 package tp3;
 
+import java.net.MalformedURLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -93,7 +96,11 @@ public class JPanelMainMenu extends javax.swing.JPanel {
         continuBtn.setVisible(false);
         continuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                continuBtnActionPerformed(evt);
+                try {
+                    continuBtnActionPerformed(evt);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(JPanelMainMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
@@ -218,11 +225,13 @@ public class JPanelMainMenu extends javax.swing.JPanel {
             
     }//GEN-LAST:event_lancerActionPerformed
 
-    private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuBtnActionPerformed
+    private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException {//GEN-FIRST:event_continuBtnActionPerformed
         if(this.fenetre.Case > 100) {
             this.fenetre.setContentPane(new JPanelWin(this.fenetre));
         }
-        this.fenetre.setContentPane(new JPanelCombat(this.fenetre));
+        Taverne m = new Taverne(this.fenetre.heros);
+        m.eventTaverne(this.fenetre);
+        //this.fenetre.setContentPane(new JPanelCombat(this.fenetre));
     }//GEN-LAST:event_continuBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
