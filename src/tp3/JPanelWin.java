@@ -6,6 +6,7 @@
 package tp3;
 
 import java.awt.event.WindowEvent;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -19,6 +20,7 @@ public class JPanelWin extends javax.swing.JPanel {
     public JPanelWin(JFrameMain fenetre) {
         this.fenetre = fenetre;
         initComponents();
+        SwingUtilities.updateComponentTreeUI(this.fenetre);
     }
 
     /**
@@ -83,6 +85,9 @@ public class JPanelWin extends javax.swing.JPanel {
     }//GEN-LAST:event_button2ActionPerformed
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        this.fenetre.Case = 0;
+        this.fenetre.tour = 0;
+        this.fenetre.heros = null;
         this.fenetre.setContentPane(new JPanelStart(this.fenetre));
     }//GEN-LAST:event_button1ActionPerformed
 
