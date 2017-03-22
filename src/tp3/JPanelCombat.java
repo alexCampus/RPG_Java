@@ -20,7 +20,7 @@ import javax.swing.SwingUtilities;
  *
  * @author Loic.FOREST
  */
-public class JPanelCombat extends javax.swing.JPanel {
+public class JPanelCombat extends javax.swing.JPanel implements Event{
     
     private Ennemies ennemie;
     private boolean soin = true;

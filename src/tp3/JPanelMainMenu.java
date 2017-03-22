@@ -12,11 +12,11 @@ import javax.swing.SwingUtilities;
  *
  * @author Loic.FOREST
  */
-public class JPanelMainMenu extends javax.swing.JPanel {
+public class JPanelMainMenu extends javax.swing.JPanel implements Event{
     
     JFrameMain fenetre;
     int deplacement;
-    
+    Event ev;
     /**
      * Creates new form JPanelMainMenu
      */
@@ -213,18 +213,46 @@ public class JPanelMainMenu extends javax.swing.JPanel {
             
             t.start();
             continuBtn.setVisible(true);
+            
+            
             event.setVisible(true);
-            event.setText("Event : Combat !");
+            this.newEvent();
             
     }//GEN-LAST:event_lancerActionPerformed
 
     private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuBtnActionPerformed
         if(this.fenetre.Case > 100) {
             this.fenetre.setContentPane(new JPanelWin(this.fenetre));
+        } else {
+            
         }
-        this.fenetre.setContentPane(new JPanelCombat(this.fenetre));
+        
     }//GEN-LAST:event_continuBtnActionPerformed
 
+    private void newEvent(){
+        
+        int event = Random.event();
+
+            switch(event) {
+                case 0:
+                    this.eventLabel.setText("Un nouvel ennemi vous attaque !");
+                    this.ev = new JPanelCombat(this.fenetre);
+                    break;
+                case 1:
+                    this.eventLabel.setText("Vous faites face à une taverne !");
+                    this.ev = new Taverne(this.fenetre.heros);
+                    break;
+                case 2:
+                    this.eventLabel.setText("Un obstacle vous barre la route !");
+                    Obstacle o = new Obstacle(Random.boolObsctacle(),Random.dice(3));
+                    o.eventObstacle();
+                    break;
+                case 3:
+                    this.eventLabel.setText("Il ne passe rien... Pour le moment ...");
+                    this.ev = new JPanelMainMenu(this.fenetre);
+                    break;
+            }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel caseLabel;
     private java.awt.Button continuBtn;

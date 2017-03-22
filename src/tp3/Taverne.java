@@ -9,7 +9,7 @@ package tp3;
  *
  * @author alexandre.depembroke
  */
-public class Taverne {
+public class Taverne implements Event{
     
     private int nb;
     private Heros monHero;
