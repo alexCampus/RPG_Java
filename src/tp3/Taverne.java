@@ -6,6 +6,7 @@
 package tp3;
 
 import java.net.MalformedURLException;
+import java.util.Scanner;
 
 /**
  *
@@ -18,16 +19,21 @@ public class Taverne implements Event{
     int nbPV = (int)(Math.random() * 20) +1;
     int nbPVPerteMax =(int)(Math.random() * 50)+15;
     int nbForce = (int)(Math.random() * 5) +1;
-   String text;
-   String imgUrl;
+    String text;
+    String imgUrl;
+    static Scanner sc = new Scanner(System.in);
+    String choix = " ";
     
-    public Taverne(Heros monHero){
+    public Taverne(Heros monHero, JFrameMain fenetre) throws MalformedURLException{
         this.monHero = monHero;
         nb = (int)(Math.random() *5);
-       
+        new PanelTaverne(fenetre, this);
     }
     
     public void eventTaverne(JFrameMain fenetre) throws MalformedURLException{
+       
+            
+        
         switch(nb){
             case 1:                
                 text = "Vous venez de retrouver un de vos vieux amis, après avoir passé une bonne soirée en sa présence.\nCela vous a permis de regagner " + nbPV + " points de vie.";
@@ -145,5 +151,6 @@ public class Taverne implements Event{
                 break;
         }
     }
+
     
 }

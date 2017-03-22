@@ -216,7 +216,11 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                     caseLabel.setText("Case "+fenetre.Case);
                     continuBtn.setVisible(true);
                     event.setVisible(true);
-                    newEvent();
+                    try {
+                        newEvent();
+                    } catch (MalformedURLException ex) {
+                        Logger.getLogger(JPanelMainMenu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     
                 }
                 
@@ -243,7 +247,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
 
     }//GEN-LAST:event_continuBtnActionPerformed
 
-    private void newEvent(){
+    private void newEvent() throws MalformedURLException{
         
         int event = Random.event();
 
@@ -254,7 +258,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                     break;
                 case 1:
                     this.eventLabel.setText("Vous faites face à une taverne !");
-                    this.ev = new Taverne(this.fenetre.heros);
+                    this.ev = new Taverne(this.fenetre.heros, this.fenetre);
                     break;
                 case 2:
                     this.eventLabel.setText("Un obstacle vous barre la route !");
