@@ -236,7 +236,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
             if (this.ev instanceof javax.swing.JPanel) {
                 this.fenetre.setContentPane((javax.swing.JPanel) this.ev);
             } else if (this.ev instanceof Taverne) {
-                ((Taverne)this.ev).eventTaverne();
+                ((Taverne)this.ev).eventTaverne(this.fenetre);
             }
             
         }
