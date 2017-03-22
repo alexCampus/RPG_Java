@@ -250,7 +250,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
 
     private void newEvent() throws MalformedURLException{
         
-        int event = Random.event();
+        int event = 2;
 
             switch(event) {
                 case 0:
@@ -264,8 +264,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                 case 2:
                     this.eventLabel.setText("Un obstacle vous barre la route !");
                     Obstacle o = new Obstacle(Random.boolObsctacle(),Random.dice(3));
-                    this.ev = new JPanelMainMenu(this.fenetre);
-                    o.eventObstacle();
+                    this.ev = new JPanelObstacle(this.fenetre);
                     break;
                 case 3:
                     this.eventLabel.setText("Il ne passe rien... Pour le moment ...");
