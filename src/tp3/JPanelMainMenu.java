@@ -239,6 +239,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
         } else {
             if (this.ev instanceof javax.swing.JPanel) {
                 this.fenetre.setContentPane((javax.swing.JPanel) this.ev);
+                SwingUtilities.updateComponentTreeUI(this.fenetre);
             } else if (this.ev instanceof Taverne) {
                 ((Taverne)this.ev).eventTaverne(this.fenetre);
             }
@@ -263,6 +264,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                 case 2:
                     this.eventLabel.setText("Un obstacle vous barre la route !");
                     Obstacle o = new Obstacle(Random.boolObsctacle(),Random.dice(3));
+                    this.ev = new JPanelMainMenu(this.fenetre);
                     o.eventObstacle();
                     break;
                 case 3:

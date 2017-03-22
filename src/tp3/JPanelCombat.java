@@ -56,7 +56,7 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         this.fenetre.heros = hero;
         this.ennemie = Random.ennemie();
         
-        System.out.println(this.ennemie.getNom());
+        
         this.fenetre.setSize(600, 600);
         this.fenetre.setVisible(true);
         

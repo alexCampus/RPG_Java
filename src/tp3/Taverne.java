@@ -20,14 +20,14 @@ public class Taverne implements Event{
     int nbPVPerteMax =(int)(Math.random() * 50)+15;
     int nbForce = (int)(Math.random() * 5) +1;
     String text;
-    String imgUrl;
-    static Scanner sc = new Scanner(System.in);
-    String choix = " ";
+    String imgUrl;   
     
     public Taverne(Heros monHero, JFrameMain fenetre) throws MalformedURLException{
         this.monHero = monHero;
-        nb = (int)(Math.random() *5);
+
         new PanelTaverne(fenetre, this);
+
+        nb = Random.dice(5);
     }
     
     public void eventTaverne(JFrameMain fenetre) throws MalformedURLException{
@@ -44,7 +44,7 @@ public class Taverne implements Event{
                 break;
                 
             case 2:
-                int choix = (int)(Math.random() * 7);
+                int choix = Random.dice(3);
                     switch(choix){
                         case 1:
                             text = "Malheureusement la taverne est pleine. Le patron est d'humeur sympathique et vous offre une nouvelle épée pour vous dédommager";
@@ -59,7 +59,7 @@ public class Taverne implements Event{
                              imgUrl = "https://media.giphy.com/media/Eg69ZsaMq9XOw/giphy.gif";
                             new PanelTaverne(text, imgUrl, fenetre);
                            // System.out.println("Vous n'avez pas controlé votre consommation de bieres elfique\n et sous les effets de l'alcool vous vous êtes battus avec votre voisin de comptoir.....");
-                            int nbAleatoire = (int)(Math.random() * 9);
+                            int nbAleatoire = Random.dice(4);
                             switch(nbAleatoire){
                                 case 1:
                                     text = "Bravo, vous lui avez défoncé la tête en moins de deux et vous avez ainsi récuperer ses armes sans perdre de PV";
@@ -119,7 +119,7 @@ public class Taverne implements Event{
                             imgUrl = "https://media.giphy.com/media/2rtQMJvhzOnRe/giphy.gif";
                             new PanelTaverne(text, imgUrl, fenetre);
                            // System.out.println("Vous avez perdu vos chaussures durant la soirée bien arrosé d'hier, vous perdez donc de la rapidité.");
-                            monHero.setMoinsSpeed(nbForce);
+                            monHero.setMoinsSpeed(1);
                             break;
                     }
                
