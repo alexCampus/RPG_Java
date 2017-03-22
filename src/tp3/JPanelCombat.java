@@ -20,7 +20,7 @@ import javax.swing.SwingUtilities;
  *
  * @author Loic.FOREST
  */
-public class JPanelCombat extends javax.swing.JPanel {
+public class JPanelCombat extends javax.swing.JPanel implements Event{
     
     private Ennemies ennemie;
     private boolean soin = true;
@@ -43,8 +43,6 @@ public class JPanelCombat extends javax.swing.JPanel {
         pvHeros.setMaximum(this.fenetre.heros.PVmax);
         pvHeros.setValue(this.fenetre.heros.PV);
         pvHeroLabel.setText(this.fenetre.heros.getPV()+"/"+this.fenetre.heros.PVmax);
-        this.fenetre.setSize(800, 600);
-        fenetre.setContentPane(this);
         
         SwingUtilities.updateComponentTreeUI(this.fenetre);
         
@@ -58,7 +56,7 @@ public class JPanelCombat extends javax.swing.JPanel {
         this.fenetre.heros = hero;
         this.ennemie = Random.ennemie();
         
-        System.out.println(this.ennemie.getNom());
+        
         this.fenetre.setSize(600, 600);
         this.fenetre.setVisible(true);
         
@@ -305,7 +303,7 @@ public class JPanelCombat extends javax.swing.JPanel {
         Runnable runner = new Runnable()
             {
                 public void run() {
-                    for (int i = 0; i <= s; i++) {
+                    for (int i = 1; i <= s; i++) {
                         pvHeros.setValue(pvHeros.getValue()+1);
                         pvHeroLabel.setText(pvHeros.getValue()+"/"+fenetre.heros.PVmax);
                         try {
@@ -486,7 +484,13 @@ public class JPanelCombat extends javax.swing.JPanel {
     }//GEN-LAST:event_feinteBtnActionPerformed
 
     private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuBtnActionPerformed
-        this.fenetre.setContentPane(new JPanelMainMenu(this.fenetre));
+        
+        if(this.fenetre.heros.getPV() <= 0) {
+            this.fenetre.setContentPane(new JPanelLose(this.fenetre));
+        } else {
+            this.fenetre.setContentPane(new JPanelMainMenu(this.fenetre));
+        }
+        
     }//GEN-LAST:event_continuBtnActionPerformed
     
     public void majPvDmg(int dmg, int target){
