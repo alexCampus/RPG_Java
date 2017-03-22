@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
  *
  * @author alexandre.depembroke
  */
-public class Taverne {
+public class Taverne implements Event{
     
     private int nb;
     private Heros monHero;
