@@ -24,12 +24,7 @@ public class JPanelMainMenu extends javax.swing.JPanel {
         
         initComponents();
         this.fenetre = fenetre;
-        if(this.fenetre.Case > 100) {
-            this.fenetre.setContentPane(new JPanelWin(this.fenetre));
-        }
-        if(this.fenetre.heros.getPV() <= 0) {
-            this.fenetre.setContentPane(new JPanelLose(this.fenetre));
-        }
+        
         this.fenetre.setSize(800, 600);
         this.fenetre.tour++;
         this.tourLabel.setText("TOUR "+this.fenetre.tour);
@@ -220,9 +215,13 @@ public class JPanelMainMenu extends javax.swing.JPanel {
             continuBtn.setVisible(true);
             event.setVisible(true);
             event.setText("Event : Combat !");
+            
     }//GEN-LAST:event_lancerActionPerformed
 
     private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuBtnActionPerformed
+        if(this.fenetre.Case > 100) {
+            this.fenetre.setContentPane(new JPanelWin(this.fenetre));
+        }
         this.fenetre.setContentPane(new JPanelCombat(this.fenetre));
     }//GEN-LAST:event_continuBtnActionPerformed
 

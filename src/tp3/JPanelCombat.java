@@ -305,7 +305,7 @@ public class JPanelCombat extends javax.swing.JPanel {
         Runnable runner = new Runnable()
             {
                 public void run() {
-                    for (int i = 0; i <= s; i++) {
+                    for (int i = 1; i <= s; i++) {
                         pvHeros.setValue(pvHeros.getValue()+1);
                         pvHeroLabel.setText(pvHeros.getValue()+"/"+fenetre.heros.PVmax);
                         try {
@@ -486,7 +486,12 @@ public class JPanelCombat extends javax.swing.JPanel {
     }//GEN-LAST:event_feinteBtnActionPerformed
 
     private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuBtnActionPerformed
-        this.fenetre.setContentPane(new JPanelMainMenu(this.fenetre));
+        if(this.fenetre.heros.getPV() <= 0) {
+            this.fenetre.setContentPane(new JPanelLose(this.fenetre));
+        } else {
+            this.fenetre.setContentPane(new JPanelMainMenu(this.fenetre));
+        }
+        
     }//GEN-LAST:event_continuBtnActionPerformed
     
     public void majPvDmg(int dmg, int target){
