@@ -75,7 +75,7 @@ public class JPanelCombat extends javax.swing.JPanel {
         
         SwingUtilities.updateComponentTreeUI(this.fenetre);
         
-    }
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
