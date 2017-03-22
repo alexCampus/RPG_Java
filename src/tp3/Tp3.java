@@ -142,28 +142,8 @@ public class Tp3 {
                     }
                     break;
                 case 2:
-                    //INSTANCIER OBSTACLE
-                    Obstacle obstacle = new Obstacle(Random.boolObsctacle(),2);
-                    System.out.println("Un obstacle encombre votre route.");
-                    if(obstacle.getIsBloquant()){ //   CHECK obstacle.isBloquant()
-                        System.out.println("L'obstacle semble vraiment infranchissable, vous décidez donc de faire demi-tour.");
-                        Case -= (int)Math.round((deplacement)*0.70);
-                    } else {
-                        System.out.println("Vous pensez pouvoir le franchir.\n" +
-                                "1 - J'essaie de le franchir !\n" +
-                                "2 - Non, je préfère faire demi-tour et trouver un autre chemin");
-                        choix = sc.nextLine();
-                        switch(choix){
-                            case "1":
-                                //QUI PEUT PASSER L'OBSTACLE, DANS QUELLES CONDITIONS
-                                System.out.println("Vous réussissez à passer l'obstacle, mais vous sentez qu'un peu de repos vous fera le plus grand bien.\n" +
-                                        "Votre prochain déplacement en sera peut-être affecté.");
-                                break;
-                            case "2":
-                                System.out.println("L'obstacle vous semble vraiment infranchissable, vous décidez donc de faire demi-tour.");
-                                break;
-                        }
-                    }
+                    Obstacle o = new Obstacle(Random.boolObsctacle(),Random.dice(3));
+                    o.eventObstacle();
                     break;
                 case 3:
                     JPanelCombat c = new JPanelCombat(m);
