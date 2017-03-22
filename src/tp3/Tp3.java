@@ -134,6 +134,7 @@ public class Tp3 {
                         case "o":
                         case "O":
                             System.out.println("Vous entrez dans la taverne...");
+                            //Taverne n = new Taverne(m);
                             //n.eventTaverne();
                             break;
                         default:

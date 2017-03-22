@@ -27,6 +27,7 @@ public class PanelTaverne extends JFrame{
     Taverne taverne; 
     private Button continuBtn = new java.awt.Button();
     private Button exitBtn = new java.awt.Button();
+    boolean a = false;
     
     public PanelTaverne(JFrameMain fenetre, Taverne taverne) throws MalformedURLException{
         super();
@@ -35,14 +36,15 @@ public class PanelTaverne extends JFrame{
         fenetre.setContentPane(accueilTaverne());
     }
     
-    public PanelTaverne(String taverneText, String linkImg, JFrameMain fenetre) throws MalformedURLException{
+    public PanelTaverne(String taverneText, String linkImg, JFrameMain fenetre, boolean a) throws MalformedURLException{
        
         super();
+        
          this.fenetre = fenetre;
-        fenetre.setContentPane(buildContentPane(taverneText,linkImg));
+        fenetre.setContentPane(buildContentPane(taverneText,linkImg,a));
     }
     
-    private JPanel buildContentPane(String taverneText, String linkImg) throws MalformedURLException
+    private JPanel buildContentPane(String taverneText, String linkImg, boolean a) throws MalformedURLException
     {
        JPanel panel = new JPanel();
        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -66,8 +68,13 @@ public class PanelTaverne extends JFrame{
         panel.add(continuBtn);
         
         
+        if(a == true){
+            continuBtn.addActionListener(this::combatBtnActionPerformed);
+        }else
+        {
+            continuBtn.addActionListener(this::continuBtnActionPerformed);
+        }
         
-        continuBtn.addActionListener(this::continuBtnActionPerformed);
        
         return panel;
     }
@@ -109,11 +116,21 @@ public class PanelTaverne extends JFrame{
     }
     
     
+    
+    
      private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuBtnActionPerformed
          if(this.fenetre.heros.getPV() <= 0) {
             this.fenetre.setContentPane(new JPanelLose(this.fenetre));
         }
          this.fenetre.setContentPane(new JPanelMainMenu(this.fenetre));
+        
+    }//GEN-LAST:event_continuBtnActionPerformed
+     
+     private void combatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuBtnActionPerformed
+         if(this.fenetre.heros.getPV() <= 0) {
+            this.fenetre.setContentPane(new JPanelLose(this.fenetre));
+        }
+         this.fenetre.setContentPane(new JPanelCombat(this.fenetre));
         
     }//GEN-LAST:event_continuBtnActionPerformed
     
