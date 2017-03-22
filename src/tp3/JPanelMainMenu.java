@@ -252,7 +252,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
         
         int event = Random.event();
 
-            switch(event) {
+            switch(1) {
                 case 0:
                     this.eventLabel.setText("Un nouvel ennemi vous attaque !");
                     this.ev = new JPanelCombat(this.fenetre);
