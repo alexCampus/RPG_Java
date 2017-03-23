@@ -16,7 +16,7 @@ import javax.swing.SwingUtilities;
  * @author Loic.FOREST
  */
 public class JPanelMainMenu extends javax.swing.JPanel implements Event{
-    
+
     JFrameMain fenetre;
     int deplacement;
     Event ev;
@@ -24,19 +24,19 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
      * Creates new form JPanelMainMenu
      */
     public JPanelMainMenu(JFrameMain fenetre) {
-        
+
         initComponents();
         this.fenetre = fenetre;
-        
+
         this.fenetre.setSize(800, 600);
         this.fenetre.tour++;
         this.tourLabel.setText("TOUR "+this.fenetre.tour);
-        
-        
+
+
         caseLabel.setText("Case "+this.fenetre.Case);
         SwingUtilities.updateComponentTreeUI(this.fenetre);
         dice.setText("Lancez les dés !");
-        
+
     }
 
     /**
@@ -197,9 +197,9 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                             break;
                         }
                     }
-                    
-                    
-                    
+
+
+
                     if (fenetre.heros.speed == 1) {
                        deplacement =  d1 + 1;
                        deplacementLabel.setText("Vous avancez de "+deplacement+" case(s).");
@@ -211,7 +211,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                         deplacement = d1+d2+d3+1;
                         deplacementLabel.setText("Vous avancez de "+deplacement+" case(s).");
                     }
-                    
+
                     fenetre.Case = fenetre.Case + deplacement;
                     caseLabel.setText("Case "+fenetre.Case);
                     continuBtn.setVisible(true);
@@ -222,16 +222,16 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                     } catch (MalformedURLException ex) {
                         Logger.getLogger(JPanelMainMenu.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
+
                 }
-                
-                
+
+
             };
             Thread t = new Thread(runner, "Code Executé");
-            
+
             t.start();
-            
-            
+
+
     }//GEN-LAST:event_lancerActionPerformed
 
     private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException {//GEN-FIRST:event_continuBtnActionPerformed
@@ -241,9 +241,9 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                 SwingUtilities.updateComponentTreeUI(this.fenetre);
             } else if (this.ev instanceof Taverne) {
                 ((Taverne)this.ev).eventTaverne(this.fenetre);
+
             }
-            
-        
+
 
     }//GEN-LAST:event_continuBtnActionPerformed
 

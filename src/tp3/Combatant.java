@@ -86,7 +86,13 @@ abstract class Combatant {
     
     public void setMoinsPV(int nbPV){
         PVlost += nbPV;
-        PV  -= nbPV;
+        int a = PV - nbPV;
+        if(a > 0){
+            PV  -= nbPV;
+        }
+        else{
+            PV = 0;
+        }
     }
     
     public void setPlusForce(int nbForce){
