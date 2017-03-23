@@ -5,6 +5,7 @@
  */
 package tp3;
 
+import javax.swing.ImageIcon;
 import tp3.comportement.*;
 
 /**
@@ -18,6 +19,7 @@ public class Ogre extends Ennemies{
        this.PV = 200;
        this.PVmax = this.PV;
        this.force = 30;
+       this.avatar = new ImageIcon(this.getClass().getResource("ogre.png"));
     }
     
     public Ogre(Power esprit, Soin soin, Deplacement dep) {

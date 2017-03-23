@@ -45,7 +45,6 @@ public class JPanelObstacle extends JPanel implements Event {
         subPanel.add(turnAroundBtn);
         subPanel.add(continueBtn);
         continueBtn.setVisible(false);
-
         this.add(subPanel,BorderLayout.SOUTH);
 
         passObstacleBtn.addActionListener(e -> {

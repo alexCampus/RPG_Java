@@ -140,6 +140,7 @@ public class PanelTaverne extends JFrame{
         }
 
         try {
+            this.fenetre.heros.taverne++;
             this.taverne.eventTaverne(this.fenetre);
         } catch (MalformedURLException ex) {
             Logger.getLogger(PanelTaverne.class.getName()).log(Level.SEVERE, null, ex);

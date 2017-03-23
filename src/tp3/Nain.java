@@ -5,6 +5,7 @@
  */
 package tp3;
 
+import javax.swing.ImageIcon;
 import tp3.comportement.*;
 
 /**
@@ -13,12 +14,13 @@ import tp3.comportement.*;
  */
 public class Nain extends Heros{
     
-    public Nain(){
+    public Nain(String nom){
         this.PV = 100;
         this.force = 30;
         this.speed = 2;
         this.psoin = 10;
-        this.nom = "Nain";
+        this.nom = nom;
+        this.avatar = new ImageIcon(this.getClass().getResource("dwarf.png"));
     }
     
     public Nain(Power esprit, Soin soin, Deplacement dep) {

@@ -5,6 +5,7 @@
  */
 package tp3;
 
+import javax.swing.ImageIcon;
 import tp3.comportement.*;
 
 /**
@@ -13,12 +14,13 @@ import tp3.comportement.*;
  */
 public class Hobbit extends Heros{
     
-    public Hobbit(){
+    public Hobbit(String nom){
         this.PV = 100;
         this.force = 20;
         this.speed = 1;
         this.psoin = 66;
-        this.nom = "Hobbit";
+        this.nom = nom;
+        this.avatar = new ImageIcon(this.getClass().getResource("hobbit.png"));
 
 
     }

@@ -5,6 +5,7 @@
  */
 package tp3;
 
+import javax.swing.ImageIcon;
 import tp3.comportement.*;
 
 /**
@@ -13,12 +14,13 @@ import tp3.comportement.*;
  */
 public class Humain extends Heros{
     
-    public Humain(){
+    public Humain(String nom){
        this.PV = 100;
        this.force = 20;
        this.speed = 2;
        this.psoin = 33;
-       this.nom = "Humain";
+       this.nom = nom;
+       this.avatar = new ImageIcon(this.getClass().getResource("human.png"));
     }
     
     public Humain(Power esprit, Soin soin, Deplacement dep) {

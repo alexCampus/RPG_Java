@@ -5,6 +5,7 @@
  */
 package tp3;
 
+import javax.swing.ImageIcon;
 import tp3.comportement.*;
 
 /**
@@ -18,6 +19,7 @@ public class Zombie extends Ennemies{
        this.PV = 40;
        this.PVmax = this.PV;
        this.force = 15;
+       this.avatar = new ImageIcon(this.getClass().getResource("zombie.png"));
     }
     
     public Zombie(Power esprit, Soin soin, Deplacement dep) {

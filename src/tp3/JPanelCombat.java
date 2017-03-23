@@ -44,8 +44,31 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         pvHeros.setMaximum(this.fenetre.heros.PVmax);
         pvHeros.setValue(this.fenetre.heros.PV);
         pvHeroLabel.setText(this.fenetre.heros.getPV()+"/"+this.fenetre.heros.PVmax);
+        herosNom.setText(this.fenetre.heros.nom);
+        ennImgIcon = this.ennemie.avatar;
+        herosImage.setIcon(this.fenetre.heros.avatar);
+        ennemiImage.setIcon(ennImgIcon);
         
-        ennImgIcon = new ImageIcon(this.getClass().getResource("zombie.png"));
+        SwingUtilities.updateComponentTreeUI(this.fenetre);
+        
+        
+    }
+    
+    public JPanelCombat(JFrameMain fen, Ennemies ennemi){
+        this.fenetre = fen;
+        this.ennemie = ennemi;
+        
+        initComponents();
+        
+        ennemiNom.setText(this.ennemie.getNom());
+        pvEnnemi.setMaximum(this.ennemie.PVmax);
+        pvEnnemi.setValue(this.ennemie.PV);
+        pvHeros.setMaximum(this.fenetre.heros.PVmax);
+        pvHeros.setValue(this.fenetre.heros.PV);
+        pvHeroLabel.setText(this.fenetre.heros.getPV()+"/"+this.fenetre.heros.PVmax);
+        
+        ennImgIcon = this.ennemie.avatar;
+        herosImage.setIcon(this.fenetre.heros.avatar);
         ennemiImage.setIcon(ennImgIcon);
         
         SwingUtilities.updateComponentTreeUI(this.fenetre);
@@ -174,6 +197,7 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         });
 
         herosImage.setBackground(new java.awt.Color(102, 255, 0));
+        herosImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         herosImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tp3/dwarf.png"))); // NOI18N
 
         ennemiImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -378,8 +402,9 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         this.attBtn.setVisible(true);
         this.soinBtn.setVisible(true);
         this.fuirBtn.setVisible(true);
-        SwingUtilities.updateComponentTreeUI(this.fenetre);
         this.testCombat();
+        SwingUtilities.updateComponentTreeUI(this.fenetre);
+        
     }//GEN-LAST:event_cpBtnActionPerformed
 
     private void fuirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fuirBtnActionPerformed
@@ -494,8 +519,9 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         this.attBtn.setVisible(true);
         this.soinBtn.setVisible(true);
         this.fuirBtn.setVisible(true);
-        SwingUtilities.updateComponentTreeUI(this.fenetre);
+        
         this.testCombat();
+        SwingUtilities.updateComponentTreeUI(this.fenetre);
     }//GEN-LAST:event_feinteBtnActionPerformed
 
     private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuBtnActionPerformed
@@ -515,7 +541,7 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
                 Runnable runner = new Runnable()
             {
                 public void run() {
-                    for (int i = 0; i <= dmg; i++) {
+                    for (int i = 1; i <= dmg; i++) {
                         System.out.println(pvEnnemi.getValue());
                         pvEnnemi.setValue(pvEnnemi.getValue()-1);
                         try {
@@ -555,6 +581,7 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
     
     private void testCombat() {
         if (this.fenetre.heros.getPV() <= 0) {
+            this.ennemie.tableauDeChasse.add(this.fenetre.heros);
             this.messagePv.setText(this.messagePv.getText()+" Vous êtes mort !");
             this.cpBtn.setVisible(false);
             this.caBtn.setVisible(false);
@@ -568,6 +595,9 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
             //this.fenetre.setContentPane(//mainmenu);
         }
         else if (this.ennemie.getPV() <= 0) {
+            this.fenetre.heros.tableauDeChasse.add(this.ennemie);
+            this.fenetre.heros.score += this.ennemie.force;
+            this.fenetre.heros.force += Random.dice(2);
             this.messagePv.setText(this.messagePv.getText()+" Vous avez tué votre ennemi !");
             this.cpBtn.setVisible(false);
             this.caBtn.setVisible(false);
