@@ -142,7 +142,7 @@ public class Tp3 {
                     }
                     break;
                 case 2:
-                    Obstacle o = new Obstacle(Random.boolObsctacle(),Random.dice(3));
+                    Obstacle o = new Obstacle();
                     o.eventObstacle();
                     break;
                 case 3:
