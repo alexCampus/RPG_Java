@@ -7,6 +7,7 @@ package tp3;
 
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
+import java.util.Arrays;
 import javax.swing.SwingUtilities;
 
 /**
@@ -58,11 +59,10 @@ public class JPanelWin extends javax.swing.JPanel {
             
         
         String heroType = this.fenetre.heros.getClass().getName();
-        String [] hero = heroType.split(".");
-        
-        
+        String[]  hero = heroType.split("\\.");
+            
        MySql a = new MySql();
-       a.saveBdd(pseudoUser, scoreUser, hero[1]);
+       a.saveBdd(pseudoUser, scoreUser,hero[1]);
     }
 
     /**
