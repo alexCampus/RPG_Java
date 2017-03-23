@@ -49,7 +49,7 @@ public class JPanelStart extends javax.swing.JPanel {
         label1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         label1.setText("Bienvenue dans une histoire dont VOUS serez le héros !");
 
-        label2.setText("Dans ce jeu, vous allez progresser sur un plateau constitué de 100 cases.");
+        label2.setText("Dans ce jeu, vous allez progresser sur un plateau constitué de "+ Tp3.NBCASES +" cases.");
 
         label3.setText("Au hasard, des chemins, vous rencontrerez des événements et essaierez d'y survivre.");
 

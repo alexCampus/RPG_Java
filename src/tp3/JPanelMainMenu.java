@@ -234,7 +234,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
     }//GEN-LAST:event_lancerActionPerformed
 
     private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException {//GEN-FIRST:event_continuBtnActionPerformed
-        if(this.fenetre.Case > 100) {
+        if(this.fenetre.Case > Tp3.NBCASES) {
             this.fenetre.setContentPane(new JPanelWin(this.fenetre));
         } else {
             if (this.ev instanceof javax.swing.JPanel) {
@@ -250,8 +250,8 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
 
     private void newEvent() throws MalformedURLException{
 
-        int event = 2;
-        //int event = Random.event();
+        //int event = 2;
+        int event = Random.event();
 
             switch(event) {
                 case 0:

@@ -14,6 +14,7 @@ public class Tp3 {
 
         static Scanner sc = new Scanner(System.in);
 
+        static final int NBCASES = 100;
         static int nbTours = 0; //Nombre de tours écoulés
         static boolean exitMain = false; //Permet de sortir du menu principal et quitter le programme
         static String choix;//Capture le choix pour chaque switch
@@ -46,7 +47,7 @@ public class Tp3 {
                     System.out.println(
                             "Bienvenue dans une histoire dont VOUS serez le héros !\n" +
                             "Dans ce jeu, vous allez progresser sur un plateau constitué\n" +
-                                    "de 100 cases.\n" +
+                                    "de "+ NBCASES +" cases.\n" +
                                     "Au hasard, des chemins, vous rencontrerez des événements\n" +
                                     "et essaierez d'y survivre.");
                     tour();
@@ -97,7 +98,7 @@ public class Tp3 {
                 System.out.println("\u001B[41mL'option " + choix + " n'est pas valide.\u001B[m");
         }
 
-        while (Case < 100) {
+        while (Case < NBCASES) {
             nbTours ++;
             deplacement = 1;
             System.out.println("\u001B[36m       [              TOUR SUIVANT\n" +
@@ -114,7 +115,7 @@ public class Tp3 {
             
             JFrameMain j = new JFrameMain();
             
-            if(Case>100){
+            if(Case>NBCASES){
                 break;
             }
 
@@ -151,7 +152,7 @@ public class Tp3 {
             }
             if (m.getPV() <= 0) {
                 System.out.println("Vous êtes tout mourru !\n");
-                Case = 100;
+                Case = NBCASES;
             }
             sc.nextLine();
         }
