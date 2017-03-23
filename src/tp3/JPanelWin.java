@@ -8,6 +8,8 @@ package tp3;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 
 /**
@@ -53,16 +55,9 @@ public class JPanelWin extends javax.swing.JPanel {
         pvLost.setText(pvLost.getText()+this.fenetre.heros.PVlost);
         SwingUtilities.updateComponentTreeUI(this.fenetre);
         
-        String pseudoUser = this.fenetre.heros.nom;
-        int scoreUser = this.fenetre.heros.score;
-       
-            
         
-        String heroType = this.fenetre.heros.getClass().getName();
-        String[]  hero = heroType.split("\\.");
             
-       MySql a = new MySql();
-       a.saveBdd(pseudoUser, scoreUser,hero[1]);
+       
     }
 
     /**
@@ -89,6 +84,7 @@ public class JPanelWin extends javax.swing.JPanel {
         Case = new java.awt.Label();
         tour = new java.awt.Label();
         pv = new java.awt.Label();
+        submit = new java.awt.Button();
 
         button1.setLabel("Recommencer ?");
         button1.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +126,13 @@ public class JPanelWin extends javax.swing.JPanel {
 
         pv.setText("PV :");
 
+        submit.setLabel("Envoyer mon score");
+        submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,6 +145,8 @@ public class JPanelWin extends javax.swing.JPanel {
                         .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,16 +156,10 @@ public class JPanelWin extends javax.swing.JPanel {
                             .addComponent(Case, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(hKill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(zKill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9))
+                            .addComponent(hKill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(zKill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cKill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(oKill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)))
+                            .addComponent(oKill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(141, 141, 141)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pvLost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,7 +204,8 @@ public class JPanelWin extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -221,6 +221,19 @@ public class JPanelWin extends javax.swing.JPanel {
         this.fenetre.setContentPane(new JPanelStart(this.fenetre));
     }//GEN-LAST:event_button1ActionPerformed
 
+    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
+        String pseudoUser = this.fenetre.heros.nom;
+        int scoreUser = this.fenetre.heros.score;
+        String heroType = this.fenetre.heros.getClass().getName();
+        String[]  hero = heroType.split("\\.");
+        MySql a = new MySql();
+        try {
+            a.saveBdd(pseudoUser, scoreUser,hero[1]);
+        } catch (SQLException ex) {
+            Logger.getLogger(JPanelWin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_submitActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Label Case;
@@ -234,6 +247,7 @@ public class JPanelWin extends javax.swing.JPanel {
     private java.awt.Label pv;
     private java.awt.Label pvGain;
     private java.awt.Label pvLost;
+    private java.awt.Button submit;
     private java.awt.Label tVisit;
     private java.awt.Label textVictoire;
     private java.awt.Label tour;

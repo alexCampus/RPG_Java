@@ -10,6 +10,9 @@ package tp3;
 import java.awt.event.WindowEvent;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -527,7 +530,11 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         if(this.fenetre.heros.getPV() <= 0) {
             this.fenetre.setContentPane(new JPanelLose(this.fenetre));
         } else if (this.fenetre.Case >= 100){
-            this.fenetre.setContentPane(new JPanelWin(this.fenetre));
+            try {
+                this.fenetre.setContentPane(new JPanelWin(this.fenetre));
+            } catch (SQLException ex) {
+                Logger.getLogger(JPanelCombat.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             this.fenetre.setContentPane(new JPanelMainMenu(this.fenetre));
         }
