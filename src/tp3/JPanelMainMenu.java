@@ -226,7 +226,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                 
                 
             };
-            Thread t = new Thread(runner, "Code Executer");
+            Thread t = new Thread(runner, "Code Executé");
             
             t.start();
             
@@ -249,8 +249,9 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
     }//GEN-LAST:event_continuBtnActionPerformed
 
     private void newEvent() throws MalformedURLException{
-        
-        int event = Random.event();
+
+        int event = 2;
+        //int event = Random.event();
 
             switch(event) {
                 case 0:
@@ -263,7 +264,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                     break;
                 case 2:
                     this.eventLabel.setText("Un obstacle vous barre la route !");
-                    Obstacle o = new Obstacle(Random.boolObsctacle(),Random.dice(3));
+                    Obstacle o = new Obstacle();
                     this.ev = new JPanelObstacle(this.fenetre);
                     break;
                 case 3:
