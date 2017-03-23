@@ -6,6 +6,7 @@
 package tp3;
 
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import javax.swing.SwingUtilities;
 
 /**
@@ -21,7 +22,7 @@ public class JPanelWin extends javax.swing.JPanel {
     /**
      * Creates new form JPanelWin
      */
-    public JPanelWin(JFrameMain fenetre) {
+    public JPanelWin(JFrameMain fenetre) throws SQLException {
         this.fenetre = fenetre;
         initComponents();
         for (Combatant c : this.fenetre.heros.tableauDeChasse) {
@@ -50,6 +51,18 @@ public class JPanelWin extends javax.swing.JPanel {
         pvGain.setText(pvGain.getText()+this.fenetre.heros.PVwon);
         pvLost.setText(pvLost.getText()+this.fenetre.heros.PVlost);
         SwingUtilities.updateComponentTreeUI(this.fenetre);
+        
+        String pseudoUser = this.fenetre.heros.nom;
+        int scoreUser = this.fenetre.heros.score;
+       
+            
+        
+        String heroType = this.fenetre.heros.getClass().getName();
+        String [] hero = heroType.split(".");
+        
+        
+       MySql a = new MySql();
+       a.saveBdd(pseudoUser, scoreUser, hero[1]);
     }
 
     /**
