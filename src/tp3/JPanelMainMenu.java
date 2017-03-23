@@ -217,6 +217,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                     continuBtn.setVisible(true);
                     event.setVisible(true);
                     try {
+                         
                         newEvent();
                     } catch (MalformedURLException ex) {
                         Logger.getLogger(JPanelMainMenu.class.getName()).log(Level.SEVERE, null, ex);
@@ -234,9 +235,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
     }//GEN-LAST:event_lancerActionPerformed
 
     private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException {//GEN-FIRST:event_continuBtnActionPerformed
-        if(this.fenetre.Case > 100) {
-            this.fenetre.setContentPane(new JPanelWin(this.fenetre));
-        } else {
+         
             if (this.ev instanceof javax.swing.JPanel) {
                 this.fenetre.setContentPane((javax.swing.JPanel) this.ev);
                 SwingUtilities.updateComponentTreeUI(this.fenetre);
@@ -244,14 +243,18 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                 ((Taverne)this.ev).eventTaverne(this.fenetre);
             }
             
-        }
+        
 
     }//GEN-LAST:event_continuBtnActionPerformed
 
     private void newEvent() throws MalformedURLException{
-
-        int event = 2;
-        //int event = Random.event();
+        if(this.fenetre.Case >= 100) {
+            herosEnnemie hero = new herosEnnemie("Heros Légendaire", 10, 50);
+            this.eventLabel.setText("Un héros vous barre la route ...");
+            this.ev =new JPanelCombat(this.fenetre, hero);
+        } else {
+        
+        int event = Random.event();
 
             switch(event) {
                 case 0:
@@ -271,7 +274,10 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                     this.eventLabel.setText("Il ne passe rien... Pour le moment ...");
                     this.ev = new JPanelMainMenu(this.fenetre);
                     break;
-            }
+            } 
+        }
+
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel caseLabel;
