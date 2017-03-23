@@ -250,7 +250,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
 
     private void newEvent() throws MalformedURLException{
         
-        int event = 2;
+        int event = Random.event();
 
             switch(event) {
                 case 0:
