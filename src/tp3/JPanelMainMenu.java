@@ -6,7 +6,6 @@
 package tp3;
 
 import java.net.MalformedURLException;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -17,7 +16,7 @@ import javax.swing.SwingUtilities;
  * @author Loic.FOREST
  */
 public class JPanelMainMenu extends javax.swing.JPanel implements Event{
-    
+
     JFrameMain fenetre;
     int deplacement;
     Event ev;
@@ -25,19 +24,19 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
      * Creates new form JPanelMainMenu
      */
     public JPanelMainMenu(JFrameMain fenetre) {
-        
+
         initComponents();
         this.fenetre = fenetre;
-        
+
         this.fenetre.setSize(800, 600);
         this.fenetre.tour++;
         this.tourLabel.setText("TOUR "+this.fenetre.tour);
-        
-        
+
+
         caseLabel.setText("Case "+this.fenetre.Case);
         SwingUtilities.updateComponentTreeUI(this.fenetre);
         dice.setText("Lancez les dés !");
-        
+
     }
 
     /**
@@ -100,8 +99,6 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                 try {
                     continuBtnActionPerformed(evt);
                 } catch (MalformedURLException ex) {
-                    Logger.getLogger(JPanelMainMenu.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
                     Logger.getLogger(JPanelMainMenu.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -200,9 +197,9 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                             break;
                         }
                     }
-                    
-                    
-                    
+
+
+
                     if (fenetre.heros.speed == 1) {
                        deplacement =  d1 + 1;
                        deplacementLabel.setText("Vous avancez de "+deplacement+" case(s).");
@@ -214,7 +211,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                         deplacement = d1+d2+d3+1;
                         deplacementLabel.setText("Vous avancez de "+deplacement+" case(s).");
                     }
-                    
+
                     fenetre.Case = fenetre.Case + deplacement;
                     caseLabel.setText("Case "+fenetre.Case);
                     continuBtn.setVisible(true);
@@ -224,19 +221,19 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                     } catch (MalformedURLException ex) {
                         Logger.getLogger(JPanelMainMenu.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
+
                 }
-                
-                
+
+
             };
             Thread t = new Thread(runner, "Code Executé");
-            
+
             t.start();
-            
-            
+
+
     }//GEN-LAST:event_lancerActionPerformed
 
-    private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException, SQLException {//GEN-FIRST:event_continuBtnActionPerformed
+    private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException {//GEN-FIRST:event_continuBtnActionPerformed
         if(this.fenetre.Case > 100) {
             this.fenetre.setContentPane(new JPanelWin(this.fenetre));
         } else {
@@ -246,14 +243,13 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
             } else if (this.ev instanceof Taverne) {
                 ((Taverne)this.ev).eventTaverne(this.fenetre);
             }
-            
+
         }
 
     }//GEN-LAST:event_continuBtnActionPerformed
 
     private void newEvent() throws MalformedURLException{
 
-       // int event = 3;
         int event = Random.event();
 
             switch(event) {
