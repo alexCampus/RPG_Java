@@ -104,7 +104,7 @@ public class Taverne implements Event{
                             imgUrl = "https://media.giphy.com/media/o4aSftejgOw1O/giphy.gif";
                             new PanelTaverne(text, imgUrl, fenetre,a);
                            // System.out.println("Grâce a votre rencontre avec un mage, vous venez de gagner en rapidité avec les bottes magiques qu'il vous a offert");
-                            monHero.setPlusSpeed(nbForce);
+                            monHero.setPlusSpeed(1);
                             break;
                             
                         case 4:
@@ -120,7 +120,9 @@ public class Taverne implements Event{
                             imgUrl = "https://media.giphy.com/media/2rtQMJvhzOnRe/giphy.gif";
                             new PanelTaverne(text, imgUrl, fenetre,a);
                            // System.out.println("Vous avez perdu vos chaussures durant la soirée bien arrosé d'hier, vous perdez donc de la rapidité.");
-                            monHero.setMoinsSpeed(1);
+                            if (monHero.speed > 1) {
+                                monHero.setMoinsSpeed(1);
+                            }          
                             break;
                     }
                

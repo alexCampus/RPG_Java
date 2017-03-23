@@ -5,6 +5,8 @@
  */
 package tp3;
 
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import tp3.comportement.*;
 
 
@@ -17,12 +19,20 @@ abstract class Combatant {
     protected Power power = new PowerArme();
     protected Soin soin = new PremierSoin();
     protected Deplacement deplacement = new Marcher();
-    
+    protected int score;
     protected int psoin;
     protected int PV;
     protected int PVmax = 100; 
     protected int force;
     protected int speed;
+    protected ArrayList<Combatant> tableauDeChasse = new ArrayList<>();
+    protected ImageIcon avatar;
+    public int tour;
+    public int Case;
+    public int PVwon;
+    public int PVlost;
+    public int taverne;
+    public int obstacle;
     
     public Combatant(){}
     
@@ -61,9 +71,11 @@ abstract class Combatant {
     
      public void setPlusPV(double nbPV){
          int a = (int) (PV +nbPV);
+         PVwon += (int) nbPV;
          if(a < PVmax)
          {
              PV += (int) nbPV;
+             
          }
          else{
              PV = PVmax;
@@ -72,7 +84,7 @@ abstract class Combatant {
     }
     
     public void setMoinsPV(int nbPV){
-        
+        PVlost += nbPV;
         PV  -= nbPV;
     }
     

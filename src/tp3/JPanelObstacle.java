@@ -30,6 +30,7 @@ public class JPanelObstacle extends JPanel implements Event {
         passObstacleBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                fenetre.heros.obstacle++;
                 text.setText("Vous réussissez à passer l'obstacle, mais vous sentez qu'un peu de repos vous fera le plus grand bien. Votre prochain déplacement en sera peut-être affecté.");
                 continueBtn.setVisible(true);
                 passObstacleBtn.setVisible(false);

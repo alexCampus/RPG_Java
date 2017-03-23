@@ -12,7 +12,8 @@ import tp3.comportement.*;
  * @author alexandre.depembroke
  */
 public class Heros extends Combatant{
-    
+   
+   
     
    public Heros(){
    }

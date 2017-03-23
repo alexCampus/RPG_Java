@@ -5,6 +5,7 @@
  */
 package tp3;
 
+import javax.swing.ImageIcon;
 import tp3.comportement.*;
 
 /**
@@ -13,14 +14,15 @@ import tp3.comportement.*;
  */
 public class Elfe extends Heros{
     
-    public Elfe(){
+    public Elfe(String nom){
         this.PV = 100;
         this.force = 10;
         this.speed = 3;
         this.power = new PowerMagie();
         this.deplacement = new Courir();
         this.psoin = 33;
-        this.nom = "Elfe";
+        this.nom = nom;
+        this.avatar = new ImageIcon(this.getClass().getResource("elf.png"));
         
     }
     
