@@ -366,35 +366,29 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         int t = Random.typeAttaque();
         int dmg = 0;
         switch(t) {
-            case 1 : 
-                
-                            int hdmg = this.fenetre.heros.force*(Random.dice(6))/6;
-                            dmg = this.ennemie.force*(Random.dice(6))/6;
-                            ennemie.setMoinsPV(hdmg);
-                            this.fenetre.heros.setMoinsPV(dmg);
-                            this.message.setText("L'ennemi et vous portez un coup puissant. Vous vous blessez tous les deux.");
-                            this.messagePv.setText("Il perd "+hdmg+" pv. Vous perdez "+dmg+" pv.");
-                            this.majPvDmg(hdmg,0);
-                            this.majPvDmg(dmg,1);
+            case 1 :
+                int hdmg = this.fenetre.heros.force*(Random.dice(3))/3;
+                dmg = this.ennemie.force*(Random.dice(3))/3;
+                ennemie.setMoinsPV(hdmg);
+                this.fenetre.heros.setMoinsPV(dmg);
+                this.message.setText("L'ennemi et vous portez un coup puissant. Vous vous blessez tous les deux.");
+                this.messagePv.setText("Il perd "+hdmg+" pv. Vous perdez "+dmg+" pv.");
+                this.majPvDmg(hdmg,0);
+                this.majPvDmg(dmg,1);
             break;
             case 2 : 
-                            int rand = Random.dice(2)-1;
-                            if (rand == 1){
-                                dmg = (this.fenetre.heros.force+20)*(Random.dice(6))/6;
-                            } else {
-                                dmg = 20*(Random.dice(6))/6;
-                            }
-                            this.fenetre.heros.setMoinsPV(dmg);
-                            this.message.setText("Vous tentez un coup puissant mais l'ennemi arrive à vous contrez ! Il vous touche !");
-                            this.messagePv.setText("Vous perdez "+dmg+" pv.");
-                            this.majPvDmg(dmg,1);
+                dmg = ((this.ennemie.force+this.fenetre.heros.force)/2)*(Random.dice(3))/3;
+                this.fenetre.heros.setMoinsPV(dmg);
+                this.message.setText("Vous tentez un coup puissant mais l'ennemi arrive à vous contrez ! Il vous touche !");
+                this.messagePv.setText("Vous perdez "+dmg+" pv.");
+                this.majPvDmg(dmg,1);
             break;
             case 3 :
-                            dmg = this.fenetre.heros.force*(Random.dice(6))/6;
-                            ennemie.setMoinsPV(dmg);
-                            this.message.setText("L'ennemi tente maladroitement une attaque, vous le punissez ! Vous le touchez !");
-                            this.messagePv.setText("Il perd "+dmg+" pv.");
-                            this.majPvDmg(dmg,0);
+                dmg = this.fenetre.heros.force*(Random.dice(3))/3;
+                ennemie.setMoinsPV(dmg);
+                this.message.setText("L'ennemi tente maladroitement une attaque, vous le punissez ! Vous le touchez !");
+                this.messagePv.setText("Il perd "+dmg+" pv.");
+                this.majPvDmg(dmg,0);
             break;
         }
         this.cpBtn.setVisible(false);
@@ -423,7 +417,7 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         }
         else {
             this.message.setText("Fuite impossible ... L'ennemi vous rattrape et vous blesse.");
-            this.fenetre.heros.setMoinsPV(this.ennemie.force);
+            this.majPvDmg(this.ennemie.force, 1);
             this.messagePv.setText("Vous perdez "+this.ennemie.getForce()+" pv.");
             testCombat();
             
@@ -435,24 +429,22 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         int dmg;
         switch(t) {
             case 1 :
-                            int rand = Random.dice(2)-1;
-                            if (rand == 1){
-                                dmg = (this.ennemie.force+20)*(Random.dice(6))/6;
-                            } else {
-                                dmg = 20*(Random.dice(6))/6;
-                            }
+                            
+                            dmg = ((this.ennemie.force+this.fenetre.heros.force)/2)*(Random.dice(3))/3;
+                            
                             ennemie.setMoinsPV(dmg);
                             this.message.setText("L'ennemi porte un coup puissant mais vous contre-attaquez magistralement ! Vous le touchez !\n");
                             this.messagePv.setText("Il perd "+dmg+" pv.");
                             this.majPvDmg(dmg,0);
             break;
 
-            case 2 : System.out.print("Votre ennemi et vous-même attendez patiemment le coup de l'autre ...\n");
+            case 2 : this.message.setText("Votre ennemi et vous-même attendez patiemment le coup de l'autre ...\n");
+              this.messagePv.setText("");
             break;
 
             case 3 : 
-                            dmg = Random.dice(11)+9;
-                            dmg = dmg * this.fenetre.heros.getPV()/this.ennemie.getPV()*(Random.dice(6))/6 + 5;
+                            
+                            dmg = (this.fenetre.heros.PV/(Random.dice(3)+1))+5;
                             this.fenetre.heros.setMoinsPV(dmg);
                             
                             this.message.setText("L'ennemi semble vouloir porter un coup violent, vous tentez une parade mais il vous porte un coup bas au dernier moment ! Il vous touche !\n");
@@ -477,7 +469,7 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         int dmg = 0;
         switch(t) {
         case 1 : 
-                        dmg = this.ennemie.force*(Random.dice(6))/6;
+                        dmg = this.ennemie.force*(Random.dice(3))/3;
                         this.fenetre.heros.setMoinsPV(dmg);
                         
                         this.message.setText("L'ennemi porte un coup puissant, votre feinte est inutile ! Il vous touche !\n");
@@ -486,8 +478,8 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
                         this.majPvDmg(dmg,1);
         break;
         case 2 : 
-                        dmg = Random.dice(11)+9;
-                        dmg = dmg * this.ennemie.getPV()/this.fenetre.heros.getPV() *(Random.dice(6))/6 +5;
+                        
+                        dmg = (this.ennemie.PV/(Random.dice(3)+1))+5; 
                         ennemie.setMoinsPV(dmg);
                         this.message.setText("Vous simulez une attaque, l'ennemi manque sa parade et vous lui portez un coup ! Vous le touchez !\n");
                         this.messagePv.setText("Il perd "+dmg+" pv.");
@@ -495,10 +487,9 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         break;
         case 3 : 
                         int rand = Random.dice(2)-1;
-                        dmg = Random.dice(11)+9;
                         if (rand == 1){
                             
-                            dmg = (this.ennemie.getPV()/this.fenetre.heros.getPV()*dmg)*(Random.dice(6))/6 + 5;
+                            dmg = (this.ennemie.PV/(Random.dice(3)+1))+5;
                             ennemie.setMoinsPV(dmg);
                             
                             this.message.setText("Apres un échange de coups spectaculaire, vous réussissez à blesser l'ennemi !\n");
@@ -506,7 +497,7 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
                             this.majPvDmg(dmg,0);
                         } else {
                             
-                            dmg = (this.fenetre.heros.getPV()/this.ennemie.getPV()*dmg)*(Random.dice(6))/6 + 5;
+                            dmg = (this.fenetre.heros.PV/(Random.dice(3)+1))+5;
                             this.fenetre.heros.setMoinsPV(dmg);
                             this.message.setText("Apres un échange de coups spectaculaire, vous vous faites toucher par l'ennemi !\n");
                             this.messagePv.setText("Vous perdez "+dmg+" pv.");

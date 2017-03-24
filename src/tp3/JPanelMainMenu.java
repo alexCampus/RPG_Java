@@ -266,7 +266,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                     break;
                 case 2:
                     this.eventLabel.setText("Un obstacle vous barre la route !");
-                    Obstacle o = new Obstacle();
+//                    Obstacle o = new Obstacle();
                     this.ev = new JPanelObstacle(this.fenetre);
                     break;
                 case 3:
