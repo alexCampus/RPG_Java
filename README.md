@@ -6,7 +6,14 @@
 #### GENERAL
 - Add a GUI
 - End of game now provides a success table to sum your adventure up
-- With
+- If you want to add a DB to keep your scores, you'll have to use a uWamp-like and create the following :
+        
+        || java
+            ˫ score
+                ˫ id (integer, auto-incremental)
+                ˫ pseudo (varchar(255))
+                ˫ score (integer)
+                ˪ heroType (varchar(255))
 
 #### HEROES
 - Dwarves are now slower and hobbits faster
