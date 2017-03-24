@@ -48,12 +48,59 @@ public class JPanelObstacle extends JPanel implements Event {
         this.add(subPanel,BorderLayout.SOUTH);
 
         passObstacleBtn.addActionListener(e -> {
-            
-            text.setText("Vous réussissez à passer l'obstacle, mais vous sentez qu'un peu de repos vous fera le plus grand bien. Votre prochain déplacement en sera peut-être affecté.");
-            this.fenetre.heros.obstacle++;
-            continueBtn.setVisible(true);
-            passObstacleBtn.setVisible(false);
-            turnAroundBtn.setVisible(false);
+
+            int bonus = 7 * (fen.heros.speed - obstacle.level + 3);
+            int dice = Random.dice(30);
+
+            if(dice == 30) //REUSSITE CRITIQUE
+            {
+                int gain = Random.dice(10) + 5;
+                text.setText("Wow ! C'était inespéré ! Vous passez l'obstacle avec une facilité proche du surnaturel ! Cette réussite, bien que passagère," +
+                        "vous permet de vous reposer et de regagner "+ gain + "pv. Vous continuez votre route.");
+                fen.heros.setPlusPV(gain);
+                continueBtn.setVisible(true);
+                passObstacleBtn.setVisible(false);
+                turnAroundBtn.setVisible(false);
+            } else if (dice == 1) //ECHEC CRITIQUE
+            {
+                int perte = Random.dice(10) + 5;
+                text.setText("Vous avez sous estimé l'obstacle et vous retrouvez empêtré pendant de longues heures. " +
+                        "Vous finissez par vous sortir de ce pétrin et commencez à faire demi-tour, en boitillant. " +
+                        "Les douleurs un peu partout dans votre corps vous font réfléchir à vos actes... Vous avez perdu " + perte + " pv." +
+                        "Vous avez mal  à la cheville, vous avancerez donc ralenti.");
+                fen.heros.setMoinsPV(perte);
+                fen.heros.setMoinsSpeed(1);
+                fen.Case -= Random.dice(10);
+                continueBtn.setVisible(true);
+                passObstacleBtn.setVisible(false);
+                turnAroundBtn.setVisible(false);
+            } else {
+                if (dice + bonus > 30) {
+                    if ((30 - bonus)/2 > dice) {
+                        text.setText("Vous réussissez à passer l'obstacle, mais vous sentez qu'un peu de repos vous fera le plus grand bien. Votre prochain déplacement en sera peut-être affecté.");
+                        this.fenetre.heros.obstacle++;
+                        continueBtn.setVisible(true);
+                        passObstacleBtn.setVisible(false);
+                        turnAroundBtn.setVisible(false);
+                    } else {
+                        text.setText("L'obstacle ne vous oppose aucune résistance et vous continuez votre route.");
+                        this.fenetre.heros.obstacle++;
+                        continueBtn.setVisible(true);
+                        passObstacleBtn.setVisible(false);
+                        turnAroundBtn.setVisible(false);
+                    }
+                } else {
+                    int malus = Random.dice(10) + 5;
+                    text.setText("Vous avez sous estimé l'obstacle et vous retrouvez empêtré pendant de longues heures. " +
+                            "Vous finissez par vous sortir de ce pétrin et commencez à faire demi-tour. " +
+                            "Les douleurs un peu partout dans votre corps vous font réfléchir à vos actes... Vous avez perdu " + malus + " pv.");
+                    fen.heros.setMoinsPV(malus);
+                    fen.Case -= Random.dice(10);
+                    continueBtn.setVisible(true);
+                    passObstacleBtn.setVisible(false);
+                    turnAroundBtn.setVisible(false);
+                }
+            }
         });
 
         turnAroundBtn.addActionListener(e -> {
