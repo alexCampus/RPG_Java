@@ -7,8 +7,6 @@ package tp3;
 
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import tp3.comportement.*;
-
 
 /**
  *
@@ -16,9 +14,6 @@ import tp3.comportement.*;
  */
 abstract class Combatant {
     protected String nom;
-    protected Power power = new PowerArme();
-    protected Soin soin = new PremierSoin();
-    protected Deplacement deplacement = new Marcher();
     protected int score;
     protected int psoin;
     protected int PV;
@@ -36,26 +31,12 @@ abstract class Combatant {
     protected int poursuite;
     
     public Combatant(){}
-    
-    public Combatant(Power power, Soin soin, Deplacement deplacement){
-        this.power = power;
-        this.soin = soin;
-        this.deplacement = deplacement;
 
-    }
-    
-    public void seDeplacer(int nbPas){
-        deplacement.deplacerAvec(nbPas);
-    }
     
     public double seSoigner(){
         double soi = (double) Math.round((this.PVmax-this.PV)*(this.psoin)/100);
         this.setPlusPV(soi);
         return soi;
-    }
-    
-    public void combattre(String arme, int force){
-        power.combatAvec(arme, force);
     }
     
     public int getPV(){

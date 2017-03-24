@@ -6,15 +6,14 @@
 package tp3;
 
 import javax.swing.ImageIcon;
-import tp3.comportement.*;
 
 /**
  *
  * @author alexandre.depembroke
  */
-public class Nain extends Heros{
-    
-    public Nain(String nom){
+public class Nain extends Heros {
+
+    public Nain(String nom) {
         this.PV = 100;
         this.force = 30;
         this.speed = 1;
@@ -22,11 +21,4 @@ public class Nain extends Heros{
         this.nom = nom;
         this.avatar = new ImageIcon(this.getClass().getResource("dwarf.png"));
     }
-    
-    public Nain(Power esprit, Soin soin, Deplacement dep) {
-        super(esprit, soin, dep);
-  }
-    
-    
-    
 }

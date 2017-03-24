@@ -6,7 +6,6 @@
 package tp3;
 
 import javax.swing.ImageIcon;
-import tp3.comportement.*;
 
 /**
  *
@@ -24,8 +23,4 @@ public class Hobbit extends Heros{
 
 
     }
-    
-    public Hobbit(Power esprit, Soin soin, Deplacement dep) {
-        super(esprit, soin, dep);
-  }
 }

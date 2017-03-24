@@ -5,8 +5,6 @@
  */
 package tp3;
 
-import tp3.comportement.*;
-
 /**
  *
  * @author alexandre.depembroke
@@ -20,15 +18,4 @@ public class Ennemies extends Combatant{
         this.nom = nom;
         this.poursuite = p;
     }
-   
-    public Ennemies(Power power, Soin soin, Deplacement dep){
-        this.deplacement = dep;
-        this.power = power;
-        this.soin = soin;
-      
-    }
-    
-    
-    
-    
 }

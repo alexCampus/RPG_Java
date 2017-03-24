@@ -6,7 +6,6 @@
 package tp3;
 
 import javax.swing.ImageIcon;
-import tp3.comportement.*;
 
 /**
  *
@@ -22,8 +21,4 @@ public class Centaure extends Ennemies{
        this.force = 20;
        this.avatar = new ImageIcon(this.getClass().getResource("centaure.png"));
     }
-    
-    public Centaure(Power esprit, Soin soin, Deplacement dep) {
-        super(esprit, soin, dep);
-  }
 }
