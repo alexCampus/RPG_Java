@@ -35,7 +35,7 @@ public class JPanelWin extends javax.swing.JPanel {
                 cent++;
             } else if (c instanceof Ogre) {
                 o++;
-            } else {
+            } else if (c instanceof herosEnnemie){
                 h++;
             }
         }

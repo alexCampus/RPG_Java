@@ -239,9 +239,8 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
             if (this.ev instanceof javax.swing.JPanel) {
                 this.fenetre.setContentPane((javax.swing.JPanel) this.ev);
                 SwingUtilities.updateComponentTreeUI(this.fenetre);
-            } else if (this.ev instanceof Taverne) {
-                ((Taverne)this.ev).eventTaverne(this.fenetre);
-
+            } else {
+                Taverne taverne = new Taverne(this.fenetre.heros, this.fenetre);
             }
 
 
@@ -263,7 +262,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                     break;
                 case 1:
                     this.eventLabel.setText("Vous faites face à une taverne !");
-                    this.ev = new Taverne(this.fenetre.heros, this.fenetre);
+                    this.ev = null;
                     break;
                 case 2:
                     this.eventLabel.setText("Un obstacle vous barre la route !");
