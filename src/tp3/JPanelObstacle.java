@@ -55,15 +55,15 @@ public class JPanelObstacle extends JPanel implements Event {
             if(dice == 30) //REUSSITE CRITIQUE
             {
                 int gain = Random.dice(10) + 5;
-                text.setText("Wow ! C'était inespéré ! Vous passez l'obstacle avec une facilité proche du surnaturel ! Cette réussite, bien que passagère," +
-                        "vous permet de vous reposer et de regagner "+ gain + "pv. Vous continuez votre route.");
+                text.setText("Wow ! Vous passez l'obstacle avec une facilité proche du surnaturel ! Cette réussite, bien que passagère," +
+                        "vous permet de vous reposer et de regagner "+ gain + " pv. Vous continuez votre route.");
                 fen.heros.setPlusPV(gain);
                 continueBtn.setVisible(true);
                 passObstacleBtn.setVisible(false);
                 turnAroundBtn.setVisible(false);
             } else if (dice == 1) //ECHEC CRITIQUE
             {
-                int perte = Random.dice(10) + 5;
+                int perte = Random.dice(10) + (obstacle.level*obstacle.level);
                 text.setText("Vous avez sous estimé l'obstacle et vous retrouvez empêtré pendant de longues heures. " +
                         "Vous finissez par vous sortir de ce pétrin et commencez à faire demi-tour, en boitillant. " +
                         "Les douleurs un peu partout dans votre corps vous font réfléchir à vos actes... Vous avez perdu " + perte + " pv." +
@@ -90,7 +90,7 @@ public class JPanelObstacle extends JPanel implements Event {
                         turnAroundBtn.setVisible(false);
                     }
                 } else {
-                    int malus = Random.dice(10) + 5;
+                    int malus = Random.dice(10) + (obstacle.level*obstacle.level);
                     text.setText("Vous avez sous estimé l'obstacle et vous retrouvez empêtré pendant de longues heures. " +
                             "Vous finissez par vous sortir de ce pétrin et commencez à faire demi-tour. " +
                             "Les douleurs un peu partout dans votre corps vous font réfléchir à vos actes... Vous avez perdu " + malus + " pv.");
