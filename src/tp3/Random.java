@@ -38,10 +38,11 @@ public class Random {
         return i;
     }
     
-    public static boolean fuite(Ennemies ennemie) {
+    public static boolean fuite(Combatant ennemie) {
         boolean b;
-        int i = ThreadLocalRandom.current().nextInt(0, 4 + 1);
-        b = i - ennemie.getPoursuite() > 0;    
+        int i = dice(5);
+        
+        b = (i - ennemie.getPoursuite()) > 0;    
         return b;
     }
 

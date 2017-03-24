@@ -2,4 +2,5 @@
 RPG_Java.iml
 *.class
 out/
-*.class
+src/tp3/*.form
+build/classes/tp3/*.class

@@ -5,21 +5,19 @@
  */
 package tp3;
 
-import tp3.comportement.*;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author alexandre.depembroke
  */
-public class Zombie extends Ennemies{
-    
-    public Zombie(){
-       super("zombie", 1);
-       this.PV = 40;
-       this.force = 15;
+public class Zombie extends Ennemies {
+
+    public Zombie() {
+        super("Zombie", 1);
+        this.PV = 40;
+        this.PVmax = this.PV;
+        this.force = 10;
+        this.avatar = new ImageIcon(this.getClass().getResource("zombie.png"));
     }
-    
-    public Zombie(Power esprit, Soin soin, Deplacement dep) {
-       super(esprit, soin, dep);
-  }
 }

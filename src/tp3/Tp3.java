@@ -11,21 +11,25 @@ import java.util.Scanner;
  */
 public class Tp3 {
 
-        static Scanner sc = new Scanner(System.in);
+        private static Scanner sc = new Scanner(System.in);
 
-        static int nbTours = 0; //Nombre de tours écoulés
-        static boolean exitMain = false; //Permet de sortir du menu principal et quitter le programme
-        static String choix;//Capture le choix pour chaque switch
-        static int deplacement;//Nombre de case franchies en début de tour
-        static int Case;//Case sur laquelle le joueur se trouve
+        static final int NBCASES = 100;
+        private static int nbTours = 0; //Nombre de tours écoulés
+        private static boolean exitMain = false; //Permet de sortir du menu principal et quitter le programme
+        private static String choix;//Capture le choix pour chaque switch
+        private static int deplacement;//Nombre de case franchies en début de tour
+        private static int Case;//Case sur laquelle le joueur se trouve
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         
          //Initialisation scanner
+         
+        JFrameMain j = new JFrameMain();
         
         do{
+            
             
             System.out.println("Bienvenue, allez vous reussir a sauver la Princesse....");
 
@@ -42,7 +46,7 @@ public class Tp3 {
                     System.out.println(
                             "Bienvenue dans une histoire dont VOUS serez le héros !\n" +
                             "Dans ce jeu, vous allez progresser sur un plateau constitué\n" +
-                                    "de 100 cases.\n" +
+                                    "de "+ NBCASES +" cases.\n" +
                                     "Au hasard, des chemins, vous rencontrerez des événements\n" +
                                     "et essaierez d'y survivre.");
                     tour();
@@ -74,25 +78,26 @@ public class Tp3 {
         switch (choiceRace){
             case "1" :
                 System.out.println("Vous serez donc un nain !");
-                m = new Nain();
+                m = new Nain("penis");
+                
                 break;
             case "2" :
                 System.out.println("Vous serez donc un elfe !");
-                m = new Elfe();
+                m = new Elfe("penis");
                 break;
             case "3" :
                 System.out.println("Vous serez donc un hobbit !");
-                m = new Hobbit();
+                m = new Hobbit("penis");
                 break;
             case "4" :
                 System.out.println("Vous serez donc un humain !");
-                m = new Humain();
+                m = new Humain("penis");
                 break;
             default :
                 System.out.println("\u001B[41mL'option " + choix + " n'est pas valide.\u001B[m");
         }
 
-        while (Case < 100) {
+        while (Case < NBCASES) {
             nbTours ++;
             deplacement = 1;
             System.out.println("\u001B[36m       [              TOUR SUIVANT\n" +
@@ -106,7 +111,10 @@ public class Tp3 {
             Case += deplacement;
             System.out.println("\nVous avancez de " + deplacement + " cases.\n");
             System.out.println("Tour \u001B[32m" + nbTours + "\u001B[m - Case " + Case);
-            if(Case>100){
+            
+            JFrameMain j = new JFrameMain();
+            
+            if(Case>NBCASES){
                 break;
             }
 
@@ -126,45 +134,24 @@ public class Tp3 {
                         case "o":
                         case "O":
                             System.out.println("Vous entrez dans la taverne...");
-                            Taverne n = new Taverne(m);
-                            n.eventTaverne();
+                            //Taverne n = new Taverne(m);
+                            //n.eventTaverne();
                             break;
                         default:
                             System.out.println("Vous décidez de ne pas y entrer et continuez votre route sans encombres.");
                     }
                     break;
                 case 2:
-                    //INSTANCIER OBSTACLE
-                    Obstacle obstacle = new Obstacle(Random.boolObsctacle(),2);
-                    System.out.println("Un obstacle encombre votre route.");
-                    if(obstacle.getIsBloquant()){ //   CHECK obstacle.isBloquant()
-                        System.out.println("L'obstacle semble vraiment infranchissable, vous décidez donc de faire demi-tour.");
-                        Case -= (int)Math.round((deplacement)*0.70);
-                    } else {
-                        System.out.println("Vous pensez pouvoir le franchir.\n" +
-                                "1 - J'essaie de le franchir !\n" +
-                                "2 - Non, je préfère faire demi-tour et trouver un autre chemin");
-                        choix = sc.nextLine();
-                        switch(choix){
-                            case "1":
-                                //QUI PEUT PASSER L'OBSTACLE, DANS QUELLES CONDITIONS
-                                System.out.println("Vous réussissez à passer l'obstacle, mais vous sentez qu'un peu de repos vous fera le plus grand bien.\n" +
-                                        "Votre prochain déplacement en sera peut-être affecté.");
-                                break;
-                            case "2":
-                                System.out.println("L'obstacle vous semble vraiment infranchissable, vous décidez donc de faire demi-tour.");
-                                break;
-                        }
-                    }
+                    Obstacle o = new Obstacle();
+                    o.eventObstacle();
                     break;
                 case 3:
-                    Combat c = new Combat(m);
-                    c.debutDuCombat();
+                    JPanelCombat c = new JPanelCombat(m);
                     break;
             }
             if (m.getPV() <= 0) {
                 System.out.println("Vous êtes tout mourru !\n");
-                Case = 100;
+                Case = NBCASES;
             }
             sc.nextLine();
         }

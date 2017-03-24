@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tp3.comportement;
+package tp3;
 
 /**
  *
- * @author alexandre.depembroke
+ * @author Loic.FOREST
  */
-public interface Deplacement {
+public interface Event {
     
-    public void deplacer();
-    
-    public void deplacerAvec(int nbPas);    
 }
