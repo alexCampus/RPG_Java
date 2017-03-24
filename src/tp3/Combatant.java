@@ -33,6 +33,7 @@ abstract class Combatant {
     public int PVlost;
     public int taverne;
     public int obstacle;
+    protected int poursuite;
     
     public Combatant(){}
     
@@ -85,7 +86,13 @@ abstract class Combatant {
     
     public void setMoinsPV(int nbPV){
         PVlost += nbPV;
-        PV  -= nbPV;
+        int a = PV - nbPV;
+        if(a > 0){
+            PV  -= nbPV;
+        }
+        else{
+            PV = 0;
+        }
     }
     
     public void setPlusForce(int nbForce){
@@ -102,6 +109,14 @@ abstract class Combatant {
     
     public void setMoinsSpeed(int nbSpeed){
         speed -= nbSpeed;
+    }
+    
+    public String getNom(){
+        return this.nom;
+    }
+    
+    public int getPoursuite(){
+        return this.poursuite;
     }
     
 }

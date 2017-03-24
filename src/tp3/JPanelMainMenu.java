@@ -101,8 +101,6 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                     continuBtnActionPerformed(evt);
                 } catch (MalformedURLException ex) {
                     Logger.getLogger(JPanelMainMenu.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException e) {
-                    e.printStackTrace();
                 }
             }
         });
@@ -236,22 +234,25 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
 
     }//GEN-LAST:event_lancerActionPerformed
 
-    private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException, SQLException {//GEN-FIRST:event_continuBtnActionPerformed
-        if(this.fenetre.Case > 100) {
-            this.fenetre.setContentPane(new JPanelWin(this.fenetre));
-        } else {
+    private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException {//GEN-FIRST:event_continuBtnActionPerformed
+
             if (this.ev instanceof javax.swing.JPanel) {
                 this.fenetre.setContentPane((javax.swing.JPanel) this.ev);
                 SwingUtilities.updateComponentTreeUI(this.fenetre);
             } else if (this.ev instanceof Taverne) {
                 ((Taverne)this.ev).eventTaverne(this.fenetre);
+
             }
 
-        }
 
     }//GEN-LAST:event_continuBtnActionPerformed
 
     private void newEvent() throws MalformedURLException{
+        if(this.fenetre.Case >= 100) {
+            herosEnnemie hero = new herosEnnemie("Heros Légendaire", 10, 50);
+            this.eventLabel.setText("Un héros vous barre la route ...");
+            this.ev =new JPanelCombat(this.fenetre, hero);
+        } else {
 
         int event = Random.event();
 
@@ -274,6 +275,9 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                     this.ev = new JPanelMainMenu(this.fenetre);
                     break;
             }
+        }
+
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel caseLabel;
