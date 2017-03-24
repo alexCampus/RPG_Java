@@ -239,17 +239,16 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
             if (this.ev instanceof javax.swing.JPanel) {
                 this.fenetre.setContentPane((javax.swing.JPanel) this.ev);
                 SwingUtilities.updateComponentTreeUI(this.fenetre);
-            } else if (this.ev instanceof Taverne) {
-                ((Taverne)this.ev).eventTaverne(this.fenetre);
-
+            } else {
+                Taverne taverne = new Taverne(this.fenetre.heros, this.fenetre);
             }
 
 
     }//GEN-LAST:event_continuBtnActionPerformed
 
     private void newEvent() throws MalformedURLException{
-        if(this.fenetre.Case >= 100) {
-            herosEnnemie hero = new herosEnnemie("Heros Légendaire", 10, 50);
+        if(this.fenetre.Case >= Tp3.NBCASES) {
+            herosEnnemie hero = new herosEnnemie("Heros Légendaire", 10, 30);
             this.eventLabel.setText("Un héros vous barre la route ...");
             this.ev =new JPanelCombat(this.fenetre, hero);
         } else {
@@ -263,11 +262,11 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                     break;
                 case 1:
                     this.eventLabel.setText("Vous faites face à une taverne !");
-                    this.ev = new Taverne(this.fenetre.heros, this.fenetre);
+                    this.ev = null;
                     break;
                 case 2:
                     this.eventLabel.setText("Un obstacle vous barre la route !");
-                    Obstacle o = new Obstacle();
+//                    Obstacle o = new Obstacle();
                     this.ev = new JPanelObstacle(this.fenetre);
                     break;
                 case 3:

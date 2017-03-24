@@ -40,7 +40,7 @@ public class PanelTaverne extends JFrame{
        
         super();
         
-         this.fenetre = fenetre;
+        this.fenetre = fenetre;
         fenetre.setContentPane(buildContentPane(taverneText,linkImg,a));
     }
     

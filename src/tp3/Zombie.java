@@ -18,7 +18,7 @@ public class Zombie extends Ennemies{
        super("Zombie", 1);
        this.PV = 40;
        this.PVmax = this.PV;
-       this.force = 15;
+       this.force = 10;
        this.avatar = new ImageIcon(this.getClass().getResource("zombie.png"));
     }
     
