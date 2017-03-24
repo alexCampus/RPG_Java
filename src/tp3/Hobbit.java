@@ -20,7 +20,5 @@ public class Hobbit extends Heros{
         this.psoin = 50;
         this.nom = nom;
         this.avatar = new ImageIcon(this.getClass().getResource("hobbit.png"));
-
-
     }
 }

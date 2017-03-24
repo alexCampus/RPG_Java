@@ -14,26 +14,26 @@ import javax.swing.ImageIcon;
  */
 abstract class Combatant {
     protected String nom;
-    protected int score;
-    protected int psoin;
+    int score;
+    int psoin;
     protected int PV;
-    protected int PVmax = 100; 
+    int PVmax = 100;
     protected int force;
-    protected int speed;
-    protected ArrayList<Combatant> tableauDeChasse = new ArrayList<>();
+    int speed;
+    ArrayList<Combatant> tableauDeChasse = new ArrayList<>();
     protected ImageIcon avatar;
-    public int tour;
-    public int Case;
-    public int PVwon;
-    public int PVlost;
-    public int taverne;
-    public int obstacle;
-    protected int poursuite;
+    int tour;
+    int Case;
+    int PVwon;
+    int PVlost;
+    int taverne;
+    int obstacle;
+    int poursuite;
     
     public Combatant(){}
 
     
-    public double seSoigner(){
+    double seSoigner(){
         double soi = (double) Math.round((this.PVmax-this.PV)*(this.psoin)/100);
         this.setPlusPV(soi);
         return soi;
@@ -47,11 +47,11 @@ abstract class Combatant {
         return force;
     }
     
-    public int getSpeed(){
+    int getSpeed(){
         return speed;
     }
     
-     public void setPlusPV(double nbPV){
+     void setPlusPV(double nbPV){
          int a = (int) (PV +nbPV);
          PVwon += (int) nbPV;
          if(a < PVmax)
@@ -65,7 +65,7 @@ abstract class Combatant {
         
     }
     
-    public void setMoinsPV(int nbPV){
+    void setMoinsPV(int nbPV){
         PVlost += nbPV;
         int a = PV - nbPV;
         if(a > 0){
@@ -76,32 +76,32 @@ abstract class Combatant {
         }
     }
     
-    public void setPlusForce(int nbForce){
+    void setPlusForce(int nbForce){
         force += nbForce;
     }
     
-    public void setMoinsForce(int nbForce){
+    void setMoinsForce(int nbForce){
         force -= nbForce;
     }
     
-    public void setPlusSpeed(int nbSpeed){
+    void setPlusSpeed(int nbSpeed){
         if (speed < 3) {
             speed += nbSpeed;
         }
         
     }
     
-    public void setMoinsSpeed(int nbSpeed){
+    void setMoinsSpeed(int nbSpeed){
         if (speed > 1) {
             speed -= nbSpeed;
         }   
     }
     
-    public String getNom(){
+    String getNom(){
         return this.nom;
     }
     
-    public int getPoursuite(){
+    int getPoursuite(){
         return this.poursuite;
     }
     

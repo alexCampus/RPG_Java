@@ -5,21 +5,20 @@
  */
 package tp3;
 import java.util.Scanner;
-import javax.swing.JFrame;
 /**
  *
  * @author alexandre.depembroke
  */
 public class Tp3 {
 
-        static Scanner sc = new Scanner(System.in);
+        private static Scanner sc = new Scanner(System.in);
 
         static final int NBCASES = 100;
-        static int nbTours = 0; //Nombre de tours écoulés
-        static boolean exitMain = false; //Permet de sortir du menu principal et quitter le programme
-        static String choix;//Capture le choix pour chaque switch
-        static int deplacement;//Nombre de case franchies en début de tour
-        static int Case;//Case sur laquelle le joueur se trouve
+        private static int nbTours = 0; //Nombre de tours écoulés
+        private static boolean exitMain = false; //Permet de sortir du menu principal et quitter le programme
+        private static String choix;//Capture le choix pour chaque switch
+        private static int deplacement;//Nombre de case franchies en début de tour
+        private static int Case;//Case sur laquelle le joueur se trouve
     /**
      * @param args the command line arguments
      */
