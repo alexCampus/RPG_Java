@@ -6,6 +6,7 @@
 package tp3;
 
 import java.net.MalformedURLException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -100,6 +101,8 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
                     continuBtnActionPerformed(evt);
                 } catch (MalformedURLException ex) {
                     Logger.getLogger(JPanelMainMenu.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -233,7 +236,7 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
 
     }//GEN-LAST:event_lancerActionPerformed
 
-    private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException {//GEN-FIRST:event_continuBtnActionPerformed
+    private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException, SQLException {//GEN-FIRST:event_continuBtnActionPerformed
         if(this.fenetre.Case > 100) {
             this.fenetre.setContentPane(new JPanelWin(this.fenetre));
         } else {
