@@ -20,7 +20,7 @@ public class Elfe extends Heros{
         this.speed = 3;
         this.power = new PowerMagie();
         this.deplacement = new Courir();
-        this.psoin = 33;
+        this.psoin = 25;
         this.nom = nom;
         this.avatar = new ImageIcon(this.getClass().getResource("elf.png"));
         

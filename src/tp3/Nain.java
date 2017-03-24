@@ -17,8 +17,8 @@ public class Nain extends Heros{
     public Nain(String nom){
         this.PV = 100;
         this.force = 30;
-        this.speed = 2;
-        this.psoin = 10;
+        this.speed = 1;
+        this.psoin = 33;
         this.nom = nom;
         this.avatar = new ImageIcon(this.getClass().getResource("dwarf.png"));
     }
