@@ -398,7 +398,7 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         this.soinBtn.setVisible(true);
         this.fuirBtn.setVisible(true);
         this.testCombat();
-        SwingUtilities.updateComponentTreeUI(this.fenetre);
+        
         
     }//GEN-LAST:event_cpBtnActionPerformed
 
@@ -458,8 +458,9 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         this.attBtn.setVisible(true);
         this.soinBtn.setVisible(true);
         this.fuirBtn.setVisible(true);
-        SwingUtilities.updateComponentTreeUI(this.fenetre);
+        
         this.testCombat();
+       
         
     }//GEN-LAST:event_caBtnActionPerformed
 
@@ -513,14 +514,14 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         this.fuirBtn.setVisible(true);
         
         this.testCombat();
-        SwingUtilities.updateComponentTreeUI(this.fenetre);
+        
     }//GEN-LAST:event_feinteBtnActionPerformed
 
     private void continuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuBtnActionPerformed
         
         if(this.fenetre.heros.getPV() <= 0) {
             this.fenetre.setContentPane(new JPanelLose(this.fenetre));
-        } else if (this.fenetre.Case >= 100){
+        } else if (this.fenetre.Case >= Tp3.NBCASES){
             try {
                 this.fenetre.setContentPane(new JPanelWin(this.fenetre));
             } catch (SQLException ex) {
@@ -607,6 +608,8 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
             //A FAIRE UNE FOIS LE MENU FINI
             //this.fenetre.setContentPane(//mainmenu);
         }
+        
+        SwingUtilities.updateComponentTreeUI(this.fenetre);
     }
         
 

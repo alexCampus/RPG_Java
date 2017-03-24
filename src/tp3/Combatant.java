@@ -104,11 +104,16 @@ abstract class Combatant {
     }
     
     public void setPlusSpeed(int nbSpeed){
-        speed += nbSpeed;
+        if (speed < 3) {
+            speed += nbSpeed;
+        }
+        
     }
     
     public void setMoinsSpeed(int nbSpeed){
-        speed -= nbSpeed;
+        if (speed > 1) {
+            speed -= nbSpeed;
+        }   
     }
     
     public String getNom(){

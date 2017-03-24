@@ -14,7 +14,7 @@ public class Tp3 {
 
         static Scanner sc = new Scanner(System.in);
 
-        static final int NBCASES = 100;
+        static final int NBCASES = 10;
         static int nbTours = 0; //Nombre de tours écoulés
         static boolean exitMain = false; //Permet de sortir du menu principal et quitter le programme
         static String choix;//Capture le choix pour chaque switch

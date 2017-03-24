@@ -247,8 +247,8 @@ public class JPanelMainMenu extends javax.swing.JPanel implements Event{
     }//GEN-LAST:event_continuBtnActionPerformed
 
     private void newEvent() throws MalformedURLException{
-        if(this.fenetre.Case >= 100) {
-            herosEnnemie hero = new herosEnnemie("Heros Légendaire", 10, 50);
+        if(this.fenetre.Case >= Tp3.NBCASES) {
+            herosEnnemie hero = new herosEnnemie("Heros Légendaire", 10, 30);
             this.eventLabel.setText("Un héros vous barre la route ...");
             this.ev =new JPanelCombat(this.fenetre, hero);
         } else {
