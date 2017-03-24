@@ -23,7 +23,7 @@ public class JFrameMain extends javax.swing.JFrame {
         this.setVisible(true);
         this.setSize(900, 900);
         initComponents();
-        this.setContentPane(new JPanelStart(this));
+        this.setContentPane(new JPanelTrap(this));
     }
 
     /**
