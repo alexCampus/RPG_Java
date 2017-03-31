@@ -21,7 +21,7 @@ public class Obstacle {
 
     public void eventObstacle() {
         int random = Random.dice(5);
-        switch(3) {
+        switch(random) {
             case 1:
                 name = "un pont écroulé";
                 level = 5;
