@@ -36,7 +36,7 @@ public class PanelTaverne extends JFrame{
         fenetre.setContentPane(accueilTaverne());
     }
     
-    public PanelTaverne(String taverneText, String linkImg, JFrameMain fenetre, boolean a) throws MalformedURLException{
+    public PanelTaverne(String taverneText, ImageIcon linkImg, JFrameMain fenetre, boolean a) throws MalformedURLException{
        
         super();
         
@@ -44,7 +44,7 @@ public class PanelTaverne extends JFrame{
         fenetre.setContentPane(buildContentPane(taverneText,linkImg,a));
     }
     
-    private JPanel buildContentPane(String taverneText, String linkImg, boolean a) throws MalformedURLException
+    private JPanel buildContentPane(String taverneText, ImageIcon linkImg, boolean a) throws MalformedURLException
     {
        JPanel panel = new JPanel();
        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -59,7 +59,7 @@ public class PanelTaverne extends JFrame{
        
       
         JLabel  img = new JLabel();
-        img.setIcon(new ImageIcon(new URL(linkImg)));
+        img.setIcon(linkImg);
         panel.add(img);
         
         continuBtn.setActionCommand("");

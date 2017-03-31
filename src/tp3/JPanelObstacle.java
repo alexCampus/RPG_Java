@@ -21,7 +21,7 @@ public class JPanelObstacle extends JPanel implements Event {
         obstacle.eventObstacle();
 
         JLabel  img = new JLabel();
-        img.setIcon(new ImageIcon(new URL(obstacle.imgUrl)));
+        img.setIcon(obstacle.imgUrl);
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
