@@ -415,6 +415,7 @@ public class JPanelCombat extends javax.swing.JPanel implements Event{
         else {
             this.message.setText("Fuite impossible ... L'ennemi vous rattrape et vous blesse.");
             this.majPvDmg(this.ennemie.force, 1);
+            this.fenetre.heros.setMoinsPV(this.ennemie.getForce());
             this.messagePv.setText("Vous perdez "+this.ennemie.getForce()+" pv.");
             testCombat();
             
