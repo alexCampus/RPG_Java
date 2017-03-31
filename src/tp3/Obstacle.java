@@ -21,36 +21,36 @@ public class Obstacle {
 
     public void eventObstacle() {
         int random = Random.dice(5);
-        switch(3) {
+        switch(random) {
             case 1:
                 name = "un pont écroulé";
                 level = 5;
-                imgUrl = new ImageIcon(this.getClass().getResource("tronc.gif"));
+                imgUrl = new ImageIcon(this.getClass().getResource("../img/obstacle/broken_bridge.png"));
                 break;
                 
 
             case 2:
                 name = "un pont en très mauvais état";
                 level = 3;
-                imgUrl = new ImageIcon(this.getClass().getResource("tronc.gif"));
+                imgUrl = new ImageIcon(this.getClass().getResource("../img/obstacle/bad_bridge.png"));
                 break;
 
             case 3:
                 name = "un tronc en travers de la route";
                 level = 1;
-                imgUrl = new ImageIcon(this.getClass().getResource("tronc.gif"));
+                imgUrl = new ImageIcon(this.getClass().getResource("../img/obstacle/tree.gif"));
                 break;
 
             case 4:
                 name = "une rivière";
                 level = 2;
-                imgUrl = new ImageIcon(this.getClass().getResource("tronc.gif"));
+                imgUrl = new ImageIcon(this.getClass().getResource("../img/obstacle/river.gif"));
                 break;
 
             case 5:
                 name = "un éboulement";
                 level = 4;
-                imgUrl=new ImageIcon(this.getClass().getResource("tronc.gif"));
+                imgUrl=new ImageIcon(this.getClass().getResource("../img/obstacle/avalanche.gif"));
         }
     }
 }
